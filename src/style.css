@@ -1,0 +1,20 @@
+@import "tailwindcss";
+@source "../src/**/*.{tsx,ts,jsx,js,html}";
+@source inline("from-blue-900 via-blue-700 to-cyan-500 from-slate-900 via-cyan-900 to-cyan-600 from-blue-950 via-blue-800 to-blue-500 from-cyan-950 via-cyan-800 to-teal-500 from-cyan-500 to-blue-600 from-cyan-50 to-blue-50 from-violet-500 to-blue-600 from-violet-50 to-blue-50 from-teal-500 to-cyan-600 from-teal-50 to-cyan-50 opacity-0 opacity-100 translate-y-4 translate-y-0 scale-95 scale-100 rotate-180");
+
+@theme {
+  --font-sans: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #1e293b;
+    background: #fff;
+    -webkit-font-smoothing: antialiased;
+  }
+}
