@@ -469,6 +469,7 @@ export default function RbsPage() {
     opacity: 1,
     transition: 'transform 0.24s ease, opacity 0.24s ease',
   })
+  const [textOpen, setTextOpen] = useState(false)
   const isAnimating = useRef(false)
   const idxRef = useRef(0) // always-fresh mirror of displayIdx for the interval
   const productsRef = useRef<HTMLDivElement>(null)
@@ -480,7 +481,7 @@ export default function RbsPage() {
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => setWidgetVisible(!entry.isIntersecting),
-      { threshold: 0.08 }
+      { threshold: 0 }
     )
     observer.observe(el)
     return () => observer.disconnect()
@@ -521,16 +522,123 @@ export default function RbsPage() {
   return (
     <div className="pt-20 bg-white min-h-screen">
 
-      {/* Logo banner */}
-      <section className="bg-slate-900 px-4 py-10">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-6">
-          <img src={rbsLogo} alt="RBS" className="h-12 sm:h-14 object-contain" />
-          <Link
-            to="/contact"
-            className="shrink-0 inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors"
-          >
-            Επικοινωνία <ArrowRight size={14} />
-          </Link>
+      {/* ── Hero + Text — unified blue section ── */}
+      <section className="bg-blue-950 px-4 pt-10 pb-14">
+        <div className="max-w-5xl mx-auto">
+
+          {/* Logo */}
+          <div className="mb-10">
+            <img src={rbsLogo} alt="RBS" className="h-12 sm:h-14 object-contain" />
+          </div>
+
+          {/* Expandable text content */}
+          <div className="max-w-3xl">
+            {/* Always-visible header */}
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-400 mb-2">
+              Φορολογικές Ταμειακές Μηχανές Λιανικής
+            </p>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white leading-snug mb-1">
+              Ταμειακές Μηχανές Λιανικής RBS
+            </h1>
+            <p className="text-blue-300 text-sm font-medium mb-6">
+              Η καινοτομία στην υπηρεσία της επιχείρησής σας
+            </p>
+
+            {/* Collapsible body */}
+            <div
+              className="relative overflow-hidden transition-[max-height] duration-500 ease-in-out"
+              style={{ maxHeight: textOpen ? '2000px' : '700px' }}
+            >
+              <div className="space-y-4 text-sm text-blue-100/70 leading-relaxed">
+                <p>
+                  Ανακαλύψτε σήμερα τα εξελιγμένα Ταμειακά Συστήματα RBS, που ενσωματώνουν τις πιο
+                  σύγχρονες τεχνολογίες και πληρούν τις τρέχουσες φορολογικές απαιτήσεις.
+                  Κατασκευασμένα εξολοκλήρου στην Ελλάδα, προσφέρουν την αξιοπιστία και την ποιότητα
+                  που χρειάζεται και αξίζει η δική σας επιχείρηση.
+                </p>
+                <p>
+                  Με τις ταμειακές μηχανές λιανικής RBS, μπορείτε να εκδίδετε νόμιμα κάθε είδους
+                  παραστατικό και να ελέγχετε την επιχείρησή σας τόσο τοπικά, όσο &amp; απομακρυσμένα.
+                  Αξιοποιήστε την πολλαπλή λειτουργικότητα, τη λειτουργική σταθερότητα και την
+                  αξιοπιστία που προσφέρουν, σε συνδυασμό με τον σύγχρονο εργονομικό σχεδιασμό. Οι
+                  ταμειακές λιανικής RBS ταιριάζουν σε κάθε είδους επιχείρησης λιανικής,
+                  ενσωματώνοντας νέες αναβαθμισμένες λειτουργικότητες, είτε πρόκειται για ταμειακή
+                  εμπορικού καταστήματος, ταμειακή μίνι μάρκετ ή ταμειακή υπαίθριας αγοράς.
+                </p>
+                <p>
+                  Οι εξουσιοδοτημένοι συνεργάτες μας σε όλη την Ελλάδα είναι έτοιμοι να σας βοηθήσουν
+                  να επιλέξετε το κατάλληλο ταμειακό σύστημα RBS για τις ανάγκες σας, μέσα από μια
+                  μεγάλη γκάμα αισθητικής σχεδίασης και λειτουργικότητας.
+                </p>
+                <p className="font-semibold text-blue-100">
+                  Επιλέξτε την ταμειακή λιανικής RBS για να αναβαθμίσετε την επιχείρησή σας με την
+                  τελευταία λέξη της τεχνολογίας!
+                </p>
+
+                {/* Divider */}
+                <div className="flex items-center gap-3 py-2">
+                  <div className="flex-1 h-px bg-blue-800" />
+                  <span className="text-[10px] font-black uppercase tracking-widest text-blue-500">
+                    Νέα Λειτουργία
+                  </span>
+                  <div className="flex-1 h-px bg-blue-800" />
+                </div>
+
+                {/* Section 2 — Ψηφιακό Πελατολόγιο */}
+                <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-400">
+                  Δωρεάν με ECR Connect ή ECR Invoicing
+                </p>
+                <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                  Ψηφιακό Πελατολόγιο Οχημάτων
+                </h2>
+                <p>
+                  Όλες οι ταμειακές μηχανές RBS που συνοδεύονται από ECR Connect ή ECR Invoicing,
+                  ενσωματώνουν πλήρως την λειτουργικότητα του ψηφιακού πελατολογίου οχημάτων, για
+                  τους κλάδους που είναι άμεσα εφαρμοστέο με βάση τις κατευθύνσεις της ΑΑΔΕ.
+                </p>
+                <p>
+                  Με την επιλογή συγκεκριμένου πλήκτρου, ενεργοποιείται η λειτουργία του Ψηφιακού
+                  Πελατολογίου και καταγράφεται η είσοδος του οχήματος με βάση τον αριθμό
+                  κυκλοφορίας. Η ταμειακή μηχανή RBS εκδίδει εκτύπωση με τετραψήφιο κωδικό
+                  καταχώρησης, τον αριθμό κυκλοφορίας και την ώρα εισόδου. Η εκτύπωση τοποθετείται
+                  στο όχημα και ταυτόχρονα αποστέλλονται τα στοιχεία καταχώρησης στην ΑΑΔΕ.
+                </p>
+                <p>
+                  Κατά την ολοκλήρωση της υπηρεσίας, εκδίδεται η απόδειξη και στο τέλος της έκδοσης
+                  εμφανίζεται η επιλογή «Συσχέτιση» όπου ο χειριστής πληκτρολογεί τον τετραψήφιο
+                  κωδικό. Η ταμειακή μηχανή RBS αποστέλλει στο myDATA τα στοιχεία της απόδειξης,
+                  συσχετισμένα με το αριθμό κυκλοφορίας του οχήματος.
+                </p>
+                <p>
+                  H διαδικασία χειρισμού είναι απλή, φιλική στο χρήστη και σύμφωνα με τις κατευθύνσεις
+                  της ΑΑΔΕ, καλύπτοντας την υποχρέωση τήρησης ψηφιακού πελατολογίου για Συνεργεία,
+                  Πλυντήρια Οχημάτων και Εταιρείες Ενοικίασης Οχημάτων.
+                </p>
+                <p>
+                  Η λειτουργικότητα του ψηφιακού πελατολογίου οχημάτων παρέχεται δωρεάν σε όλες τις
+                  εγκαταστάσεις ταμειακών που συνοδεύονται από ECR Connect ή ECR Invoicing.
+                </p>
+              </div>
+
+              {/* Gradient fade when collapsed */}
+              {!textOpen && (
+                <div className="absolute bottom-0 left-0 right-0 h-16 bg-linear-to-t from-blue-950 to-transparent pointer-events-none" />
+              )}
+            </div>
+
+            {/* Read more toggle */}
+            <button
+              onClick={() => setTextOpen(!textOpen)}
+              className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-blue-400 hover:text-blue-300 transition-colors"
+            >
+              {textOpen ? 'Διαβάστε λιγότερα' : 'Διαβάστε περισσότερα'}
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-200 ${textOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+          </div>
+
         </div>
       </section>
 
@@ -585,111 +693,6 @@ export default function RbsPage() {
           ))}
         </div>
       </div>
-
-      {/* Text section */}
-      <section className="border-b border-slate-200 px-4 py-12">
-        <div className="max-w-5xl mx-auto">
-
-          {/* Breadcrumb */}
-          <nav className="flex items-center gap-1.5 text-slate-400 text-xs mb-8">
-            <Link to="/" className="hover:text-slate-700 transition-colors">Αρχική</Link>
-            <ChevronRight size={11} />
-            <Link to="/tameiakes" className="hover:text-slate-700 transition-colors">Ταμειακές</Link>
-            <ChevronRight size={11} />
-            <span className="text-slate-600">RBS</span>
-          </nav>
-
-          {/* Section 1 */}
-          <div className="mb-10 max-w-3xl">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600 mb-2">
-              Φορολογικές Ταμειακές Μηχανές Λιανικής
-            </p>
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-slate-900 leading-snug mb-1">
-              Ταμειακές Μηχανές Λιανικής RBS
-            </h1>
-            <p className="text-slate-500 text-sm font-medium mb-6">
-              Η καινοτομία στην υπηρεσία της επιχείρησής σας
-            </p>
-            <div className="space-y-4 text-sm text-slate-500 leading-relaxed">
-              <p>
-                Ανακαλύψτε σήμερα τα εξελιγμένα Ταμειακά Συστήματα RBS, που ενσωματώνουν τις πιο
-                σύγχρονες τεχνολογίες και πληρούν τις τρέχουσες φορολογικές απαιτήσεις.
-                Κατασκευασμένα εξολοκλήρου στην Ελλάδα, προσφέρουν την αξιοπιστία και την ποιότητα
-                που χρειάζεται και αξίζει η δική σας επιχείρηση.
-              </p>
-              <p>
-                Με τις ταμειακές μηχανές λιανικής RBS, μπορείτε να εκδίδετε νόμιμα κάθε είδους
-                παραστατικό και να ελέγχετε την επιχείρησή σας τόσο τοπικά, όσο &amp; απομακρυσμένα.
-                Αξιοποιήστε την πολλαπλή λειτουργικότητα, τη λειτουργική σταθερότητα και την
-                αξιοπιστία που προσφέρουν, σε συνδυασμό με τον σύγχρονο εργονομικό σχεδιασμό. Οι
-                ταμειακές λιανικής RBS ταιριάζουν σε κάθε είδους επιχείρησης λιανικής,
-                ενσωματώνοντας νέες αναβαθμισμένες λειτουργικότητες, είτε πρόκειται για ταμειακή
-                εμπορικού καταστήματος, ταμειακή μίνι μάρκετ ή ταμειακή υπαίθριας αγοράς.
-              </p>
-              <p>
-                Οι εξουσιοδοτημένοι συνεργάτες μας σε όλη την Ελλάδα είναι έτοιμοι να σας βοηθήσουν
-                να επιλέξετε το κατάλληλο ταμειακό σύστημα RBS για τις ανάγκες σας, μέσα από μια
-                μεγάλη γκάμα αισθητικής σχεδίασης και λειτουργικότητας.
-              </p>
-              <p className="font-semibold text-slate-700">
-                Επιλέξτε την ταμειακή λιανικής RBS για να αναβαθμίσετε την επιχείρησή σας με την
-                τελευταία λέξη της τεχνολογίας!
-              </p>
-            </div>
-          </div>
-
-          {/* Divider */}
-          <div className="flex items-center gap-3 my-8 max-w-3xl">
-            <div className="flex-1 h-px bg-slate-200" />
-            <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
-              Νέα Λειτουργία
-            </span>
-            <div className="flex-1 h-px bg-slate-200" />
-          </div>
-
-          {/* Section 2 — Ψηφιακό Πελατολόγιο */}
-          <div className="max-w-3xl">
-            <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-600 mb-2">
-              Δωρεάν με ECR Connect ή ECR Invoicing
-            </p>
-            <h2 className="text-xl sm:text-2xl font-extrabold text-slate-900 mb-6">
-              Ψηφιακό Πελατολόγιο Οχημάτων
-            </h2>
-            <div className="space-y-4 text-sm text-slate-500 leading-relaxed">
-              <p>
-                Όλες οι ταμειακές μηχανές RBS που συνοδεύονται από ECR Connect ή ECR Invoicing,
-                ενσωματώνουν πλήρως την λειτουργικότητα του ψηφιακού πελατολογίου οχημάτων, για
-                τους κλάδους που είναι άμεσα εφαρμοστέο με βάση τις κατευθύνσεις της ΑΑΔΕ.
-              </p>
-              <p>
-                Με την επιλογή συγκεκριμένου πλήκτρου, ενεργοποιείται η λειτουργία του Ψηφιακού
-                Πελατολογίου και καταγράφεται η είσοδος του οχήματος με βάση τον αριθμό
-                κυκλοφορίας. Η ταμειακή μηχανή RBS εκδίδει εκτύπωση με τετραψήφιο κωδικό
-                καταχώρησης, τον αριθμό κυκλοφορίας και την ώρα εισόδου. Η εκτύπωση τοποθετείται
-                στο όχημα και ταυτόχρονα αποστέλλονται τα στοιχεία καταχώρησης στην ΑΑΔΕ.
-              </p>
-              <p>
-                Κατά την ολοκλήρωσης της υπηρεσίας, εκδίδεται η απόδειξη και στο τέλος της έκδοσης
-                εμφανίζεται η επιλογή «Συσχέτιση» όπου ο χειριστής πληκτρολογεί τον τετραψήφιο
-                κωδικό. Η ταμειακή μηχανή RBS αποστέλλει στο myDATA τα στοιχεία της απόδειξης,
-                συσχετισμένα με το αριθμό κυκλοφορίας του οχήματος.
-              </p>
-              <p>
-                H διαδικασία χειρισμού είναι απλή, φιλική στο χρήστη και σύμφωνα με τις κατευθύνσεις
-                της ΑΑΔΕ, καλύπτοντας την υποχρέωση τήρησης ψηφιακού πελατολογίου για Συνεργεία,
-                Πλυντήρια Οχημάτων και Εταιρείες Ενοικίασης Οχημάτων. Η λειτουργικότητα
-                πλαισιώνεται από δυνατότητα αναφοράς, για όλα τα οχήματα όπου έχει καταχωρηθεί η
-                είσοδος και δεν έχει ολοκληρωθεί η υπηρεσία.
-              </p>
-              <p>
-                Η λειτουργικότητα του ψηφιακού πελατολογίου οχημάτων, παρέχεται δωρεάν σε όλες τις
-                εγκαταστάσεις ταμειακών που συνοδεύονται από ECR Connect ή ECR Invoicing.
-              </p>
-            </div>
-          </div>
-
-        </div>
-      </section>
 
       {/* Products */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-4">

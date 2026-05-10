@@ -54,6 +54,39 @@ const slides = [
       ),
     },
   },
+  {
+    headline: 'myDATA',
+    subheadline: 'ΑΑΔΕ · ΥΠΑΗΕΣ · E-Invoicing',
+    body: 'Πλήρης ενσωμάτωση με την πλατφόρμα myDATA της ΑΑΔΕ. Διαβίβαση παραστατικών, σύνδεση με παρόχους ΥΠΑΗΕΣ και αυτόματη συμμόρφωση για κάθε επιχείρηση.',
+    cta: { label: 'Περισσότερα', href: '/mydata' },
+    gradient: 'from-indigo-950 via-indigo-800 to-violet-600',
+    visual: {
+      badge: '✓ Πιστοποιημένη Ενσωμάτωση',
+      tags: ['myDATA', 'ΑΑΔΕ', 'ΥΠΑΗΕΣ', 'E-Invoicing', 'Παραστατικά'],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
+          <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 12l-4-4-4 4M12 3v13" />
+        </svg>
+      ),
+    },
+  },
+  {
+    headline: 'Web & Mobile Apps',
+    subheadline: 'Websites · Web Apps · Mobile',
+    body: 'Σχεδιάζουμε και αναπτύσσουμε σύγχρονες web εφαρμογές, mobile apps και εταιρικά websites με έμφαση στην απόδοση.',
+    cta: { label: 'Περισσότερα', href: '/webdev' },
+    gradient: 'from-emerald-950 via-emerald-800 to-teal-600',
+    visual: {
+      badge: '✓ Web · Mobile · E-Commerce',
+      tags: ['Websites', 'Web Apps', 'Mobile Apps', 'E-Commerce', 'UI/UX'],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
+          <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z" />
+          <path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 9l-2 6" />
+        </svg>
+      ),
+    },
+  },
 ]
 
 export default function Hero() {

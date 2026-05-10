@@ -1,7 +1,8 @@
-import { useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronRight, ChevronDown, CheckCircle2 } from 'lucide-react'
 
+import datatecLogo from '../assets/logo-removebg-preview.png'
 import dtec100 from '../assets/dtec100md1-removebg-preview.png'
 import dtec50 from '../assets/dTEC50md.png'
 
@@ -519,45 +520,243 @@ function ProductRow({ product, accentText }: { product: Product; accentText: str
 
 /* ─── Page ───────────────────────────────────────────────────────── */
 export default function DatatecPage() {
+  const [displayIdx, setDisplayIdx] = useState(0)
+  const [cardStyle, setCardStyle] = useState<CSSProperties>({
+    transform: 'translateY(0)',
+    opacity: 1,
+    transition: 'transform 0.24s ease, opacity 0.24s ease',
+  })
+  const [textOpen, setTextOpen] = useState(false)
+  const isAnimating = useRef(false)
+  const idxRef = useRef(0)
+  const productsRef = useRef<HTMLDivElement>(null)
+  const [widgetVisible, setWidgetVisible] = useState(true)
+
+  // Hide widget when the products section enters the viewport, show when it leaves
+  useEffect(() => {
+    const el = productsRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => setWidgetVisible(!entry.isIntersecting),
+      { threshold: 0 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  function slideTo(nextIdx: number) {
+    if (isAnimating.current) return
+    isAnimating.current = true
+    setCardStyle({ transform: 'translateY(-110%)', opacity: 0, transition: 'transform 0.24s ease, opacity 0.24s ease' })
+    setTimeout(() => {
+      idxRef.current = nextIdx
+      setDisplayIdx(nextIdx)
+      setCardStyle({ transform: 'translateY(110%)', opacity: 0, transition: 'none' })
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        setCardStyle({ transform: 'translateY(0)', opacity: 1, transition: 'transform 0.24s ease, opacity 0.24s ease' })
+        setTimeout(() => { isAnimating.current = false }, 260)
+      }))
+    }, 260)
+  }
+
+  // Auto-advance every 3.5 s
+  useEffect(() => {
+    const id = setInterval(() => {
+      slideTo((idxRef.current + 1) % datatecProducts.length)
+    }, 3500)
+    return () => clearInterval(id)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function goToProduct(id: string) {
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
+  const product = datatecProducts[displayIdx]
+
   return (
     <div className="pt-20 bg-white min-h-screen">
 
-      {/* Hero */}
-      <section className="border-b border-slate-200 py-12 px-4">
+      {/* ── Hero + Text — unified cyan section ── */}
+      <section className="bg-cyan-950 px-4 pt-10 pb-14">
         <div className="max-w-5xl mx-auto">
-          <nav className="flex items-center gap-1.5 text-slate-400 text-xs mb-6">
-            <Link to="/" className="hover:text-slate-700 transition-colors">Αρχική</Link>
-            <ChevronRight size={11} />
-            <Link to="/tameiakes" className="hover:text-slate-700 transition-colors">Ταμειακές</Link>
-            <ChevronRight size={11} />
-            <span className="text-slate-600">DataTec</span>
-          </nav>
 
-          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
-            <div>
-              <span className="text-xs font-black uppercase tracking-[0.2em] text-cyan-600">DataTec</span>
-              <h1 className="mt-1 text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
-                Ταμειακές Μηχανές
-              </h1>
-              <p className="mt-3 text-slate-400 max-w-lg text-sm leading-relaxed">
-                Ταμειακές μηχανές λιανικής και εστιατορίου, πιστοποιημένες βάσει ΑΑΔΕ Α1173.
-                Εγκατάσταση και τεχνική υποστήριξη από την ComputerHouse.
-              </p>
-            </div>
-            <Link
-              to="/contact"
-              className="shrink-0 inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors"
-            >
-              Επικοινωνία <ArrowRight size={14} />
-            </Link>
+          {/* Logo */}
+          <div className="mb-10">
+            <img src={datatecLogo} alt="DataTec" className="h-16 sm:h-20 object-contain" />
           </div>
+
+          {/* Expandable text content */}
+          <div className="max-w-3xl">
+            {/* Always-visible header */}
+            <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-400 mb-2">
+              Φορολογικές Ταμειακές Μηχανές Λιανικής & Εστιατορίου
+            </p>
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-white leading-snug mb-1">
+              Ταμειακές Μηχανές DataTec
+            </h1>
+            <p className="text-cyan-300 text-sm font-medium mb-6">
+              Αξιόπιστες λύσεις για κάθε είδους επιχείρηση
+            </p>
+
+            {/* Always-visible body */}
+            <div className="space-y-4 text-sm text-cyan-100/70 leading-relaxed">
+              <p>
+                Ανακαλύψτε τις ταμειακές μηχανές DataTec — μία σειρά σύγχρονων φορολογικών
+                συστημάτων που συνδυάζουν αξιοπιστία, ευελιξία και πλήρη συμμόρφωση με τις
+                απαιτήσεις της ΑΑΔΕ. Κατασκευασμένες για να καλύπτουν τόσο τις ανάγκες της
+                λιανικής πώλησης όσο και της εστίασης, οι dTEC αποτελούν ολοκληρωμένη λύση
+                για κάθε επιχείρηση.
+              </p>
+              <p>
+                Με πιστοποίηση βάσει ΑΑΔΕ Α1173 και πλήρη ενσωμάτωση με τo myDATA, οι
+                ταμειακές DataTec επιτρέπουν την έκδοση όλων των απαραίτητων παραστατικών —
+                αποδείξεων, τιμολογίων και πιστωτικών — απευθείας από τη συσκευή. Η απρόσκοπτη
+                σύνδεση με παρόχους ΥΠΑΗΕΣ εξασφαλίζει αυτόματη αποστολή δεδομένων, μηδενίζοντας
+                τον διοικητικό φόρτο της επιχείρησής σας.
+              </p>
+              <p>
+                Η ComputerHouse αναλαμβάνει την εγκατάσταση, προγραμματισμό και τεχνική
+                υποστήριξη των ταμειακών DataTec. Από την πρώτη ρύθμιση έως την καθημερινή
+                λειτουργία, η ομάδα μας είναι πάντα δίπλα σας για να εξασφαλίσει αδιάλειπτη
+                λειτουργία του ταμειακού σας συστήματος.
+              </p>
+              <p className="font-semibold text-cyan-100">
+                Επιλέξτε DataTec για να αναβαθμίσετε την επιχείρησή σας με αξιόπιστη και
+                σύγχρονη φορολογική τεχνολογία!
+              </p>
+
+              {/* Divider */}
+              <div className="flex items-center gap-3 py-2">
+                <div className="flex-1 h-px bg-cyan-800" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-cyan-500">
+                  Διπλή Λειτουργία
+                </span>
+                <div className="flex-1 h-px bg-cyan-800" />
+              </div>
+
+              {/* Section 2 — always visible up to and including restaurant paragraph */}
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-400">
+                Λιανική & Εστίαση σε μία συσκευή
+              </p>
+              <h2 className="text-xl sm:text-2xl font-extrabold text-white">
+                Ταμειακή για Λιανική και Εστιατόριο
+              </h2>
+              <p>
+                Οι ταμειακές μηχανές DataTec dTEC αποτελούν μία από τις λίγες λύσεις στην
+                αγορά που καλύπτουν ταυτόχρονα τις ανάγκες λιανικής πώλησης και εστιατορίου
+                από μία και μόνο συσκευή, απλοποιώντας δραστικά τη διαχείριση της επιχείρησης.
+              </p>
+              <p>
+                Στη λειτουργία εστιατορίου, η συσκευή διαχειρίζεται έως 150 τραπέζια,
+                υποστηρίζει εκτύπωση προσωρινών αποδείξεων, μεταφορά παραγγελιών μεταξύ
+                τραπεζιών, μερικές πληρωμές και αποστολή παραγγελιών έως 16 διαφορετικούς
+                εκτυπωτές κουζίνας. Το Ψηφιακό Πελατολόγιο ενσωματώνεται πλήρως για κλάδους
+                που το απαιτεί η ΑΑΔΕ.
+              </p>
+
+              {/* Collapsible — remaining 2 paragraphs */}
+              <div
+                className="overflow-hidden transition-[max-height] duration-500 ease-in-out"
+                style={{ maxHeight: textOpen ? '400px' : '0px' }}
+              >
+                <div className="space-y-4">
+                  <p>
+                    Στη λιανική, παρέχει διαχείριση έως 10.000 ειδών με barcode, 100
+                    προγραμματιζόμενα τμήματα, 16 χειριστές και σύνδεση με ζυγούς, scanners
+                    και EFT POS. Η ταχύτητα εκτύπωσης 150 mm/sec εξασφαλίζει γρήγορη εξυπηρέτηση
+                    πελατών ακόμα και σε ώρες αιχμής.
+                  </p>
+                  <p>
+                    Η πλήρης συμβατότητα με το λογισμικό ARMPOS και η δυνατότητα σύνδεσης με
+                    εξωτερική οθόνη πελάτη καθιστούν τις dTEC ταμειακές ιδανική επιλογή για
+                    επιχειρήσεις που αναζητούν επεκτάσιμη και μελλοντικά ασφαλή λύση.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Read more toggle */}
+            <button
+              onClick={() => setTextOpen(!textOpen)}
+              className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors"
+            >
+              {textOpen ? 'Διαβάστε λιγότερα' : 'Διαβάστε περισσότερα'}
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-200 ${textOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+          </div>
+
         </div>
       </section>
 
+      {/* ── Bottom-right product carousel widget ── */}
+      <div className={`fixed bottom-6 right-6 z-40 w-52 bg-white shadow-md border border-slate-100 transition-all duration-300 ${
+        widgetVisible ? 'translate-x-0 opacity-100' : 'translate-x-[120%] opacity-0 pointer-events-none'
+      }`}>
+
+        {/* Label */}
+        <div className="px-4 pt-4">
+          <p className="text-[8px] font-black uppercase tracking-widest text-slate-400">Προϊόντα DataTec</p>
+        </div>
+
+        {/* Sliding product card */}
+        <div className="overflow-hidden">
+          <button
+            onClick={() => goToProduct(product.id)}
+            style={cardStyle}
+            className="w-full flex flex-col px-4 pt-2 pb-4 hover:bg-slate-50 group text-left"
+          >
+            {/* Image */}
+            <div className="w-full flex items-center justify-center py-3">
+              <img
+                src={product.images?.[0]}
+                alt={product.name}
+                className="h-28 w-28 object-contain"
+              />
+            </div>
+            {/* Name */}
+            <p className="text-sm font-semibold text-slate-700 group-hover:text-cyan-600 transition-colors leading-snug">
+              {product.name}
+            </p>
+            {/* CTA */}
+            <div className="inline-flex items-center gap-1 text-xs text-cyan-500 mt-1.5 group-hover:gap-1.5 transition-all duration-150">
+              Δείτε το <ArrowRight size={11} />
+            </div>
+          </button>
+        </div>
+
+        {/* Dots */}
+        <div className="flex items-center justify-center gap-1.5 py-3 border-t border-slate-100">
+          {datatecProducts.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => slideTo(i)}
+              className={`rounded-full transition-all duration-300 ${
+                i === displayIdx
+                  ? 'w-4 h-1 bg-slate-600'
+                  : 'w-1 h-1 bg-slate-200 hover:bg-slate-300'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
+
+
       {/* Products */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-4">
+        <div className="flex items-center gap-3">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-cyan-600">Τα Προϊόντα μας</span>
+          <div className="flex-1 h-px bg-slate-200" />
+        </div>
+      </div>
+      <div ref={productsRef} className="max-w-5xl mx-auto px-4 sm:px-6 pb-10">
         {datatecProducts.map((p) => (
-          <ProductRow key={p.id} product={p} accentText="text-cyan-600" />
+          <div key={p.id} id={p.id} className="scroll-mt-24">
+            <ProductRow product={p} accentText="text-cyan-600" />
+          </div>
         ))}
       </div>
 
