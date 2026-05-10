@@ -3,22 +3,22 @@ import { ArrowRight, CheckCircle2 } from 'lucide-react'
 
 const services = [
   {
-    id: 'tameiakes',
-    tag: 'Ταμειακές',
-    title: 'Επισκευή Ταμειακών Μηχανών & Φορολογικών Μηχανισμών',
-    subtitle: 'ΕΠΙΣΚΕΥΗ · ΚΛΕΙΣΙΜΟ · ΠΑΥΣΗ',
+    id: 'mixanografisi',
+    tag: 'Μηχανογράφηση',
+    title: 'Λύσεις Μηχανογράφησης',
+    subtitle: 'SOFTONE · UNISOFT · PBS ONE',
     description:
-      'Η ComputerHouse διαθέτει εξουσιοδοτημένο έμπειρο τεχνικό τμήμα για την εγκατάσταση, επισκευή, και κλείσιμο–παύση ταμειακών μηχανών και φορολογικών μηχανισμών.',
-    extra:
-      'Αναλαμβάνουμε το κλείσιμο, παύση ταμειακών μηχανών, φορολογικών μηχανισμών και την ανάγνωση της φορολογικής μνήμης. Παρέχουμε τις υπηρεσίες μας τόσο στην περιοχή των Σερρών, αλλά και Πανελλαδικά κατόπιν συνεννόησης.',
-    href: '/tameiakes',
-    accent: 'from-cyan-500 to-blue-600',
-    lightBg: 'from-cyan-50 to-blue-50',
+      'Η εταιρεία μας εγκαθιστά, παραμετροποιεί και υποστηρίζει προγράμματα των μεγαλύτερων Ελληνικών Software houses (Softone, Unisoft). Από την ίδρυσή μας αποτελούμε βασικό συνεργάτη της Unisoft.',
+    bullets: [
+      'Συμβουλευτικές Υπηρεσίες',
+      'Μεταφορά Δεδομένων & Ειδικές διασυνδέσεις',
+      'Εκπαίδευση στελεχών',
+      'Υποστήριξη On-site & απομακρυσμένα',
+    ],
+    href: '/mixanografisi',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="M7 8h10M7 12h6M7 16h4" />
-        <path d="M17 14l1.5 1.5L21 13" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+        <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />
       </svg>
     ),
   },
@@ -37,34 +37,28 @@ const services = [
     ],
     extra: 'Η τεχνική υποστήριξη παρέχεται είτε στο service της εταιρείας μας, είτε στο χώρο σας.',
     href: '/computers',
-    accent: 'from-violet-500 to-blue-600',
-    lightBg: 'from-violet-50 to-blue-50',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
         <rect x="2" y="3" width="20" height="14" rx="2" />
         <path d="M8 21h8M12 17v4" />
       </svg>
     ),
   },
   {
-    id: 'mixanografisi',
-    tag: 'Μηχανογράφηση',
-    title: 'Λύσεις Μηχανογράφησης',
-    subtitle: 'SOFTONE · UNISOFT · PBS ONE',
+    id: 'tameiakes',
+    tag: 'Ταμειακές',
+    title: 'Επισκευή Ταμειακών Μηχανών & Φορολογικών Μηχανισμών',
+    subtitle: 'ΕΠΙΣΚΕΥΗ · ΚΛΕΙΣΙΜΟ · ΠΑΥΣΗ',
     description:
-      'Η εταιρεία μας εγκαθιστά, παραμετροποιεί και υποστηρίζει προγράμματα των μεγαλύτερων Ελληνικών Software houses (Softone, Unisoft). Από την ίδρυσή μας αποτελούμε βασικό συνεργάτη της Unisoft.',
-    bullets: [
-      'Συμβουλευτικές Υπηρεσίες',
-      'Μεταφορά Δεδομένων & Ειδικές διασυνδέσεις',
-      'Εκπαίδευση στελεχών',
-      'Υποστήριξη On-site & απομακρυσμένα',
-    ],
-    href: '/mixanografisi',
-    accent: 'from-teal-500 to-cyan-600',
-    lightBg: 'from-teal-50 to-cyan-50',
+      'Η ComputerHouse διαθέτει εξουσιοδοτημένο έμπειρο τεχνικό τμήμα για την εγκατάσταση, επισκευή, και κλείσιμο–παύση ταμειακών μηχανών και φορολογικών μηχανισμών.',
+    extra:
+      'Αναλαμβάνουμε το κλείσιμο, παύση ταμειακών μηχανών, φορολογικών μηχανισμών και την ανάγνωση της φορολογικής μνήμης. Παρέχουμε τις υπηρεσίες μας τόσο στην περιοχή των Σερρών, αλλά και Πανελλαδικά κατόπιν συνεννόησης.',
+    href: '/tameiakes',
     icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-8 h-8">
-        <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-6 h-6">
+        <rect x="2" y="4" width="20" height="16" rx="2" />
+        <path d="M7 8h10M7 12h6M7 16h4" />
+        <path d="M17 14l1.5 1.5L21 13" />
       </svg>
     ),
   },
@@ -72,11 +66,11 @@ const services = [
 
 export default function ServicesSection() {
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-14">
-          <span className="text-cyan-600 font-semibold text-sm uppercase tracking-widest">
+          <span className="text-blue-600 font-semibold text-sm uppercase tracking-widest">
             Τι προσφέρουμε
           </span>
           <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900">
@@ -87,54 +81,60 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        {/* Services */}
-        <div className="space-y-8">
-          {services.map((service, idx) => (
+        {/* Service cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {services.map((service) => (
             <div
               key={service.id}
-              className={`rounded-3xl overflow-hidden bg-white shadow-sm border border-slate-100 hover:shadow-lg transition-shadow`}
+              className="group flex flex-col rounded-2xl bg-slate-50 border border-slate-200 hover:border-blue-600 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
-              <div className={`grid lg:grid-cols-2 ${idx % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : ''}`}>
-                {/* Content */}
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${service.accent} text-white flex items-center justify-center shadow-md`}>
-                      {service.icon}
-                    </div>
-                    <span className={`text-xs font-bold uppercase tracking-widest bg-gradient-to-r ${service.accent} bg-clip-text text-transparent`}>
-                      {service.tag}
-                    </span>
-                  </div>
-                  <h3 className="text-2xl font-extrabold text-slate-900 mb-1">{service.title}</h3>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">{service.subtitle}</p>
-                  <p className="text-slate-600 leading-relaxed mb-4">{service.description}</p>
-                  {service.bullets && (
-                    <ul className="space-y-2 mb-4">
-                      {service.bullets.map((b) => (
-                        <li key={b} className="flex items-center gap-2 text-slate-600 text-sm">
-                          <CheckCircle2 size={16} className="text-cyan-500 flex-shrink-0" />
-                          {b}
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                  {service.extra && (
-                    <p className="text-slate-500 text-sm leading-relaxed mb-6">{service.extra}</p>
-                  )}
+              {/* Top accent bar */}
+              <div className="h-1.5 w-full bg-blue-600 rounded-t-2xl" />
+
+              {/* Icon + heading */}
+              <div className="flex items-start gap-4 px-6 pt-6 pb-5 border-b border-slate-200">
+                <div className="shrink-0 w-11 h-11 rounded-xl bg-blue-600 flex items-center justify-center text-white">
+                  {service.icon}
+                </div>
+                <div className="min-w-0">
+                  <span className="text-blue-600 text-xs font-bold uppercase tracking-widest">
+                    {service.tag}
+                  </span>
+                  <h3 className="text-slate-900 font-extrabold text-base leading-snug mt-0.5">
+                    {service.title}
+                  </h3>
+                  <p className="text-slate-400 text-xs font-semibold uppercase tracking-widest mt-1">
+                    {service.subtitle}
+                  </p>
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="flex flex-col flex-1 px-6 py-5">
+                <p className="text-slate-500 text-sm leading-relaxed mb-4">{service.description}</p>
+
+                {service.bullets && (
+                  <ul className="space-y-2 mb-4">
+                    {service.bullets.map((b) => (
+                      <li key={b} className="flex items-start gap-2 text-slate-600 text-sm">
+                        <CheckCircle2 size={15} className="text-blue-500 shrink-0 mt-0.5" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {service.extra && (
+                  <p className="text-slate-400 text-xs leading-relaxed mb-4">{service.extra}</p>
+                )}
+
+                <div className="mt-auto pt-3">
                   <Link
                     to={service.href}
-                    className={`inline-flex items-center gap-2 self-start bg-gradient-to-r ${service.accent} text-white font-semibold px-5 py-2.5 rounded-xl shadow-sm hover:shadow-md transition-all text-sm`}
+                    className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2.5 rounded-xl transition-colors text-sm"
                   >
                     Περισσότερα <ArrowRight size={15} />
                   </Link>
-                </div>
-
-                {/* Visual panel */}
-                <div className={`bg-gradient-to-br ${service.lightBg} p-8 lg:p-12 flex items-center justify-center min-h-48`}>
-                  <div className={`w-32 h-32 rounded-3xl bg-gradient-to-br ${service.accent} opacity-20 absolute`} />
-                  <div className={`relative w-40 h-40 rounded-3xl bg-gradient-to-br ${service.accent} flex items-center justify-center shadow-2xl`}>
-                    <div className="text-white scale-[2.5] opacity-80">{service.icon}</div>
-                  </div>
                 </div>
               </div>
             </div>

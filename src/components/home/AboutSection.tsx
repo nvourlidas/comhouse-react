@@ -1,10 +1,9 @@
-import { Shield, Zap, Users, Award } from 'lucide-react'
+import { Shield, Users, Award } from 'lucide-react'
 
 const stats = [
   { icon: Award, value: '30+', label: 'Χρόνια Εμπειρίας' },
   { icon: Users, value: '1000+', label: 'Ικανοποιημένοι Πελάτες' },
   { icon: Shield, value: '100%', label: 'Εξουσιοδοτημένο Service' },
-  { icon: Zap, value: '24h', label: 'Γρήγορη Εξυπηρέτηση' },
 ]
 
 export default function AboutSection() {
@@ -14,14 +13,12 @@ export default function AboutSection() {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <div>
-            <span className="text-cyan-600 font-semibold text-sm uppercase tracking-widest">
+            <span className="text-blue-600 font-semibold text-sm uppercase tracking-widest">
               Ποιοι είμαστε
             </span>
             <h2 className="mt-3 text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
               Η εταιρεία που επενδύει στις{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-600 to-blue-700">
-                μακροχρόνιες σχέσεις
-              </span>
+              <span className="text-blue-600">μακροχρόνιες σχέσεις</span>
             </h2>
             <div className="mt-6 space-y-4 text-slate-600 leading-relaxed">
               <p>
@@ -34,26 +31,23 @@ export default function AboutSection() {
                 Η στόχευσή της είναι η διαρκής αναζήτηση καινοτόμων λύσεων και η
                 αναβάθμιση των προϊόντων και υπηρεσιών της.
               </p>
-              <p>
-                Διαθέτει εξειδικευμένο προσωπικό για τη σχεδίαση των βέλτιστων
-                λύσεων σε συνεργασία με εσάς (pre-sales support) και τεχνικό τμήμα
-                για την κάλυψη τεχνικών θεμάτων.
-              </p>
             </div>
           </div>
 
-          {/* Stats grid */}
-          <div className="grid grid-cols-2 gap-5">
+          {/* Stats — vertical stack */}
+          <div className="flex flex-col gap-4">
             {stats.map(({ icon: Icon, value, label }) => (
               <div
                 key={label}
-                className="bg-gradient-to-br from-slate-50 to-cyan-50 border border-slate-100 rounded-2xl p-6 flex flex-col items-center text-center hover:shadow-lg hover:border-cyan-200 transition-all"
+                className="flex items-center gap-5 bg-slate-50 border border-slate-200 rounded-2xl px-6 py-5 hover:border-blue-600 hover:shadow-lg transition-all duration-300 group"
               >
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center mb-3 shadow-md">
-                  <Icon size={22} className="text-white" />
+                <div className="shrink-0 w-14 h-14 rounded-xl bg-blue-600 group-hover:bg-blue-700 flex items-center justify-center transition-colors">
+                  <Icon size={24} className="text-white" />
                 </div>
-                <p className="text-3xl font-extrabold text-slate-900">{value}</p>
-                <p className="text-sm text-slate-500 mt-1 font-medium">{label}</p>
+                <div>
+                  <p className="text-3xl font-extrabold text-slate-900 leading-none">{value}</p>
+                  <p className="text-sm text-slate-500 mt-1 font-medium">{label}</p>
+                </div>
               </div>
             ))}
           </div>

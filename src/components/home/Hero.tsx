@@ -4,32 +4,55 @@ import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const slides = [
   {
-    headline: 'Computer House',
-    subheadline: 'Βουρλίδας – Σεμέλογλου',
-    body: 'Αξιόπιστες λύσεις τεχνολογίας για επιχειρήσεις και ιδιώτες στις Σέρρες και Πανελλαδικά.',
-    cta: { label: 'Μάθετε περισσότερα', href: '/contact' },
-    gradient: 'from-blue-900 via-blue-700 to-cyan-500',
+    headline: 'Λύσεις Μηχανογράφησης',
+    subheadline: 'Softone · Unisoft · PBS ONE',
+    body: 'Εγκατάσταση, παραμετροποίηση και υποστήριξη προγραμμάτων μεγαλύτερων Ελληνικών Software houses.',
+    cta: { label: 'Περισσότερα', href: '/mixanografisi' },
+    gradient: 'from-blue-950 via-blue-800 to-blue-600',
+    visual: {
+      badge: '✓ Πιστοποιημένος Συνεργάτης',
+      tags: ['Softone', 'Unisoft', 'PBS ONE', 'Εκπαίδευση', 'On-site Support'],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
+          <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />
+        </svg>
+      ),
+    },
   },
   {
     headline: 'Επισκευή Ταμειακών',
     subheadline: 'Εξουσιοδοτημένο Τεχνικό Τμήμα',
     body: 'Εγκατάσταση, επισκευή και κλείσιμο–παύση ταμειακών μηχανών & φορολογικών μηχανισμών.',
     cta: { label: 'Περισσότερα', href: '/tameiakes' },
-    gradient: 'from-slate-900 via-cyan-900 to-cyan-600',
+    gradient: 'from-slate-900 via-blue-900 to-blue-700',
+    visual: {
+      badge: '✓ Εξουσιοδοτημένο Service',
+      tags: ['Εγκατάσταση', 'Επισκευή', 'Κλείσιμο', 'Παύση', 'Φορολογική Μνήμη'],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <path d="M7 8h10M7 12h6M7 16h4" />
+          <path d="M17 14l1.5 1.5L21 13" />
+        </svg>
+      ),
+    },
   },
   {
     headline: 'Service Υπολογιστών',
     subheadline: 'Laptop · Desktop · Server',
     body: 'Έμπειρο τεχνικό τμήμα για αξιόπιστη και αποτελεσματική αντιμετώπιση τεχνικών προβλημάτων.',
     cta: { label: 'Περισσότερα', href: '/computers' },
-    gradient: 'from-blue-950 via-blue-800 to-blue-500',
-  },
-  {
-    headline: 'Λύσεις Μηχανογράφησης',
-    subheadline: 'Softone · Unisoft · PBS ONE',
-    body: 'Εγκατάσταση, παραμετροποίηση και υποστήριξη προγραμμάτων μεγαλύτερων Ελληνικών Software houses.',
-    cta: { label: 'Περισσότερα', href: '/mixanografisi' },
-    gradient: 'from-cyan-950 via-cyan-800 to-teal-500',
+    gradient: 'from-blue-900 via-blue-700 to-cyan-600',
+    visual: {
+      badge: '✓ On-site & Απομακρυσμένα',
+      tags: ['Laptop', 'Desktop', 'Server', 'Δίκτυα', 'Περιφερειακά'],
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
+          <rect x="2" y="3" width="20" height="14" rx="2" />
+          <path d="M8 21h8M12 17v4" />
+        </svg>
+      ),
+    },
   },
 ]
 
@@ -58,12 +81,16 @@ export default function Hero() {
 
   return (
     <section className={`relative min-h-screen flex items-center bg-gradient-to-br ${slide.gradient} transition-all duration-700`}>
-      {/* Background pattern */}
-      <div className="absolute inset-0 opacity-10"
+      {/* Dot grid */}
+      <div
+        className="absolute inset-0 pointer-events-none opacity-20"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundImage: `radial-gradient(circle, rgba(255,255,255,0.6) 1px, transparent 1px)`,
+          backgroundSize: '32px 32px',
         }}
       />
+      {/* Glow behind text */}
+      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full bg-blue-400/20 blur-3xl pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -97,34 +124,36 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Decorative card */}
+          {/* Slide-specific visual card */}
           <div className={`hidden lg:flex justify-center transition-all duration-300 ${animating ? 'opacity-0 scale-95' : 'opacity-100 scale-100'}`}>
-            <div className="relative">
-              <div className="w-80 h-80 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 rounded-2xl bg-gradient-to-br from-cyan-400 to-blue-600 mx-auto mb-4 flex items-center justify-center shadow-xl">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
-                      <rect x="2" y="3" width="20" height="14" rx="2" />
-                      <path d="M8 21h8M12 17v4" />
-                    </svg>
-                  </div>
-                  <p className="text-white font-bold text-2xl tracking-tight">ComHouse</p>
-                  <p className="text-white/60 text-sm mt-1">Βουρλίδας – Σεμέλογλου</p>
+            <div className="relative w-80">
+              <div className="rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl p-8">
+                {/* Icon */}
+                <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center mb-5 shadow-lg">
+                  {slide.visual.icon}
+                </div>
+                {/* Title */}
+                <p className="text-white font-extrabold text-xl mb-1">{slide.headline}</p>
+                <p className="text-white/50 text-xs font-semibold uppercase tracking-widest mb-5">{slide.subheadline}</p>
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2">
+                  {slide.visual.tags.map((tag) => (
+                    <span key={tag} className="text-xs font-semibold bg-white/15 text-white px-3 py-1 rounded-full border border-white/20">
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
-              {/* Floating badges */}
-              <div className="absolute -top-4 -right-4 bg-white rounded-2xl shadow-xl px-4 py-2 text-sm font-semibold text-blue-700">
-                ✓ Εξουσιοδοτημένο Service
-              </div>
-              <div className="absolute -bottom-4 -left-4 bg-white rounded-2xl shadow-xl px-4 py-2 text-sm font-semibold text-cyan-700">
-                📍 Σέρρες & Πανελλαδικά
+              {/* Badge */}
+              <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 bg-white rounded-2xl shadow-xl px-5 py-2 text-sm font-semibold text-blue-700 whitespace-nowrap">
+                {slide.visual.badge}
               </div>
             </div>
           </div>
         </div>
 
         {/* Slider controls */}
-        <div className="flex items-center gap-4 mt-12">
+        <div className="flex items-center gap-4 mt-16">
           <button
             onClick={prev}
             className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 flex items-center justify-center text-white transition-colors"

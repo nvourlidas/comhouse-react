@@ -8,8 +8,8 @@ const navItems = [
     label: 'Ταμειακές',
     href: '/tameiakes',
     children: [
-      { label: 'Ταμειακές Μηχανές', href: '/tameiakes/mixanes' },
-      { label: 'Επισκευή & Συντήρηση', href: '/tameiakes/episkevi' },
+      { label: 'RBS', href: '/tameiakes/rbs' },
+      { label: 'DataTec', href: '/tameiakes/datatec' },
       { label: 'Χαρτοταινίες', href: '/tameiakes/xartotainies' },
     ],
   },

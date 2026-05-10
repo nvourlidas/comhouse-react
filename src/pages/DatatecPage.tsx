@@ -1,0 +1,584 @@
+import { useState, useRef, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { ArrowRight, ChevronRight, ChevronDown, CheckCircle2 } from 'lucide-react'
+
+import dtec100 from '../assets/dtec100md1-removebg-preview.png'
+import dtec50 from '../assets/dTEC50md.png'
+
+/* ─── Types ──────────────────────────────────────────────────────── */
+interface Spec { label: string; value: string }
+interface DescriptionSection { title: string; bullets: string[] }
+interface LongDescription {
+  paragraphs: string[]
+  bullets?: string[]
+  closing?: string[]
+  sections?: DescriptionSection[]
+}
+interface Product {
+  id: string
+  name: string
+  tagline: string
+  description: string
+  specs: Spec[]
+  images?: string[]
+  longDescription?: LongDescription
+  characteristics?: string[]
+  characteristicSections?: DescriptionSection[]
+}
+
+/* ─── DataTec Products ───────────────────────────────────────────── */
+const datatecProducts: Product[] = [
+  {
+    id: 'dtec-100',
+    name: 'dTEC-100mD',
+    tagline: 'Ταμειακή Λιανικής & Εστιατορίου',
+    description:
+      'Νέα Ταμειακή Μηχανή Λιανικής και Εστιατορίου κατασκευασμένη και αδειοδοτημένη βάσει ΑΑΔΕ Α1173.',
+    images: [dtec100],
+    specs: [
+      { label: 'Έγκριση',     value: '15DMP677/28-02-2024' },
+      { label: 'Είδη',        value: '10.000 λιανική / 5.000 εστιατόριο' },
+      { label: 'Εκτύπωση',    value: '150 mm/sec' },
+      { label: 'Τραπέζια',    value: 'Διαχείριση 150 τραπεζιών' },
+      { label: 'Πιστοποίηση', value: 'ΑΑΔΕ Α1173' },
+    ],
+    longDescription: {
+      paragraphs: [
+        'Η dTEC100mD είναι μία Νέα Ταμειακή Μηχανή Λιανικής και Εστιατορίου και έχει κατασκευαστεί και αδειοδοτηθεί με βάση της ΑΑΔΕ Α1173. Συνδέεται με ΠΑΡΟΧΟ ΥΠΑΗΕΣ για την έκδοση Τιμολογίων.',
+      ],
+      bullets: [
+        'ΕΓΚΡΙΣΗ ΥΠΟΥΡΓΕΙΟΥ ΟΙΚΟΝΟΜΙΚΩΝ: 15DMP677/28-02-2024',
+        'VOUCHER PRODUCT ID — Κατηγορία 5 K.05.01 ΑΝΤΙΚΑΤΑΣΤΑΣΗ ΕΦΔΣΣ 160240',
+        'VOUCHER PRODUCT ID — Κατηγορία 6 K.06.01 ΕΣΤΙΑΣΗ 160241',
+        'VOUCHER PRODUCT ID firmware update — Κατηγορία 4 K.04.01 177434',
+      ],
+      sections: [
+        {
+          title: 'Ειδικά χαρακτηριστικά εστιατορίου',
+          bullets: [
+            'Προαιρετική εκτύπωση ΠΡΟΣΩΡΙΝΩΝ ΑΠΟΔΕΙΞΕΩΝ',
+            'Ψηφιακό πελατολόγιο',
+            'Έκδοση παραστατικών ΤΙΜΟΛΟΓΙΩΝ μέσω ΠΑΡΟΧΩΝ ΥΠΑΗΕΣ',
+            'Ακύρωση Απόδειξης που έχει εκδοθεί',
+            'Πιστωτική Απόδειξη - Τιμολόγιο',
+            'Σύνδεση με myData και αποστολή Τιμολογίου',
+            'Εύρεση Στοιχείων πελάτη από την ΑΑΔΕ',
+            'Τέλος Παρεπιδημούντων',
+            'Φόρος Διαμονής',
+            'Διαχείριση 150 τραπεζιών',
+            'Εκτύπωση Τελικής Απόδειξης με αριθμό & ώρα προσωρινών αποδείξεων',
+            'Διαχείριση Επιστροφών Ειδών προηγούμενης παραγγελίας',
+            'Διαχείριση 5.000 ειδών με αποθήκη',
+            'Διαχείριση 30 Οδηγιών παρασκευής ειδών',
+            'Διαχείριση 50 τμημάτων & 20 κατηγοριών',
+            'Διαχείριση 10 πληρωμών & 16 χειριστών',
+            'Μεταφορά Τραπεζιού από Τραπέζι σε Τραπέζι',
+            'Μεταφορά Πιάτων σε άλλο τραπέζι',
+            'Μερική Πληρωμή Τραπεζιού',
+            'Αυτόματο κλείσιμο Ανοικτών τραπεζιών',
+            'Εκτύπωση ανάλυσης λογαριασμού & συνόλων ανά τραπέζι',
+            'Διαχείριση Εισιτηρίου',
+            'Αποστολή παραγγελίας έως 16 διαφορετικούς εκτυπωτές',
+          ],
+        },
+        {
+          title: 'Επιπλέον αναφορές',
+          bullets: [
+            'Ανοικτών τραπεζιών',
+            'Συγκεκριμένου τραπεζιού με πλήρη καταγραφή παραγγελιών',
+            'Ημερήσιες πωλήσεις με ανάλυση ανά Φ.Π.Α.',
+            'Συγκεντρωτικές πωλήσεις ανά τμήμα και ημερομηνία',
+            'Απόδοση Φ.Π.Α. από ημερομηνία έως ημερομηνία',
+            'Σύνδεση με SERVER Γ.Γ.Π.Σ.',
+          ],
+        },
+        {
+          title: 'Συνδέσεις συσκευών',
+          bullets: [
+            'BarCode Reader',
+            'Εκτυπωτή κουζίνας',
+            'Ηλεκτρονικό ζυγό',
+            'Εξωτερική Οθόνη 5 γραμμών',
+            'Εξωτερικό Windows keyboard',
+            'EFT POS',
+            'Συμβατό με ARMPOS',
+          ],
+        },
+      ],
+    },
+    characteristicSections: [
+      {
+        title: 'Είδη',
+        bullets: ['10.000 Είδη στην Λιανική και 5.000 στο Εστιατόριο'],
+      },
+      {
+        title: 'Τμήματα',
+        bullets: ['Έως 100 τμήματα προγραμματιζόμενα — 20 κατηγορίες προϊόντων'],
+      },
+      {
+        title: 'Χειριστές',
+        bullets: ['16 χειριστές με κωδικό ή με πλήκτρο'],
+      },
+      {
+        title: 'Πελάτες - Τιμολόγιο',
+        bullets: ['Διαχείριση 1.000 πελατών για το Τιμολόγιο που εκδίδεται σε αντικατάσταση της Νόμιμης Απόδειξης'],
+      },
+      {
+        title: 'Οθόνη - Πληκτρολόγιο',
+        bullets: [
+          'Οθόνη LCD φωτιζόμενη 4 γραμμών, 16 χαρακτήρων',
+          'Πληκτρολόγιο 30 προγραμματιζόμενων πλήκτρων',
+        ],
+      },
+      {
+        title: 'Εκτυπωτής',
+        bullets: [
+          'Ταχύτητα εκτύπωσης 150 mm/sec',
+          'Αυτόματη εισαγωγή χαρτιού (Easy load)',
+          'Ανιχνευτής τέλους χαρτοταινίας',
+          'Διαστάσεις χαρτοταινίας 57mm',
+        ],
+      },
+      {
+        title: 'Λεκτικό - Γραφικές Εικόνες',
+        bullets: [
+          'Δυνατότητα γραφικής εικόνας στην αρχή και στο τέλος της απόδειξης',
+          'Εκτύπωση λογοτύπου 8 γραμμών 28-32 χαρακτήρων',
+          'Διαφημιστικό μήνυμα στο τέλος της απόδειξης 2 γραμμών των 32 χαρακτήρων',
+        ],
+      },
+    ],
+  },
+  {
+    id: 'dtec-50',
+    name: 'dTEC-50mD',
+    tagline: 'Ταμειακή Λιανικής & Εστιατορίου',
+    description:
+      'Νέα Ταμειακή Μηχανή Λιανικής και Εστιατορίου κατασκευασμένη και αδειοδοτημένη βάσει ΑΑΔΕ Α1173.',
+    images: [dtec50],
+    specs: [
+      { label: 'Έγκριση',     value: '15DMS686/08-04-2024' },
+      { label: 'Είδη',        value: '10.000 λιανική / 5.000 εστιατόριο' },
+      { label: 'Εκτύπωση',    value: '150 mm/sec' },
+      { label: 'Τραπέζια',    value: 'Διαχείριση 150 τραπεζιών' },
+      { label: 'Πιστοποίηση', value: 'ΑΑΔΕ Α1173' },
+    ],
+    longDescription: {
+      paragraphs: [
+        'Η dTEC50mD είναι μία Νέα Ταμειακή Μηχανή Λιανικής και Εστιατορίου και έχει κατασκευαστεί και αδειοδοτηθεί με βάση της ΑΑΔΕ Α1173.',
+      ],
+      bullets: [
+        'ΕΓΚΡΙΣΗ ΥΠΟΥΡΓΕΙΟΥ ΟΙΚΟΝΟΜΙΚΩΝ: 15DMS686/08-04-2024',
+        'VOUCHER PRODUCT ID — Κατηγορία 5 K.05.01 160569',
+        'VOUCHER PRODUCT ID — Κατηγορία 6 K.06.01 160570',
+        'VOUCHER PRODUCT ID firmware update — Κατηγορία 4 K.04.01 177435',
+      ],
+      sections: [
+        {
+          title: 'Ειδικά χαρακτηριστικά εστιατορίου',
+          bullets: [
+            'Ακύρωση Απόδειξης που έχει εκδοθεί',
+            'Ψηφιακό Πελατολόγιο',
+            'Εκτύπωση ή όχι Προσωρινών Αποδείξεων',
+            'Πιστωτική Απόδειξη - Τιμολόγιο',
+            'Σύνδεση με myData και αποστολή Τιμολογίου μέσω Παρόχου ΥΠΑΗΕΣ',
+            'Εύρεση Στοιχείων πελάτη από την ΑΑΔΕ',
+            'Τέλος Παρεπιδημούντων',
+            'Φόρος Διαμονής',
+            'Διαχείριση 150 τραπεζιών',
+            'Εκτύπωση Τελικής Απόδειξης με αριθμό & ώρα προσωρινών αποδείξεων',
+            'Διαχείριση Επιστροφών Ειδών προηγούμενης παραγγελίας',
+            'Διαχείριση 5.000 ειδών με αποθήκη',
+            'Διαχείριση 30 Οδηγιών παρασκευής ειδών',
+            'Διαχείριση 50 τμημάτων & 20 κατηγοριών',
+            'Διαχείριση 10 πληρωμών & 16 χειριστών',
+            'Μεταφορά Τραπεζιού από Τραπέζι σε Τραπέζι',
+            'Μεταφορά Πιάτων σε άλλο τραπέζι',
+            'Μερική Πληρωμή Τραπεζιού',
+            'Αυτόματο κλείσιμο Ανοικτών τραπεζιών',
+            'Εκτύπωση ανάλυσης λογαριασμού & συνόλων ανά τραπέζι',
+            'Διαχείριση Εισιτηρίου',
+            'Αποστολή παραγγελίας έως 16 διαφορετικούς εκτυπωτές',
+          ],
+        },
+        {
+          title: 'Επιπλέον αναφορές',
+          bullets: [
+            'Ανοικτών τραπεζιών',
+            'Συγκεκριμένου τραπεζιού με πλήρη καταγραφή παραγγελιών',
+            'Ημερήσιες πωλήσεις με ανάλυση ανά Φ.Π.Α.',
+            'Συγκεντρωτικές πωλήσεις ανά τμήμα και ημερομηνία',
+            'Απόδοση Φ.Π.Α. από ημερομηνία έως ημερομηνία',
+            'Σύνδεση με SERVER Γ.Γ.Π.Σ.',
+          ],
+        },
+        {
+          title: 'Συνδέσεις συσκευών',
+          bullets: [
+            'BarCode Reader',
+            'Εκτυπωτή κουζίνας',
+            'Ηλεκτρονικό ζυγό',
+            'Εξωτερική Οθόνη 5 γραμμών',
+            'Εξωτερικό Windows keyboard',
+            'EFT POS',
+            'Συρτάρι με option adaptor',
+            'Συμβατό με Λογισμικό ARMPOS',
+          ],
+        },
+      ],
+    },
+    characteristicSections: [
+      {
+        title: 'Είδη',
+        bullets: ['10.000 Είδη στην Λιανική και 5.000 στο Εστιατόριο'],
+      },
+      {
+        title: 'Τμήματα',
+        bullets: ['Έως 100 τμήματα προγραμματιζόμενα — 20 κατηγορίες προϊόντων'],
+      },
+      {
+        title: 'Χειριστές',
+        bullets: ['16 χειριστές με κωδικό ή με πλήκτρο'],
+      },
+      {
+        title: 'Πελάτες - Τιμολόγιο',
+        bullets: ['Διαχείριση 1.000 πελατών για το Τιμολόγιο που εκδίδεται σε αντικατάσταση της Νόμιμης Απόδειξης'],
+      },
+      {
+        title: 'Οθόνη - Πληκτρολόγιο',
+        bullets: [
+          'Οθόνη LCD φωτιζόμενη 2 γραμμών, 16 χαρακτήρων',
+          'Πληκτρολόγιο 30 προγραμματιζόμενων πλήκτρων',
+        ],
+      },
+      {
+        title: 'Εκτυπωτής',
+        bullets: [
+          'Ταχύτητα εκτύπωσης 150 mm/sec',
+          'Αυτόματη εισαγωγή χαρτιού (Easy load)',
+          'Ανιχνευτής τέλους χαρτοταινίας',
+          'Διαστάσεις χαρτοταινίας 57mm',
+        ],
+      },
+      {
+        title: 'Λεκτικό - Γραφικές Εικόνες',
+        bullets: [
+          'Δυνατότητα γραφικής εικόνας στην αρχή και στο τέλος της απόδειξης',
+          'Εκτύπωση λογοτύπου 8 γραμμών 28-32 χαρακτήρων',
+          'Διαφημιστικό μήνυμα στο τέλος της απόδειξης 2 γραμμών των 32 χαρακτήρων',
+        ],
+      },
+    ],
+  },
+]
+
+/* ─── Placeholder ────────────────────────────────────────────────── */
+function PlaceholderMain() {
+  return (
+    <div className="w-full aspect-4/3 bg-slate-50 border border-slate-200 flex items-center justify-center">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.2"
+        className="w-16 h-16 text-slate-300">
+        <rect x="4" y="10" width="56" height="40" rx="4" />
+        <path d="M10 18h44M10 26h28M10 34h20" />
+        <rect x="42" y="30" width="14" height="12" rx="2" />
+        <path d="M48 36l2 2 4-4" />
+        <rect x="4" y="50" width="56" height="4" rx="2" />
+      </svg>
+    </div>
+  )
+}
+
+/* ─── Gallery — slide transition + cursor zoom ───────────────────── */
+function ProductGallery({ images }: { images?: string[] }) {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [active, setActive]   = useState(0)
+  const [hovering, setHovering] = useState(false)
+  const [zoomed, setZoomed]   = useState(false)
+  const [origin, setOrigin]   = useState({ x: 50, y: 50 })
+
+  useEffect(() => {
+    if (!images || images.length <= 1 || hovering) return
+    const id = setInterval(() => setActive(prev => (prev + 1) % images.length), 3000)
+    return () => clearInterval(id)
+  }, [images, hovering])
+
+  useEffect(() => { setZoomed(false) }, [active])
+
+  function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
+    const rect = containerRef.current?.getBoundingClientRect()
+    if (!rect) return
+    setOrigin({
+      x: ((e.clientX - rect.left) / rect.width) * 100,
+      y: ((e.clientY - rect.top)  / rect.height) * 100,
+    })
+  }
+
+  if (!images || images.length === 0) return <PlaceholderMain />
+
+  return (
+    <div className="flex flex-col gap-3">
+      <div
+        ref={containerRef}
+        className="relative w-full aspect-4/3 bg-slate-50 border border-slate-200 overflow-hidden cursor-crosshair"
+        onMouseEnter={() => { setZoomed(true);  setHovering(true)  }}
+        onMouseLeave={() => { setZoomed(false); setHovering(false) }}
+        onMouseMove={handleMouseMove}
+      >
+        {images.map((src, i) => (
+          <div
+            key={i}
+            className="absolute inset-0 flex items-center justify-center p-6 transition-transform duration-500 ease-in-out"
+            style={{ transform: `translateX(${(i - active) * 100}%)` }}
+          >
+            <img
+              src={src}
+              alt={`product-${i}`}
+              className="max-h-full max-w-full object-contain select-none"
+              style={i === active ? {
+                transform: zoomed ? 'scale(3.5)' : 'scale(1)',
+                transformOrigin: `${origin.x}% ${origin.y}%`,
+                transition: zoomed ? 'transform 0.15s ease' : 'transform 0.25s ease',
+                willChange: 'transform',
+              } : undefined}
+              draggable={false}
+            />
+          </div>
+        ))}
+      </div>
+
+      {images.length > 1 && (
+        <div className="flex gap-2">
+          {images.map((src, i) => (
+            <button
+              key={i}
+              onClick={() => setActive(i)}
+              className={`w-16 h-16 border-2 flex items-center justify-center bg-slate-50 transition-colors ${
+                i === active ? 'border-slate-800' : 'border-slate-200 hover:border-slate-400'
+              }`}
+            >
+              <img src={src} alt={`thumb-${i}`} className="w-10 h-10 object-contain" />
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  )
+}
+
+/* ─── Product row ────────────────────────────────────────────────── */
+function ProductRow({ product, accentText }: { product: Product; accentText: string }) {
+  const [charOpen, setCharOpen] = useState(false)
+  const [textOpen, setTextOpen] = useState(false)
+
+  return (
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 py-12 border-b border-slate-100 last:border-0">
+      <ProductGallery images={product.images} />
+
+      <div className="flex flex-col justify-center">
+        <span className={`text-xs font-bold uppercase tracking-widest ${accentText}`}>
+          {product.tagline}
+        </span>
+        <h3 className="mt-2 text-2xl font-extrabold text-slate-900">{product.name}</h3>
+
+        <div className="mt-4">
+          <div
+            className="relative overflow-hidden transition-[max-height] duration-500 ease-in-out"
+            style={{ maxHeight: textOpen ? '2000px' : '300px' }}
+          >
+            {product.longDescription ? (
+              <div className="space-y-3 text-sm text-slate-500 leading-relaxed">
+                {product.longDescription.paragraphs.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+                {product.longDescription.bullets && product.longDescription.bullets.length > 0 && (
+                  <ul className="space-y-1.5 py-1">
+                    {product.longDescription.bullets.map((b, i) => (
+                      <li key={i} className="flex items-start gap-2 text-slate-600">
+                        <ChevronRight size={14} className="text-cyan-500 shrink-0 mt-0.5" />
+                        {b}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+                {product.longDescription.sections && product.longDescription.sections.map((section, si) => (
+                  <div key={si} className="pt-1">
+                    <div className="flex items-center gap-2 mb-2">
+                      <span className="h-px flex-1 bg-slate-200" />
+                      <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                        {section.title}
+                      </span>
+                      <span className="h-px flex-1 bg-slate-200" />
+                    </div>
+                    <ul className="space-y-1.5">
+                      {section.bullets.map((b, bi) => (
+                        <li key={bi} className="flex items-start gap-2 text-slate-600 text-xs leading-relaxed">
+                          <ChevronRight size={11} className="text-cyan-400 shrink-0 mt-0.5" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+                {product.longDescription.closing && product.longDescription.closing.map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
+            ) : (
+              <div className="space-y-4">
+                <p className="text-slate-500 text-sm leading-relaxed">{product.description}</p>
+                <div className="space-y-2.5">
+                  {product.specs.map((spec) => (
+                    <div key={spec.label} className="flex items-baseline gap-3 text-sm">
+                      <span className="w-32 shrink-0 text-slate-400">{spec.label}</span>
+                      <span className="h-px flex-1 bg-slate-100" />
+                      <span className="text-slate-700 font-semibold">{spec.value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {!textOpen && (
+              <div className="absolute bottom-0 left-0 right-0 h-14 bg-linear-to-t from-white to-transparent pointer-events-none" />
+            )}
+          </div>
+
+          <button
+            onClick={() => setTextOpen(!textOpen)}
+            className={`mt-2 inline-flex items-center gap-1 text-sm font-semibold transition-colors ${accentText} hover:opacity-70`}
+          >
+            {textOpen ? 'Διαβάστε λιγότερα' : 'Διαβάστε περισσότερα'}
+            <ChevronDown
+              size={14}
+              className={`transition-transform duration-200 ${textOpen ? 'rotate-180' : ''}`}
+            />
+          </button>
+        </div>
+
+        {(product.characteristics || product.characteristicSections) && (
+          <div className="mt-6">
+            <button
+              onClick={() => setCharOpen(!charOpen)}
+              className={`inline-flex items-center gap-2 text-sm font-semibold px-5 py-2.5 border transition-colors ${
+                charOpen
+                  ? 'bg-slate-900 text-white border-slate-900'
+                  : 'bg-white text-slate-800 border-slate-300 hover:border-slate-700'
+              }`}
+            >
+              Χαρακτηριστικά
+              <ChevronDown
+                size={14}
+                className={`transition-transform duration-200 ${charOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+
+            {charOpen && product.characteristics && (
+              <ul className="mt-4 space-y-1.5">
+                {product.characteristics.map((c, i) =>
+                  c.startsWith('✔') ? (
+                    <li key={i} className="flex items-start gap-2 text-sm text-slate-500 ml-6">
+                      <CheckCircle2 size={13} className="text-cyan-400 shrink-0 mt-0.5" />
+                      {c.slice(2)}
+                    </li>
+                  ) : (
+                    <li key={i} className="flex items-start gap-2.5 text-sm text-slate-600">
+                      <CheckCircle2 size={15} className="text-cyan-500 shrink-0 mt-0.5" />
+                      {c}
+                    </li>
+                  )
+                )}
+              </ul>
+            )}
+
+            {charOpen && product.characteristicSections && (
+              <div className="mt-4 divide-y divide-slate-100">
+                {product.characteristicSections.map((section, si) => (
+                  <div key={si} className="py-3 first:pt-0 last:pb-0">
+                    <span className="text-[10px] font-black uppercase tracking-widest text-slate-400">
+                      {section.title}
+                    </span>
+                    <ul className="mt-1.5 space-y-1">
+                      {section.bullets.map((b, bi) => (
+                        <li key={bi} className="flex items-start gap-2 text-sm text-slate-600">
+                          <ChevronRight size={12} className="text-cyan-500 shrink-0 mt-0.5" />
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+      </div>
+    </div>
+  )
+}
+
+/* ─── Page ───────────────────────────────────────────────────────── */
+export default function DatatecPage() {
+  return (
+    <div className="pt-20 bg-white min-h-screen">
+
+      {/* Hero */}
+      <section className="border-b border-slate-200 py-12 px-4">
+        <div className="max-w-5xl mx-auto">
+          <nav className="flex items-center gap-1.5 text-slate-400 text-xs mb-6">
+            <Link to="/" className="hover:text-slate-700 transition-colors">Αρχική</Link>
+            <ChevronRight size={11} />
+            <Link to="/tameiakes" className="hover:text-slate-700 transition-colors">Ταμειακές</Link>
+            <ChevronRight size={11} />
+            <span className="text-slate-600">DataTec</span>
+          </nav>
+
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+            <div>
+              <span className="text-xs font-black uppercase tracking-[0.2em] text-cyan-600">DataTec</span>
+              <h1 className="mt-1 text-3xl sm:text-4xl font-extrabold text-slate-900 leading-tight">
+                Ταμειακές Μηχανές
+              </h1>
+              <p className="mt-3 text-slate-400 max-w-lg text-sm leading-relaxed">
+                Ταμειακές μηχανές λιανικής και εστιατορίου, πιστοποιημένες βάσει ΑΑΔΕ Α1173.
+                Εγκατάσταση και τεχνική υποστήριξη από την ComputerHouse.
+              </p>
+            </div>
+            <Link
+              to="/contact"
+              className="shrink-0 inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-700 text-white text-sm font-semibold px-5 py-2.5 transition-colors"
+            >
+              Επικοινωνία <ArrowRight size={14} />
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Products */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+        {datatecProducts.map((p) => (
+          <ProductRow key={p.id} product={p} accentText="text-cyan-600" />
+        ))}
+      </div>
+
+      {/* CTA */}
+      <section className="border-t border-slate-200 py-12 px-4 bg-slate-50">
+        <div className="max-w-2xl mx-auto text-center">
+          <h2 className="text-xl font-extrabold text-slate-900">
+            Δεν ξέρετε ποια ταμειακή σας ταιριάζει;
+          </h2>
+          <p className="mt-2 text-slate-400 text-sm">
+            Ο έμπειρος τεχνικός μας θα σας καθοδηγήσει στην καλύτερη επιλογή.
+          </p>
+          <Link
+            to="/contact"
+            className="mt-5 inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-700 text-white font-semibold px-6 py-2.5 text-sm transition-colors"
+          >
+            Επικοινωνία <ArrowRight size={14} />
+          </Link>
+        </div>
+      </section>
+
+    </div>
+  )
+}

@@ -12,7 +12,15 @@
       "Bash(python3 -c \"import sys,re; css=sys.stdin.read\\(\\); blocks=re.findall\\(r'@media[^{]+\\\\{[^@]+\\\\}', css\\); [print\\(b[:300]\\) for b in blocks[:3]]\")",
       "Bash(node -e \"const fs=require\\('fs'\\); const css=fs.readFileSync\\('dist/assets/'+fs.readdirSync\\('dist/assets'\\).find\\(f=>f.endsWith\\('.css'\\)\\),'utf8'\\); const idx=css.indexOf\\('@media \\(width'\\); console.log\\(css.slice\\(idx, idx+500\\)\\)\")",
       "Bash(node -e \"const fs=require\\('fs'\\); const css=fs.readFileSync\\('dist/assets/'+fs.readdirSync\\('dist/assets'\\).find\\(f=>f.endsWith\\('.css'\\)\\),'utf8'\\); const idx=css.indexOf\\('--spacing'\\); console.log\\(css.slice\\(Math.max\\(0,idx-20\\), idx+200\\)\\)\")",
-      "Bash(node -e \"const fs=require\\('fs'\\); const css=fs.readFileSync\\('dist/assets/'+fs.readdirSync\\('dist/assets'\\).find\\(f=>f.endsWith\\('.css'\\)\\),'utf8'\\); const matches=css.match\\(/\\\\.\\(via|to|from\\)-[a-z]+-[0-9]+/g\\); console.log\\([...new Set\\(matches\\)].sort\\(\\).join\\('\\\\n'\\)\\)\")"
+      "Bash(node -e \"const fs=require\\('fs'\\); const css=fs.readFileSync\\('dist/assets/'+fs.readdirSync\\('dist/assets'\\).find\\(f=>f.endsWith\\('.css'\\)\\),'utf8'\\); const matches=css.match\\(/\\\\.\\(via|to|from\\)-[a-z]+-[0-9]+/g\\); console.log\\([...new Set\\(matches\\)].sort\\(\\).join\\('\\\\n'\\)\\)\")",
+      "Bash(identify:*)",
+      "Bash(python3 -c \" import json, sys with open\\(''C:/Users/KOSTAS/.claude/projects/c--Users-KOSTAS-Desktop-Projects-comhouse-react/9a69ad31-7c39-4ad7-a93b-6667401c2eaa.jsonl'', ''r'', encoding=''utf-8''\\) as f: lines = f.readlines\\(\\) for i, line in enumerate\\(lines\\): try: obj = json.loads\\(line\\) msg = obj.get\\(''message'', {}\\) role = msg.get\\(''role'', ''''\\) content = msg.get\\(''content'', ''''\\) if role == ''user'': text = '''' if isinstance\\(content, str\\): text = content elif isinstance\\(content, list\\): for item in content: if isinstance\\(item, dict\\) and item.get\\(''type''\\) == ''text'': text += item.get\\(''text'', ''''\\) if ''PEPPER'' in text and \\(''χαρακτηρ'' in text.lower\\(\\) or ''Χαρακτηριστ'' in text or ''ταμειακ'' in text.lower\\(\\)\\): print\\(f''=== LINE {i} ===''\\) print\\(text[:3000]\\) print\\(\\) except: pass \")",
+      "Bash(python3:*)",
+      "Bash(where:*)",
+      "Bash(py:*)",
+      "Bash(\"C:/Users/KOSTAS/AppData/Local/Programs/Python/Python310/python.exe\" -c:*)",
+      "Bash(\"C:/Users/KOSTAS/AppData/Local/Programs/Python/Python310/python.exe\":*)",
+      "Bash(\"C:/Users/KOSTAS/AppData/Local/Programs/Python/Python310/python.exe\" -c \":*)"
     ]
   }
 }
