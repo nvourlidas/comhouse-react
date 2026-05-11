@@ -129,10 +129,6 @@ export default function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text */}
           <div className={`transition-all duration-300 ${animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
-            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-2 h-2 rounded-full bg-cyan-300 animate-pulse" />
-              <span className="text-white/90 text-sm font-medium">ComHouse · Σέρρες</span>
-            </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-3">
               {slide.headline}
             </h1>

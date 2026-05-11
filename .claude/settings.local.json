@@ -20,7 +20,8 @@
       "Bash(py:*)",
       "Bash(\"C:/Users/KOSTAS/AppData/Local/Programs/Python/Python310/python.exe\" -c:*)",
       "Bash(\"C:/Users/KOSTAS/AppData/Local/Programs/Python/Python310/python.exe\":*)",
-      "Bash(\"C:/Users/KOSTAS/AppData/Local/Programs/Python/Python310/python.exe\" -c \":*)"
+      "Bash(\"C:/Users/KOSTAS/AppData/Local/Programs/Python/Python310/python.exe\" -c \":*)",
+      "Bash(npx tsc:*)"
     ]
   }
 }

@@ -87,7 +87,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-blue-100 ${
         scrolled
           ? 'bg-white/95 backdrop-blur-md shadow-md'
           : 'bg-white/90 backdrop-blur-sm shadow-sm'
@@ -98,11 +98,11 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-linear-to-br from-cyan-500 to-blue-700 flex items-center justify-center shadow-md">
+            <div className="w-9 h-9 rounded-xl bg-linear-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-md">
               <Monitor size={18} className="text-white" />
             </div>
             <span className="text-xl font-bold text-slate-800 tracking-tight">
-              Com<span className="text-cyan-600">House</span>
+              Com<span className="text-blue-600">House</span>
             </span>
           </Link>
 
@@ -116,7 +116,7 @@ export default function Navbar() {
                   onMouseEnter={() => setOpenDropdown(item.label)}
                   onMouseLeave={() => { setOpenDropdown(null); setOpenSubDropdown(null) }}
                 >
-                  <button className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-cyan-600 hover:bg-cyan-50 transition-colors">
+                  <button className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors">
                     {item.label}
                     <ChevronDown
                       size={14}
@@ -125,20 +125,17 @@ export default function Navbar() {
                   </button>
 
                   {openDropdown === item.label && (
-                    /* pt-1 acts as an invisible bridge so the dropdown doesn't close
-                       when the mouse crosses the small gap between button and panel */
                     <div className="absolute top-full left-0 pt-1 w-52 z-50">
                       <div className="bg-white rounded-xl shadow-xl border border-slate-100 py-1.5">
                         {item.children.map((child) =>
                           child.children ? (
-                            /* ── Nested item with React-state sub-panel ── */
                             <div
                               key={child.label}
                               className="relative"
                               onMouseEnter={() => setOpenSubDropdown(child.label)}
                               onMouseLeave={() => setOpenSubDropdown(null)}
                             >
-                              <div className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 transition-colors cursor-default select-none">
+                              <div className="flex items-center justify-between px-4 py-2.5 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition-colors cursor-default select-none">
                                 {child.label}
                                 <ChevronRight size={12} />
                               </div>
@@ -149,7 +146,7 @@ export default function Navbar() {
                                     <Link
                                       key={gc.label}
                                       to={gc.href}
-                                      className="block px-4 py-2.5 text-sm text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 transition-colors"
+                                      className="block px-4 py-2.5 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                                     >
                                       {gc.label}
                                     </Link>
@@ -161,7 +158,7 @@ export default function Navbar() {
                             <Link
                               key={child.label}
                               to={child.href!}
-                              className="block px-4 py-2.5 text-sm text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 transition-colors"
+                              className="block px-4 py-2.5 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 transition-colors"
                             >
                               {child.label}
                             </Link>
@@ -177,25 +174,19 @@ export default function Navbar() {
                   to={item.href}
                   className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                     location.pathname === item.href
-                      ? 'text-cyan-600 bg-cyan-50'
-                      : 'text-slate-700 hover:text-cyan-600 hover:bg-cyan-50'
+                      ? 'text-blue-600 bg-blue-50'
+                      : 'text-slate-700 hover:text-blue-600 hover:bg-blue-50'
                   }`}
                 >
                   {item.label}
                 </Link>
               )
             )}
-            <Link
-              to="/contact"
-              className="ml-2 px-4 py-2 bg-linear-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-lg shadow-sm hover:shadow-md hover:from-cyan-600 hover:to-blue-700 transition-all"
-            >
-              Επικοινωνία
-            </Link>
           </nav>
 
           {/* Mobile toggle */}
           <button
-            className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100 transition-colors"
+            className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-blue-50 transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -206,13 +197,13 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-white border-t border-slate-100 shadow-lg">
+        <div className="lg:hidden bg-white border-t border-blue-100 shadow-lg">
           <div className="px-4 py-3 space-y-1">
             {navItems.map((item) => (
               <div key={item.label}>
                 {item.children ? (
                   <button
-                    className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors"
+                    className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                     onClick={() =>
                       setOpenDropdown(openDropdown === item.label ? null : item.label)
                     }
@@ -226,7 +217,7 @@ export default function Navbar() {
                 ) : (
                   <Link
                     to={item.href}
-                    className="block w-full px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors"
+                    className="block w-full px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                   >
                     {item.label}
                   </Link>
@@ -238,7 +229,7 @@ export default function Navbar() {
                       child.children ? (
                         <div key={child.label}>
                           <button
-                            className="w-full flex items-center justify-between px-3 py-2 text-sm text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors"
+                            className="w-full flex items-center justify-between px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                             onClick={() =>
                               setOpenMobileSub(openMobileSub === child.label ? null : child.label)
                             }
@@ -255,7 +246,7 @@ export default function Navbar() {
                                 <Link
                                   key={gc.label}
                                   to={gc.href}
-                                  className="block px-3 py-2 text-sm text-slate-500 hover:text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors"
+                                  className="block px-3 py-2 text-sm text-slate-500 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                                 >
                                   {gc.label}
                                 </Link>
@@ -267,7 +258,7 @@ export default function Navbar() {
                         <Link
                           key={child.label}
                           to={child.href!}
-                          className="block px-3 py-2 text-sm text-slate-600 hover:text-cyan-600 hover:bg-cyan-50 rounded-lg transition-colors"
+                          className="block px-3 py-2 text-sm text-slate-600 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
                         >
                           {child.label}
                         </Link>

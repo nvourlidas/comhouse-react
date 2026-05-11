@@ -710,17 +710,17 @@ export default function RbsPage() {
       </div>
 
       {/* CTA */}
-      <section className="border-t border-slate-200 py-12 px-4 bg-slate-50">
+      <section className="py-16 px-4 bg-linear-to-br from-blue-700 to-blue-900">
         <div className="max-w-2xl mx-auto text-center">
-          <h2 className="text-xl font-extrabold text-slate-900">
+          <h2 className="text-2xl font-extrabold text-white">
             Δεν ξέρετε ποια ταμειακή σας ταιριάζει;
           </h2>
-          <p className="mt-2 text-slate-400 text-sm">
+          <p className="mt-3 text-blue-200 text-sm">
             Ο έμπειρος τεχνικός μας θα σας καθοδηγήσει στην καλύτερη επιλογή.
           </p>
           <Link
             to="/contact"
-            className="mt-5 inline-flex items-center gap-2 bg-slate-900 hover:bg-slate-700 text-white font-semibold px-6 py-2.5 text-sm transition-colors"
+            className="mt-7 inline-flex items-center gap-2 bg-white hover:bg-blue-50 text-blue-800 font-semibold px-7 py-3 text-sm rounded-xl shadow-md transition-colors"
           >
             Επικοινωνία <ArrowRight size={14} />
           </Link>
