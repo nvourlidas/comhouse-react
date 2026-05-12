@@ -107,12 +107,13 @@ const services = [
 const ac: Record<string, {
   bar: string; iconColor: string; iconBg: string; tag: string; check: string
   activeBg: string; activeBorder: string; btn: string
+  cardGradient: string; cardBorder: string; cardShadow: string
 }> = {
-  blue:    { bar: 'bg-blue-500',    iconColor: 'text-blue-600',    iconBg: 'bg-blue-100',    tag: 'text-blue-600',    check: 'text-blue-500',    activeBg: 'bg-blue-50',    activeBorder: 'border-blue-300',    btn: 'text-blue-600 hover:text-blue-500' },
-  violet:  { bar: 'bg-violet-500',  iconColor: 'text-violet-600',  iconBg: 'bg-violet-100',  tag: 'text-violet-600',  check: 'text-violet-500',  activeBg: 'bg-violet-50',  activeBorder: 'border-violet-300',  btn: 'text-violet-600 hover:text-violet-500' },
-  amber:   { bar: 'bg-amber-500',   iconColor: 'text-amber-600',   iconBg: 'bg-amber-100',   tag: 'text-amber-600',   check: 'text-amber-500',   activeBg: 'bg-amber-50',   activeBorder: 'border-amber-300',   btn: 'text-amber-600 hover:text-amber-500' },
-  indigo:  { bar: 'bg-indigo-500',  iconColor: 'text-indigo-600',  iconBg: 'bg-indigo-100',  tag: 'text-indigo-600',  check: 'text-indigo-500',  activeBg: 'bg-indigo-50',  activeBorder: 'border-indigo-300',  btn: 'text-indigo-600 hover:text-indigo-500' },
-  emerald: { bar: 'bg-emerald-500', iconColor: 'text-emerald-600', iconBg: 'bg-emerald-100', tag: 'text-emerald-600', check: 'text-emerald-500', activeBg: 'bg-emerald-50', activeBorder: 'border-emerald-300', btn: 'text-emerald-600 hover:text-emerald-500' },
+  blue:    { bar: 'bg-blue-500',    iconColor: 'text-blue-600',    iconBg: 'bg-blue-100',    tag: 'text-blue-600',    check: 'text-blue-500',    activeBg: 'bg-blue-50',    activeBorder: 'border-blue-300',    btn: 'text-blue-600 hover:text-blue-500',    cardGradient: 'bg-gradient-to-b from-white to-blue-50',    cardBorder: 'border-blue-200',    cardShadow: 'shadow-blue-100' },
+  violet:  { bar: 'bg-violet-500',  iconColor: 'text-violet-600',  iconBg: 'bg-violet-100',  tag: 'text-violet-600',  check: 'text-violet-500',  activeBg: 'bg-violet-50',  activeBorder: 'border-violet-300',  btn: 'text-violet-600 hover:text-violet-500',  cardGradient: 'bg-gradient-to-b from-white to-violet-50',  cardBorder: 'border-violet-200',  cardShadow: 'shadow-violet-100' },
+  amber:   { bar: 'bg-amber-500',   iconColor: 'text-amber-600',   iconBg: 'bg-amber-100',   tag: 'text-amber-600',   check: 'text-amber-500',   activeBg: 'bg-amber-50',   activeBorder: 'border-amber-300',   btn: 'text-amber-600 hover:text-amber-500',   cardGradient: 'bg-gradient-to-b from-white to-amber-50',   cardBorder: 'border-amber-200',   cardShadow: 'shadow-amber-100' },
+  indigo:  { bar: 'bg-indigo-500',  iconColor: 'text-indigo-600',  iconBg: 'bg-indigo-100',  tag: 'text-indigo-600',  check: 'text-indigo-500',  activeBg: 'bg-indigo-50',  activeBorder: 'border-indigo-300',  btn: 'text-indigo-600 hover:text-indigo-500',  cardGradient: 'bg-gradient-to-b from-white to-indigo-50',  cardBorder: 'border-indigo-200',  cardShadow: 'shadow-indigo-100' },
+  emerald: { bar: 'bg-emerald-500', iconColor: 'text-emerald-600', iconBg: 'bg-emerald-100', tag: 'text-emerald-600', check: 'text-emerald-500', activeBg: 'bg-emerald-50', activeBorder: 'border-emerald-300', btn: 'text-emerald-600 hover:text-emerald-500', cardGradient: 'bg-gradient-to-b from-white to-emerald-50', cardBorder: 'border-emerald-200', cardShadow: 'shadow-emerald-100' },
 }
 
 export default function ServicesSection() {
@@ -166,33 +167,28 @@ export default function ServicesSection() {
             return (
               <div
                 key={service.id}
-                className={`relative overflow-hidden rounded-2xl border transition-all duration-500 ease-in-out cursor-pointer
+                className={`relative overflow-hidden rounded-2xl border-2 transition-all duration-500 ease-in-out cursor-pointer shadow-md
                   ${isActive
-                    ? `flex-5 ${a.activeBg} ${a.activeBorder}`
+                    ? `flex-5 ${a.activeBg} ${a.activeBorder} shadow-none`
                     : isInactive
-                    ? `flex-[0.9] bg-white ${a.activeBorder} opacity-70`
-                    : 'flex-1 bg-white border-slate-200 hover:border-slate-300'
+                    ? `flex-[0.9] bg-white border-slate-200 opacity-60 shadow-none`
+                    : `flex-1 ${a.cardGradient} ${a.cardBorder} ${a.cardShadow}`
                   }`}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
               >
-                {/* Colored top strip */}
-                <div className={`absolute top-0 left-0 right-0 h-1 ${a.bar}`} />
-
-                {/* Default state: horizontal name */}
-                <div className={`absolute inset-0 pt-1 flex flex-col items-center justify-center gap-3 px-4 transition-opacity duration-200
+                {/* Default state: large frameless icon + divider + text */}
+                <div className={`absolute inset-0 flex flex-col items-center justify-center gap-4 px-4 transition-opacity duration-200
                   ${!isActive && !isInactive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                  <div className={`w-11 h-11 rounded-xl ${a.iconBg} flex items-center justify-center shrink-0`}>
-                    <div className={`${a.iconColor} scale-[1.35] transform`}>{service.icon}</div>
-                  </div>
+                  <div className={`${a.iconColor} scale-[2.2] transform`}>{service.icon}</div>
+                  <div className={`h-px w-8 ${a.bar} rounded-full opacity-60`} />
                   <div className="text-center">
                     <p className="text-slate-800 font-bold text-sm leading-snug">{service.title}</p>
-                    <span className={`text-[10px] font-bold uppercase tracking-widest ${a.tag} mt-1 block`}>{service.tag}</span>
                   </div>
                 </div>
 
                 {/* Compressed state: vertical name (another card is open) */}
-                <div className={`absolute inset-0 pt-1 flex flex-col items-center justify-center gap-3 transition-opacity duration-200
+                <div className={`absolute inset-0 flex flex-col items-center justify-center gap-3 transition-opacity duration-200
                   ${isInactive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
                   <div className={`w-9 h-9 rounded-lg ${a.iconBg} flex items-center justify-center shrink-0`}>
                     <div className={`${a.iconColor}`}>{service.icon}</div>
@@ -227,13 +223,6 @@ export default function ServicesSection() {
                     ))}
                   </ul>
 
-                  {/* Link */}
-                  <Link
-                    to={service.href}
-                    className={`mt-4 inline-flex items-center gap-1.5 text-sm font-semibold transition-all ${a.btn} hover:gap-2.5`}
-                  >
-                    Περισσότερα <ArrowRight size={13} />
-                  </Link>
                 </div>
               </div>
             )

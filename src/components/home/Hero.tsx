@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import myDataLogo from '../../assets/MyDataLogo.png'
 
 const slides = [
   {
     headline: 'Λύσεις Μηχανογράφησης',
-    subheadline: 'Softone · Unisoft · PBS ONE',
+    subheadline: 'Entersoftone · Prosvasis GO · PBS ONE',
     body: 'Εγκατάσταση, παραμετροποίηση και υποστήριξη προγραμμάτων μεγαλύτερων Ελληνικών Software houses.',
     cta: { label: 'Περισσότερα', href: '/mixanografisi' },
     gradient: 'from-blue-950 via-blue-800 to-blue-600',
     visual: {
       badge: '✓ Πιστοποιημένος Συνεργάτης',
-      tags: ['Softone', 'Unisoft', 'PBS ONE', 'Εκπαίδευση', 'On-site Support'],
+      tags: ['Entersoftone', 'Prosvasis GO', 'PBS ONE', 'Εκπαίδευση', 'On-site Support'],
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
           <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />
@@ -63,22 +64,21 @@ const slides = [
     visual: {
       badge: '✓ Πιστοποιημένη Ενσωμάτωση',
       tags: ['myDATA', 'ΑΑΔΕ', 'ΥΠΑΗΕΣ', 'E-Invoicing', 'Παραστατικά'],
+      iconNoBg: true,
       icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
-          <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 12l-4-4-4 4M12 3v13" />
-        </svg>
+        <img src={myDataLogo} alt="myDATA" className="w-32 h-32 object-contain" />
       ),
     },
   },
   {
     headline: 'Web & Mobile Apps',
-    subheadline: 'Websites · Web Apps · Mobile',
-    body: 'Σχεδιάζουμε και αναπτύσσουμε σύγχρονες web εφαρμογές, mobile apps και εταιρικά websites με έμφαση στην απόδοση.',
+    subheadline: 'Websites · Web Apps · Mobile · E-Shop',
+    body: 'Σχεδιάζουμε και αναπτύσσουμε σύγχρονες web εφαρμογές, mobile apps, e-shops και εταιρικά websites με έμφαση στην απόδοση.',
     cta: { label: 'Περισσότερα', href: '/webdev' },
     gradient: 'from-emerald-950 via-emerald-800 to-teal-600',
     visual: {
       badge: '✓ Web · Mobile · E-Commerce',
-      tags: ['Websites', 'Web Apps', 'Mobile Apps', 'E-Commerce', 'UI/UX'],
+      tags: ['Websites', 'Web Apps', 'Mobile Apps', 'E-Shop'],
       icon: (
         <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
           <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z" />
@@ -113,7 +113,7 @@ export default function Hero() {
   const slide = slides[current]
 
   return (
-    <section className={`relative min-h-screen flex items-center bg-gradient-to-br ${slide.gradient} transition-all duration-700`}>
+    <section className={`relative min-h-[80vh] flex items-center bg-gradient-to-br ${slide.gradient} transition-all duration-700`}>
       {/* Dot grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20"
@@ -138,13 +138,6 @@ export default function Hero() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                to={slide.cta.href}
-                className="inline-flex items-center gap-2 bg-white text-blue-700 font-semibold px-6 py-3 rounded-xl shadow-lg hover:shadow-xl hover:bg-cyan-50 transition-all"
-              >
-                {slide.cta.label}
-                <ArrowRight size={16} />
-              </Link>
-              <Link
                 to="/contact"
                 className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/30 text-white font-semibold px-6 py-3 rounded-xl hover:bg-white/20 transition-all"
               >
@@ -158,9 +151,13 @@ export default function Hero() {
             <div className="relative w-80">
               <div className="rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl p-8">
                 {/* Icon */}
-                <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center mb-5 shadow-lg">
-                  {slide.visual.icon}
-                </div>
+                {slide.visual.iconNoBg ? (
+                  <div className="mb-5">{slide.visual.icon}</div>
+                ) : (
+                  <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center mb-5 shadow-lg">
+                    {slide.visual.icon}
+                  </div>
+                )}
                 {/* Title */}
                 <p className="text-white font-extrabold text-xl mb-1">{slide.headline}</p>
                 <p className="text-white/50 text-xs font-semibold uppercase tracking-widest mb-5">{slide.subheadline}</p>

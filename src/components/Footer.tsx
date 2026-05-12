@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import { Mail, Phone, MapPin, Monitor } from 'lucide-react'
+import { Mail, Phone, MapPin } from 'lucide-react'
+import comhouseLogo from '../assets/cropped-logo_transparent-1-211x104.png'
 
 export default function Footer() {
   return (
@@ -9,13 +10,8 @@ export default function Footer() {
 
           {/* Brand */}
           <div className="flex items-center gap-4">
-            <Link to="/" className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
-                <Monitor size={16} className="text-white" />
-              </div>
-              <span className="text-lg font-bold text-white tracking-tight">
-                Com<span className="text-cyan-400">House</span>
-              </span>
+            <Link to="/">
+              <img src={comhouseLogo} alt="ComHouse" className="h-10 w-auto brightness-0 invert" />
             </Link>
             <span className="hidden md:block text-slate-600">|</span>
             <p className="hidden md:block text-xs text-slate-400">

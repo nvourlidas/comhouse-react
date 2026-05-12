@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronDown, ChevronRight, Monitor } from 'lucide-react'
+import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
+import comhouseLogo from '../assets/cropped-logo_transparent-1-211x104.png'
 
 interface NavGrandchild {
   label: string
@@ -25,16 +26,15 @@ const navItems: NavItem[] = [
     label: 'Ταμειακές',
     href: '/tameiakes',
     children: [
-      { label: 'RBS',           href: '/tameiakes/rbs' },
-      { label: 'DataTec',       href: '/tameiakes/datatec' },
-      { label: 'Χαρτοταινίες', href: '/tameiakes/xartotainies' },
+      { label: 'RBS',     href: '/tameiakes/rbs' },
+      { label: 'DataTec', href: '/tameiakes/datatec' },
     ],
   },
   {
     label: 'Λύσεις Μηχανογράφησης',
     href: '/mixanografisi',
     children: [
-      { label: 'Entersoft One', href: '/mixanografisi/softone' },
+      { label: 'EntersoftOne', href: '/mixanografisi/softone' },
       {
         label: 'Prosvasis',
         children: [
@@ -45,22 +45,14 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    label: 'Υπολογιστές',
-    href: '/computers',
-    children: [
-      { label: 'Laptop',       href: '/computers/laptop' },
-      { label: 'Desktop',      href: '/computers/desktop' },
-      { label: 'Servers',      href: '/computers/servers' },
-      { label: 'Refurbished',  href: '/computers/refurbished' },
-    ],
-  },
-  {
     label: 'Εκτυπωτές',
     href: '/printers',
     children: [
       { label: 'Lexmark', href: '/printers/lexmark' },
     ],
   },
+  { label: 'Web & Apps', href: '/webdev' },
+  { label: 'Refurbished', href: '/computers/refurbished' },
   { label: 'Επικοινωνία', href: '/contact' },
 ]
 
@@ -97,13 +89,8 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 lg:h-20">
 
           {/* Logo */}
-          <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="w-9 h-9 rounded-xl bg-linear-to-br from-blue-600 to-blue-800 flex items-center justify-center shadow-md">
-              <Monitor size={18} className="text-white" />
-            </div>
-            <span className="text-xl font-bold text-slate-800 tracking-tight">
-              Com<span className="text-blue-600">House</span>
-            </span>
+          <Link to="/" className="shrink-0">
+            <img src={comhouseLogo} alt="ComHouse" className="h-12 lg:h-14 w-auto" />
           </Link>
 
           {/* Desktop nav */}

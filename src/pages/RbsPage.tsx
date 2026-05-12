@@ -643,13 +643,13 @@ export default function RbsPage() {
       </section>
 
       {/* ── Bottom-right product carousel widget ── */}
-      <div className={`fixed bottom-6 right-6 z-40 w-52 bg-white shadow-md border border-slate-100 transition-all duration-300 ${
+      <div className={`fixed bottom-6 right-6 z-40 w-56 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 ${
         widgetVisible ? 'translate-x-0 opacity-100' : 'translate-x-[120%] opacity-0 pointer-events-none'
       }`}>
 
-        {/* Label */}
-        <div className="px-4 pt-4">
-          <p className="text-[8px] font-black uppercase tracking-widest text-slate-400">Προϊόντα RBS</p>
+        {/* Gradient header */}
+        <div className="bg-gradient-to-r from-blue-700 to-blue-500 px-4 py-3">
+          <p className="text-[9px] font-black uppercase tracking-widest text-blue-100">Προϊόντα RBS</p>
         </div>
 
         {/* Sliding product card */}
@@ -657,37 +657,37 @@ export default function RbsPage() {
           <button
             onClick={() => goToProduct(product.id)}
             style={cardStyle}
-            className="w-full flex flex-col px-4 pt-2 pb-4 hover:bg-slate-50 group text-left"
+            className="w-full flex flex-col items-center px-4 pt-4 pb-4 hover:bg-blue-50 group text-left transition-colors"
           >
             {/* Image */}
-            <div className="w-full flex items-center justify-center py-3">
+            <div className="w-full flex items-center justify-center bg-slate-50 rounded-xl py-4 mb-3">
               <img
                 src={product.images?.[0]}
                 alt={product.name}
-                className="h-28 w-28 object-contain"
+                className="h-24 w-24 object-contain"
               />
             </div>
             {/* Name */}
-            <p className="text-sm font-semibold text-slate-700 group-hover:text-blue-600 transition-colors leading-snug">
+            <p className="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-snug w-full">
               {product.name}
             </p>
             {/* CTA */}
-            <div className="inline-flex items-center gap-1 text-xs text-blue-500 mt-1.5 group-hover:gap-1.5 transition-all duration-150">
-              Δείτε το <ArrowRight size={11} />
+            <div className="mt-2 w-full flex items-center justify-center gap-1.5 bg-blue-600 group-hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors">
+              Δείτε το <ArrowRight size={12} />
             </div>
           </button>
         </div>
 
         {/* Dots */}
-        <div className="flex items-center justify-center gap-1.5 py-3 border-t border-slate-100">
+        <div className="flex items-center justify-center gap-1.5 pb-3">
           {rbsProducts.map((_, i) => (
             <button
               key={i}
               onClick={() => slideTo(i)}
               className={`rounded-full transition-all duration-300 ${
                 i === displayIdx
-                  ? 'w-4 h-1 bg-slate-600'
-                  : 'w-1 h-1 bg-slate-200 hover:bg-slate-300'
+                  ? 'w-4 h-1.5 bg-blue-500'
+                  : 'w-1.5 h-1.5 bg-slate-200 hover:bg-slate-300'
               }`}
             />
           ))}

@@ -82,13 +82,13 @@ export default function SoftonePage() {
             {/* Left — text */}
             <div className="py-12 lg:py-16">
               <div className="mb-8">
-                <img src={entersoftLogo} alt="Entersoft One" className="h-10 sm:h-14 object-contain brightness-0 invert" />
+                <img src={entersoftLogo} alt="EntersoftOne" className="h-10 sm:h-14 object-contain brightness-0 invert" />
               </div>
               <p className="text-xs font-black uppercase tracking-[0.2em] text-blue-400 mb-2">
                 Λύσεις Μηχανογράφησης
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">
-                Entersoft One<br />ERP & CRM
+                EntersoftOne<br />ERP & CRM
               </h1>
               <p className="text-blue-200/70 text-sm leading-relaxed mb-7 max-w-md">
                 Η ComHouse είναι εξουσιοδοτημένος συνεργάτης για εγκατάσταση, παραμετροποίηση
@@ -144,17 +144,27 @@ export default function SoftonePage() {
             <span className="text-blue-500 font-bold text-xs uppercase tracking-[0.2em]">Δυνατότητες</span>
             <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900">Τι περιλαμβάνει</h2>
             <p className="mt-2 text-slate-500 text-sm max-w-lg leading-relaxed">
-              Το Entersoft One καλύπτει κάθε ανάγκη της επιχείρησής σας από ένα ενιαίο περιβάλλον.
+              Το EntersoftOne καλύπτει κάθε ανάγκη της επιχείρησής σας από ένα ενιαίο περιβάλλον.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-slate-100 border border-slate-100 rounded-2xl overflow-hidden">
-            {features.map((f) => (
-              <div key={f.title} className="bg-white p-6 flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
-                  {f.icon}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {features.map((f, i) => (
+              <div
+                key={f.title}
+                className="group flex items-start gap-5 bg-slate-50 hover:bg-blue-50 rounded-2xl px-6 py-5 transition-all duration-300 border border-transparent hover:border-blue-100"
+              >
+                {/* Step number + icon stacked */}
+                <div className="shrink-0 flex flex-col items-center gap-1">
+                  <span className="text-xs font-black text-blue-200 group-hover:text-blue-400 transition-colors leading-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="w-11 h-11 rounded-2xl bg-white group-hover:bg-blue-600 border border-slate-200 group-hover:border-blue-600 text-blue-500 group-hover:text-white flex items-center justify-center shadow-sm transition-all duration-300">
+                    {f.icon}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 mb-1 text-sm">{f.title}</h3>
+                {/* Text */}
+                <div className="pt-1">
+                  <h3 className="font-extrabold text-slate-900 mb-1">{f.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
                 </div>
               </div>
@@ -196,7 +206,7 @@ export default function SoftonePage() {
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div>
               <h2 className="text-xl sm:text-2xl font-extrabold text-white">
-                Ενδιαφέρεστε για το Entersoft One;
+                Ενδιαφέρεστε για το EntersoftOne;
               </h2>
               <p className="text-blue-200/50 text-sm mt-1">
                 Δωρεάν παρουσίαση & προσφορά εγκατάστασης.

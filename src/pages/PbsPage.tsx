@@ -150,14 +150,22 @@ export default function PbsPage() {
               Το PBS ONE καλύπτει πλήρως τις ανάγκες μεσαίων και μεγάλων επιχειρήσεων από ένα ενιαίο σύστημα.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-slate-100 border border-slate-100 rounded-2xl overflow-hidden">
-            {features.map((f) => (
-              <div key={f.title} className="bg-white p-6 flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center shrink-0">
-                  {f.icon}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {features.map((f, i) => (
+              <div
+                key={f.title}
+                className="group flex items-start gap-5 bg-slate-50 hover:bg-sky-50 rounded-2xl px-6 py-5 transition-all duration-300 border border-transparent hover:border-sky-100"
+              >
+                <div className="shrink-0 flex flex-col items-center gap-1">
+                  <span className="text-xs font-black text-sky-200 group-hover:text-sky-400 transition-colors leading-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="w-11 h-11 rounded-2xl bg-white group-hover:bg-sky-600 border border-slate-200 group-hover:border-sky-600 text-sky-500 group-hover:text-white flex items-center justify-center shadow-sm transition-all duration-300">
+                    {f.icon}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 mb-1 text-sm">{f.title}</h3>
+                <div className="pt-1">
+                  <h3 className="font-extrabold text-slate-900 mb-1">{f.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
                 </div>
               </div>

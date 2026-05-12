@@ -9,6 +9,9 @@ import SoftonePage from './pages/SoftonePage'
 import ProsvasisPage from './pages/ProsvasisPage'
 import PbsPage from './pages/PbsPage'
 import ContactPage from './pages/ContactPage'
+import LexmarkPage from './pages/LexmarkPage'
+import RefurbishedPage from './pages/RefurbishedPage'
+import WebDevPage from './pages/WebDevPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -31,6 +34,9 @@ export default function App() {
           <Route path="/mixanografisi/softone" element={<SoftonePage />} />
           <Route path="/mixanografisi/prosvasis" element={<ProsvasisPage />} />
           <Route path="/mixanografisi/pbs" element={<PbsPage />} />
+          <Route path="/printers/lexmark" element={<LexmarkPage />} />
+          <Route path="/webdev" element={<WebDevPage />} />
+          <Route path="/computers/refurbished" element={<RefurbishedPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
       </main>

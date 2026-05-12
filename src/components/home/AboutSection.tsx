@@ -1,7 +1,7 @@
 import { Shield, Users, Award } from 'lucide-react'
 
 const stats = [
-  { icon: Award, value: '30+', label: 'Χρόνια Εμπειρίας' },
+  { icon: Award, value: '35+', label: 'Χρόνια Εμπειρίας' },
   { icon: Users, value: '1000+', label: 'Ικανοποιημένοι Πελάτες' },
   { icon: Shield, value: '100%', label: 'Εξουσιοδοτημένο Service' },
 ]
@@ -35,18 +35,18 @@ export default function AboutSection() {
           </div>
 
           {/* Stats — vertical stack */}
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-5 max-w-sm">
             {stats.map(({ icon: Icon, value, label }) => (
               <div
                 key={label}
-                className="flex items-center gap-5 bg-slate-50 border border-slate-200 rounded-2xl px-6 py-5 hover:border-blue-600 hover:shadow-lg transition-all duration-300 group"
+                className="relative flex items-center gap-6 bg-linear-to-r from-blue-600 to-blue-500 rounded-3xl px-8 py-6 shadow-lg shadow-blue-200 hover:shadow-xl hover:shadow-blue-300 hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden"
               >
-                <div className="shrink-0 w-14 h-14 rounded-xl bg-blue-600 group-hover:bg-blue-700 flex items-center justify-center transition-colors">
-                  <Icon size={24} className="text-white" />
-                </div>
+                {/* Background icon watermark */}
+                <Icon size={100} className="absolute -right-4 top-1/2 -translate-y-1/2 text-white/10 pointer-events-none" />
+                {/* Text */}
                 <div>
-                  <p className="text-3xl font-extrabold text-slate-900 leading-none">{value}</p>
-                  <p className="text-sm text-slate-500 mt-1 font-medium">{label}</p>
+                  <p className="text-4xl font-black text-white leading-none tracking-tight">{value}</p>
+                  <p className="text-blue-100 text-sm font-medium mt-1">{label}</p>
                 </div>
               </div>
             ))}

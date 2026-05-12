@@ -77,7 +77,7 @@ export default function ProsvasisPage() {
     <div className="pt-20 bg-white min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="bg-emerald-950">
+      <section className="bg-[#0d2535]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
@@ -86,13 +86,13 @@ export default function ProsvasisPage() {
               <div className="mb-8">
                 <img src={prosvasisLogo} alt="Prosvasis Go" className="h-10 sm:h-14 object-contain brightness-0 invert" />
               </div>
-              <p className="text-xs font-black uppercase tracking-[0.2em] text-emerald-400 mb-2">
+              <p className="text-xs font-black uppercase tracking-[0.2em] text-[#5bb8d4] mb-2">
                 Λύσεις Μηχανογράφησης
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white leading-tight mb-4">
                 Prosvasis Go<br />Λογισμικό Λιανικής
               </h1>
-              <p className="text-emerald-200/70 text-sm leading-relaxed mb-7 max-w-md">
+              <p className="text-[#5bb8d4]/70 text-sm leading-relaxed mb-7 max-w-md">
                 Η ComHouse είναι εξουσιοδοτημένος συνεργάτης για το Prosvasis Go — το ολοκληρωμένο
                 λογισμικό λιανικής της Epsilon Net για καταστήματα, αλυσίδες και εστίαση.
               </p>
@@ -105,7 +105,7 @@ export default function ProsvasisPage() {
               </div>
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-2 bg-white text-emerald-900 font-bold px-5 py-2.5 rounded-xl shadow-lg hover:bg-emerald-50 transition-all text-sm"
+                className="inline-flex items-center gap-2 bg-white text-[#0d2535] font-bold px-5 py-2.5 rounded-xl shadow-lg hover:bg-[#5bb8d4]/10 transition-all text-sm"
               >
                 Ζητήστε ενημέρωση <ArrowRight size={15} />
               </Link>
@@ -114,13 +114,13 @@ export default function ProsvasisPage() {
             {/* Right — module preview panel */}
             <div className="hidden lg:flex justify-end items-center py-8">
               <div className="w-72 bg-white/10 border border-white/15 rounded-2xl p-6">
-                <p className="text-[10px] font-black uppercase tracking-widest text-emerald-400 mb-5">
+                <p className="text-[10px] font-black uppercase tracking-widest text-[#5bb8d4] mb-5">
                   Βασικά Modules
                 </p>
                 <div className="space-y-3">
                   {features.map((f) => (
                     <div key={f.title} className="flex items-center gap-3">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-900/70 text-emerald-300 flex items-center justify-center shrink-0">
+                      <div className="w-8 h-8 rounded-lg bg-[#5bb8d4]/20 text-[#5bb8d4] flex items-center justify-center shrink-0">
                         {f.icon}
                       </div>
                       <span className="text-white/70 text-sm">{f.title}</span>
@@ -129,7 +129,7 @@ export default function ProsvasisPage() {
                 </div>
                 <div className="mt-5 pt-4 border-t border-white/10 space-y-1.5">
                   {['✓ myDATA Ready', '✓ Εξουσ. Συνεργάτης', '✓ ΑΑΔΕ Συμμόρφωση'].map((b) => (
-                    <p key={b} className="text-emerald-300/60 text-xs">{b}</p>
+                    <p key={b} className="text-[#5bb8d4]/60 text-xs">{b}</p>
                   ))}
                 </div>
               </div>
@@ -143,20 +143,28 @@ export default function ProsvasisPage() {
       <section className="py-16 bg-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="mb-10">
-            <span className="text-emerald-600 font-bold text-xs uppercase tracking-[0.2em]">Δυνατότητες</span>
+            <span className="text-[#5bb8d4] font-bold text-xs uppercase tracking-[0.2em]">Δυνατότητες</span>
             <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900">Τι περιλαμβάνει</h2>
             <p className="mt-2 text-slate-500 text-sm max-w-lg leading-relaxed">
               Το Prosvasis Go καλύπτει κάθε ανάγκη της λιανικής σας, από το ταμείο ως τη διαχείριση αποθήκης.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-slate-100 border border-slate-100 rounded-2xl overflow-hidden">
-            {features.map((f) => (
-              <div key={f.title} className="bg-white p-6 flex gap-4">
-                <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0">
-                  {f.icon}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {features.map((f, i) => (
+              <div
+                key={f.title}
+                className="group flex items-start gap-5 bg-slate-50 hover:bg-[#5bb8d4]/10 rounded-2xl px-6 py-5 transition-all duration-300 border border-transparent hover:border-[#5bb8d4]/30"
+              >
+                <div className="shrink-0 flex flex-col items-center gap-1">
+                  <span className="text-xs font-black text-[#5bb8d4]/50 group-hover:text-[#5bb8d4] transition-colors leading-none">
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <div className="w-11 h-11 rounded-2xl bg-white group-hover:bg-[#5bb8d4] border border-slate-200 group-hover:border-[#5bb8d4] text-[#5bb8d4] group-hover:text-white flex items-center justify-center shadow-sm transition-all duration-300">
+                    {f.icon}
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-slate-900 mb-1 text-sm">{f.title}</h3>
+                <div className="pt-1">
+                  <h3 className="font-extrabold text-slate-900 mb-1">{f.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed">{f.desc}</p>
                 </div>
               </div>
@@ -170,7 +178,7 @@ export default function ProsvasisPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
             <div>
-              <span className="text-emerald-600 font-bold text-xs uppercase tracking-[0.2em]">Τι προσφέρουμε</span>
+              <span className="text-[#5bb8d4] font-bold text-xs uppercase tracking-[0.2em]">Τι προσφέρουμε</span>
               <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900">
                 Υπηρεσίες<br />ComHouse
               </h2>
@@ -181,7 +189,7 @@ export default function ProsvasisPage() {
             <div className="divide-y divide-slate-200">
               {services.map((s, i) => (
                 <div key={s} className="flex items-start gap-4 py-4 first:pt-0 last:pb-0">
-                  <span className="text-[11px] font-black text-emerald-500/60 w-6 shrink-0 mt-0.5">
+                  <span className="text-[11px] font-black text-[#5bb8d4]/60 w-6 shrink-0 mt-0.5">
                     {String(i + 1).padStart(2, '0')}
                   </span>
                   <span className="text-slate-700 text-sm">{s}</span>
@@ -193,20 +201,20 @@ export default function ProsvasisPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-14 bg-emerald-950">
+      <section className="py-14 bg-[#0d2535]">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-5">
             <div>
               <h2 className="text-xl sm:text-2xl font-extrabold text-white">
                 Ενδιαφέρεστε για το Prosvasis Go;
               </h2>
-              <p className="text-emerald-200/50 text-sm mt-1">
+              <p className="text-[#5bb8d4]/50 text-sm mt-1">
                 Δωρεάν παρουσίαση & προσφορά εγκατάστασης.
               </p>
             </div>
             <Link
               to="/contact"
-              className="shrink-0 inline-flex items-center gap-2 bg-white text-emerald-900 font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-emerald-50 transition-all text-sm"
+              className="shrink-0 inline-flex items-center gap-2 bg-white text-[#0d2535] font-bold px-6 py-3 rounded-xl shadow-lg hover:bg-[#5bb8d4]/10 transition-all text-sm"
             >
               Επικοινωνία <ArrowRight size={15} />
             </Link>
