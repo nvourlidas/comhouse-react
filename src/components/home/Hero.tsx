@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ChevronLeft, ChevronRight } from 'lucide-react'
 import myDataLogo from '../../assets/MyDataLogo.png'
 
 const slides = [
@@ -13,11 +13,7 @@ const slides = [
     visual: {
       badge: '✓ Πιστοποιημένος Συνεργάτης',
       tags: ['Entersoftone', 'Prosvasis GO', 'PBS ONE', 'Εκπαίδευση', 'On-site Support'],
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
-          <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />
-        </svg>
-      ),
+      icon: (<svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" /></svg>),
     },
   },
   {
@@ -29,13 +25,7 @@ const slides = [
     visual: {
       badge: '✓ Εξουσιοδοτημένο Service',
       tags: ['Εγκατάσταση', 'Επισκευή', 'Κλείσιμο', 'Παύση', 'Φορολογική Μνήμη'],
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
-          <rect x="2" y="4" width="20" height="16" rx="2" />
-          <path d="M7 8h10M7 12h6M7 16h4" />
-          <path d="M17 14l1.5 1.5L21 13" />
-        </svg>
-      ),
+      icon: (<svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12"><rect x="2" y="4" width="20" height="16" rx="2" /><path d="M7 8h10M7 12h6M7 16h4" /><path d="M17 14l1.5 1.5L21 13" /></svg>),
     },
   },
   {
@@ -47,12 +37,7 @@ const slides = [
     visual: {
       badge: '✓ On-site & Απομακρυσμένα',
       tags: ['Laptop', 'Desktop', 'Server', 'Δίκτυα', 'Περιφερειακά'],
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
-          <rect x="2" y="3" width="20" height="14" rx="2" />
-          <path d="M8 21h8M12 17v4" />
-        </svg>
-      ),
+      icon: (<svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>),
     },
   },
   {
@@ -65,9 +50,7 @@ const slides = [
       badge: '✓ Πιστοποιημένη Ενσωμάτωση',
       tags: ['myDATA', 'ΑΑΔΕ', 'ΥΠΑΗΕΣ', 'E-Invoicing', 'Παραστατικά'],
       iconNoBg: true,
-      icon: (
-        <img src={myDataLogo} alt="myDATA" className="w-32 h-32 object-contain" />
-      ),
+      icon: (<img src={myDataLogo} alt="myDATA" className="w-32 h-32 object-contain" />),
     },
   },
   {
@@ -79,12 +62,7 @@ const slides = [
     visual: {
       badge: '✓ Web · Mobile · E-Commerce',
       tags: ['Websites', 'Web Apps', 'Mobile Apps', 'E-Shop'],
-      icon: (
-        <svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12">
-          <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z" />
-          <path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 9l-2 6" />
-        </svg>
-      ),
+      icon: (<svg viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.5" className="w-12 h-12"><path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z" /><path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 9l-2 6" /></svg>),
     },
   },
 ]
@@ -108,12 +86,13 @@ export default function Hero() {
   useEffect(() => {
     const timer = setInterval(next, 5000)
     return () => clearInterval(timer)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [current])
 
   const slide = slides[current]
 
   return (
-    <section className={`relative min-h-[80vh] flex items-center bg-gradient-to-br ${slide.gradient} transition-all duration-700`}>
+    <section className={`relative min-h-[80vh] flex items-center bg-linear-to-br ${slide.gradient} transition-all duration-700`}>
       {/* Dot grid */}
       <div
         className="absolute inset-0 pointer-events-none opacity-20"
@@ -125,7 +104,7 @@ export default function Hero() {
       {/* Glow behind text */}
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-150 h-150 rounded-full bg-blue-400/20 blur-3xl pointer-events-none" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-28 pb-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Text */}
           <div className={`transition-all duration-300 ${animating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
@@ -152,7 +131,9 @@ export default function Hero() {
               <div className="rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-2xl p-8">
                 {/* Icon */}
                 {slide.visual.iconNoBg ? (
-                  <div className="mb-5">{slide.visual.icon}</div>
+                  <div className="mb-5">
+                    {slide.visual.icon}
+                  </div>
                 ) : (
                   <div className="w-20 h-20 rounded-2xl bg-white/20 flex items-center justify-center mb-5 shadow-lg">
                     {slide.visual.icon}

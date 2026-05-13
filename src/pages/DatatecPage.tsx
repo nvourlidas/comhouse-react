@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ChevronRight, ChevronDown, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, CheckCircle2, X } from 'lucide-react'
+import { FadeUp } from '../components/ScrollReveal'
 
 import datatecLogo from '../assets/logo-removebg-preview.png'
 import dtec100 from '../assets/dtec100md1-removebg-preview.png'
@@ -292,10 +293,11 @@ function PlaceholderMain() {
 /* ─── Gallery — slide transition + cursor zoom ───────────────────── */
 function ProductGallery({ images }: { images?: string[] }) {
   const containerRef = useRef<HTMLDivElement>(null)
-  const [active, setActive]   = useState(0)
+  const [active, setActive]     = useState(0)
   const [hovering, setHovering] = useState(false)
-  const [zoomed, setZoomed]   = useState(false)
-  const [origin, setOrigin]   = useState({ x: 50, y: 50 })
+  const [zoomed, setZoomed]     = useState(false)
+  const [origin, setOrigin]     = useState({ x: 50, y: 50 })
+  const [lightbox, setLightbox] = useState<number | null>(null)
 
   useEffect(() => {
     if (!images || images.length <= 1 || hovering) return
@@ -304,6 +306,18 @@ function ProductGallery({ images }: { images?: string[] }) {
   }, [images, hovering])
 
   useEffect(() => { setZoomed(false) }, [active])
+
+  useEffect(() => {
+    if (lightbox === null) return
+    document.body.style.overflow = 'hidden'
+    function onKey(e: KeyboardEvent) {
+      if (e.key === 'Escape') setLightbox(null)
+      if (e.key === 'ArrowRight' && images) setLightbox(prev => prev !== null ? (prev + 1) % images.length : null)
+      if (e.key === 'ArrowLeft'  && images) setLightbox(prev => prev !== null ? (prev - 1 + images.length) % images.length : null)
+    }
+    window.addEventListener('keydown', onKey)
+    return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = '' }
+  }, [lightbox, images])
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
     const rect = containerRef.current?.getBoundingClientRect()
@@ -317,52 +331,109 @@ function ProductGallery({ images }: { images?: string[] }) {
   if (!images || images.length === 0) return <PlaceholderMain />
 
   return (
-    <div className="flex flex-col gap-3">
-      <div
-        ref={containerRef}
-        className="relative w-full aspect-4/3 bg-slate-50 border border-slate-200 overflow-hidden cursor-crosshair"
-        onMouseEnter={() => { setZoomed(true);  setHovering(true)  }}
-        onMouseLeave={() => { setZoomed(false); setHovering(false) }}
-        onMouseMove={handleMouseMove}
-      >
-        {images.map((src, i) => (
-          <div
-            key={i}
-            className="absolute inset-0 flex items-center justify-center p-6 transition-transform duration-500 ease-in-out"
-            style={{ transform: `translateX(${(i - active) * 100}%)` }}
-          >
-            <img
-              src={src}
-              alt={`product-${i}`}
-              className="max-h-full max-w-full object-contain select-none"
-              style={i === active ? {
-                transform: zoomed ? 'scale(3.5)' : 'scale(1)',
-                transformOrigin: `${origin.x}% ${origin.y}%`,
-                transition: zoomed ? 'transform 0.15s ease' : 'transform 0.25s ease',
-                willChange: 'transform',
-              } : undefined}
-              draggable={false}
-            />
-          </div>
-        ))}
-      </div>
-
-      {images.length > 1 && (
-        <div className="flex gap-2">
+    <>
+      <div className="flex flex-col gap-3">
+        <div
+          ref={containerRef}
+          className="relative w-full aspect-4/3 bg-slate-50 border border-slate-200 overflow-hidden cursor-zoom-in"
+          onMouseEnter={() => { setZoomed(true);  setHovering(true)  }}
+          onMouseLeave={() => { setZoomed(false); setHovering(false) }}
+          onMouseMove={handleMouseMove}
+          onClick={() => setLightbox(active)}
+        >
           {images.map((src, i) => (
-            <button
+            <div
               key={i}
-              onClick={() => setActive(i)}
-              className={`w-16 h-16 border-2 flex items-center justify-center bg-slate-50 transition-colors ${
-                i === active ? 'border-slate-800' : 'border-slate-200 hover:border-slate-400'
-              }`}
+              className="absolute inset-0 flex items-center justify-center p-6 transition-transform duration-500 ease-in-out"
+              style={{ transform: `translateX(${(i - active) * 100}%)` }}
             >
-              <img src={src} alt={`thumb-${i}`} className="w-10 h-10 object-contain" />
-            </button>
+              <img
+                src={src}
+                alt={`product-${i}`}
+                className="max-h-full max-w-full object-contain select-none"
+                style={i === active ? {
+                  transform: zoomed ? 'scale(3.5)' : 'scale(1)',
+                  transformOrigin: `${origin.x}% ${origin.y}%`,
+                  transition: zoomed ? 'transform 0.15s ease' : 'transform 0.25s ease',
+                  willChange: 'transform',
+                } : undefined}
+                draggable={false}
+              />
+            </div>
           ))}
         </div>
+
+        {images.length > 1 && (
+          <div className="flex gap-2">
+            {images.map((src, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`w-16 h-16 border-2 flex items-center justify-center bg-slate-50 transition-colors ${
+                  i === active ? 'border-slate-800' : 'border-slate-200 hover:border-slate-400'
+                }`}
+              >
+                <img src={src} alt={`thumb-${i}`} className="w-10 h-10 object-contain" />
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {lightbox !== null && (
+        <div
+          className="fixed inset-0 z-9999 bg-black/90 flex items-center justify-center"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            className="absolute top-4 right-4 text-white/70 hover:text-white p-2 transition-colors"
+            onClick={() => setLightbox(null)}
+          >
+            <X size={28} />
+          </button>
+
+          {images.length > 1 && (
+            <button
+              className="absolute left-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-2 transition-colors"
+              onClick={(e) => { e.stopPropagation(); setLightbox((lightbox - 1 + images.length) % images.length) }}
+            >
+              <ChevronLeft size={36} />
+            </button>
+          )}
+
+          <img
+            src={images[lightbox]}
+            alt={`product-fullscreen-${lightbox}`}
+            className="max-h-[90vh] max-w-[90vw] object-contain select-none"
+            onClick={(e) => e.stopPropagation()}
+            draggable={false}
+          />
+
+          {images.length > 1 && (
+            <button
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-white/70 hover:text-white p-2 transition-colors"
+              onClick={(e) => { e.stopPropagation(); setLightbox((lightbox + 1) % images.length) }}
+            >
+              <ChevronRight size={36} />
+            </button>
+          )}
+
+          {images.length > 1 && (
+            <div className="absolute bottom-6 flex gap-2">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.stopPropagation(); setLightbox(i) }}
+                  className={`rounded-full transition-all ${
+                    i === lightbox ? 'w-4 h-2 bg-white' : 'w-2 h-2 bg-white/40 hover:bg-white/70'
+                  }`}
+                />
+              ))}
+            </div>
+          )}
+        </div>
       )}
-    </div>
+    </>
   )
 }
 
@@ -569,13 +640,18 @@ export default function DatatecPage() {
   }, [])
 
   function goToProduct(id: string) {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    const el = document.getElementById(id)
+    el?.scrollIntoView({ behavior: 'smooth' })
+    setTimeout(() => {
+      el?.classList.add('product-highlight')
+      setTimeout(() => el?.classList.remove('product-highlight'), 1400)
+    }, 700)
   }
 
   const product = datatecProducts[displayIdx]
 
   return (
-    <div className="pt-20 bg-white min-h-screen">
+    <div className="pt-20 lg:pt-28 bg-white min-h-screen">
 
       {/* ── Hero + Text — unified cyan section ── */}
       <section className="bg-cyan-950 px-4 pt-10 pb-14">
@@ -590,7 +666,7 @@ export default function DatatecPage() {
           <div className="max-w-3xl">
             {/* Always-visible header */}
             <p className="text-xs font-black uppercase tracking-[0.2em] text-cyan-400 mb-2">
-              Φορολογικές Ταμειακές Μηχανές Λιανικής & Εστιατορίου
+              Φορολογικές Ταμειακές Μηχανές Λιανικής &amp; Εστιατορίου
             </p>
             <h1 className="text-2xl sm:text-3xl font-extrabold text-white leading-snug mb-1">
               Ταμειακές Μηχανές DataTec
@@ -698,7 +774,7 @@ export default function DatatecPage() {
       }`}>
 
         {/* Gradient header */}
-        <div className="bg-gradient-to-r from-cyan-700 to-cyan-500 px-4 py-3">
+        <div className="bg-linear-to-r from-cyan-700 to-cyan-500 px-4 py-3">
           <p className="text-[9px] font-black uppercase tracking-widest text-cyan-100">Προϊόντα DataTec</p>
         </div>
 
@@ -754,9 +830,11 @@ export default function DatatecPage() {
       </div>
       <div ref={productsRef} className="max-w-5xl mx-auto px-4 sm:px-6 pb-10">
         {datatecProducts.map((p) => (
-          <div key={p.id} id={p.id} className="scroll-mt-24">
-            <ProductRow product={p} accentText="text-cyan-600" />
-          </div>
+          <FadeUp key={p.id}>
+            <div id={p.id} className="scroll-mt-24">
+              <ProductRow product={p} accentText="text-cyan-600" />
+            </div>
+          </FadeUp>
         ))}
       </div>
 

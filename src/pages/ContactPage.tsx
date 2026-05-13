@@ -12,7 +12,6 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [mapActive, setMapActive] = useState(false)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }))
@@ -68,14 +67,13 @@ export default function ContactPage() {
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
-            Ας{' '}
+            Ας μιλήσουμε{' '}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-400">
-              μιλήσουμε
+              μαζί
             </span>
           </h1>
           <p className="text-slate-400 text-lg max-w-xl mx-auto">
-            Είμαστε εδώ για να σε βοηθήσουμε. Συμπλήρωσε τη φόρμα ή
-            επικοινώνησε μαζί μας απευθείας.
+            Είμαστε εδώ για να σε βοηθήσουμε. Συμπλήρωσε τη φόρμα ή επικοινώνησε μαζί μας απευθείας.
           </p>
         </div>
 
@@ -190,7 +188,8 @@ export default function ContactPage() {
           </div>
           <div
             className="relative w-full h-80 md:h-96"
-            onMouseLeave={() => setMapActive(false)}
+            onMouseEnter={() => { document.body.style.overflow = 'hidden' }}
+            onMouseLeave={() => { document.body.style.overflow = '' }}
           >
             <iframe
               title="ComHouse map"
@@ -200,16 +199,6 @@ export default function ContactPage() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />
-            {!mapActive && (
-              <div
-                className="absolute inset-0 cursor-pointer flex items-end justify-center pb-5"
-                onClick={() => setMapActive(true)}
-              >
-                <span className="bg-white/90 backdrop-blur-sm text-slate-500 text-xs font-medium px-3 py-1.5 rounded-full shadow-sm border border-slate-200">
-                  Κάντε κλικ για πλοήγηση στον χάρτη
-                </span>
-              </div>
-            )}
           </div>
         </div>
       </div>
@@ -312,7 +301,9 @@ export default function ContactPage() {
                   disabled={loading}
                   className="group relative self-end flex items-center gap-0 bg-blue-600 text-white font-semibold rounded-full overflow-hidden shadow-lg shadow-blue-400/40 hover:shadow-blue-400/60 transition-shadow duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
-                  <span className="pl-6 pr-4 py-3 text-sm">{loading ? 'Αποστολή...' : 'Αποστολή'}</span>
+                  <span className="pl-6 pr-4 py-3 text-sm">
+                    {loading ? 'Αποστολή...' : 'Αποστολή'}
+                  </span>
                   <span className="flex items-center justify-center w-10 h-10 m-1 rounded-full bg-white/20 group-hover:bg-white/30 transition-colors duration-200">
                     <Send className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
                   </span>
@@ -347,4 +338,3 @@ export default function ContactPage() {
     </div>
   )
 }
-

@@ -53,7 +53,7 @@ const checklist = [
 export default function RefurbishedPage() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
   return (
-    <div className="pt-20 bg-white min-h-screen">
+    <div className="pt-20 lg:pt-28 bg-white min-h-screen">
 
       {/* Hero */}
       <section className="bg-linear-to-br from-slate-900 via-slate-800 to-slate-700 px-4 pt-14 pb-16 relative overflow-hidden">

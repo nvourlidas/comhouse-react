@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
-import comhouseLogo from '../assets/cropped-logo_transparent-1-211x104.png'
+import comhouseLogo from '../assets/Comhouse-logo-transparent.png'
 
 interface NavGrandchild {
   label: string
@@ -49,6 +49,7 @@ const navItems: NavItem[] = [
     href: '/printers',
     children: [
       { label: 'Lexmark', href: '/printers/lexmark' },
+      { label: 'Pantum',  href: '/printers/pantum' },
     ],
   },
   { label: 'Web & Apps', href: '/webdev' },
@@ -79,18 +80,18 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b border-blue-100 ${
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
         scrolled
-          ? 'bg-white/95 backdrop-blur-md shadow-md'
-          : 'bg-white/90 backdrop-blur-sm shadow-sm'
+          ? 'bg-white/75 backdrop-blur-md shadow-md border-slate-200/50'
+          : 'bg-white shadow-sm border-slate-100'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-20 lg:h-28">
 
           {/* Logo */}
           <Link to="/" className="shrink-0">
-            <img src={comhouseLogo} alt="ComHouse" className="h-12 lg:h-14 w-auto" />
+            <img src={comhouseLogo} alt="ComHouse" className="h-16 lg:h-24 w-auto lg:scale-[1.6] lg:origin-left" />
           </Link>
 
           {/* Desktop nav */}
@@ -171,14 +172,17 @@ export default function Navbar() {
             )}
           </nav>
 
-          {/* Mobile toggle */}
-          <button
-            className="lg:hidden p-2 rounded-lg text-slate-700 hover:bg-blue-50 transition-colors"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+          {/* Mobile controls */}
+          <div className="lg:hidden flex items-center gap-2">
+            {/* Mobile menu toggle */}
+            <button
+              className="p-2 rounded-lg text-slate-700 hover:bg-blue-50 transition-colors"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
       </div>
 

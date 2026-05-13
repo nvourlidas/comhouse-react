@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { FadeUp } from '../ScrollReveal'
 import entersoftone from '../../assets/ENTERSOFTONE_logo.png'
 import rbs from '../../assets/LOGO-RBS-TRANSP-scaled-2048x742.png'
 import datatec from '../../assets/logo-removebg-preview.png'
@@ -23,20 +24,20 @@ export default function PartnersSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="mb-16">
+        <FadeUp className="mb-16">
           <span className="text-blue-500 font-bold text-xs uppercase tracking-[0.2em]">
             Συνεργασίες
           </span>
           <h2 className="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900">
             Επίσημοι Συνεργάτες
           </h2>
-        </div>
+        </FadeUp>
 
         {/* Logo row */}
         <div className="grid grid-cols-3 lg:grid-cols-6 gap-x-10 gap-y-10 items-center">
           {partners.map((p, i) => (
+            <FadeUp key={p.name} delay={i * 0.07}>
             <div
-              key={p.name}
               className="flex items-center justify-center h-12 cursor-pointer"
               style={{
                 opacity: hovered === null ? 1 : hovered === i ? 1 : 0.15,
@@ -52,6 +53,7 @@ export default function PartnersSection() {
                 className="w-full max-h-full object-contain"
               />
             </div>
+            </FadeUp>
           ))}
         </div>
 

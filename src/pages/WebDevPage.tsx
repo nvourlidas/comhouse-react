@@ -64,7 +64,7 @@ export default function WebDevPage() {
   const [hoveredService, setHoveredService] = useState<string | null>(null)
 
   return (
-    <div className="pt-20 bg-white min-h-screen">
+    <div className="pt-20 lg:pt-28 bg-white min-h-screen">
 
       {/* Hero */}
       <section className="bg-linear-to-br from-emerald-950 via-emerald-900 to-teal-800 px-4 pt-14 pb-16 relative overflow-hidden">

@@ -1,107 +1,38 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
+import { FadeUp } from '../ScrollReveal'
 
-const services = [
-  {
-    id: 'mixanografisi',
-    tag: 'Μηχανογράφηση',
-    title: 'Λύσεις Μηχανογράφησης',
-    subtitle: 'SOFTONE · UNISOFT · PBS ONE',
-    bullets: [
-      'Συμβουλευτικές Υπηρεσίες',
-      'Μεταφορά Δεδομένων & Ειδικές διασυνδέσεις',
-      'Εκπαίδευση στελεχών',
-      'Υποστήριξη On-site & απομακρυσμένα',
-    ],
-    href: '/mixanografisi',
-    accent: 'blue',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
-        <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />
-      </svg>
-    ),
-  },
-  {
-    id: 'computers',
-    tag: 'Υπολογιστές',
-    title: 'Service Υπολογιστών & Δικτύων',
-    subtitle: 'LAPTOP · DESKTOP · SERVER',
-    bullets: [
-      'Επισκευή Laptop & Desktop',
-      'Εγκατάσταση & παραμετροποίηση server',
-      'Δίκτυα & Υποδομές',
-      'Περιφερειακές συσκευές Η/Υ',
-    ],
-    href: '/computers',
-    accent: 'violet',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
-        <rect x="2" y="3" width="20" height="14" rx="2" />
-        <path d="M8 21h8M12 17v4" />
-      </svg>
-    ),
-  },
-  {
-    id: 'tameiakes',
-    tag: 'Ταμειακές',
-    title: 'Ταμειακές & Φορολογικοί Μηχανισμοί',
-    subtitle: 'ΕΓΚΑΤΑΣΤΑΣΗ · ΕΠΙΣΚΕΥΗ · ΠΑΥΣΗ',
-    bullets: [
-      'Εγκατάσταση & Προγραμματισμός',
-      'Επισκευή & Συντήρηση',
-      'Κλείσιμο & Παύση λειτουργίας',
-      'Ανάγνωση Φορολογικής Μνήμης',
-    ],
-    href: '/tameiakes',
-    accent: 'amber',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
-        <rect x="2" y="4" width="20" height="16" rx="2" />
-        <path d="M7 8h10M7 12h6M7 16h4" />
-        <path d="M17 14l1.5 1.5L21 13" />
-      </svg>
-    ),
-  },
-  {
-    id: 'mydata',
-    tag: 'myDATA',
-    title: 'Ενσωμάτωση & Υποστήριξη myDATA',
-    subtitle: 'ΑΑΔΕ · ΥΠΑΗΕΣ · E-INVOICING',
-    bullets: [
-      'Σύνδεση λογισμικού με myDATA',
-      'Διαβίβαση παραστατικών ΑΑΔΕ',
-      'Ενσωμάτωση παρόχου ΥΠΑΗΕΣ',
-      'Υποστήριξη & παρακολούθηση',
-    ],
-    href: '/mydata',
-    accent: 'indigo',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
-        <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 12l-4-4-4 4M12 3v13" />
-      </svg>
-    ),
-  },
-  {
-    id: 'webdev',
-    tag: 'Web & Mobile',
-    title: 'Web Apps, Mobile Apps & Websites',
-    subtitle: 'WEB · MOBILE · E-COMMERCE',
-    bullets: [
-      'Εταιρικά Websites & Landing Pages',
-      'Web Applications & Dashboards',
-      'Mobile Apps (iOS & Android)',
-      'E-Commerce & Online Stores',
-    ],
-    href: '/webdev',
-    accent: 'emerald',
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
-        <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z" />
-        <path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 9l-2 6" />
-      </svg>
-    ),
-  },
+const serviceIcons = [
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2v-4M9 21H5a2 2 0 01-2-2v-4m0 0h18" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <rect x="2" y="3" width="20" height="14" rx="2" />
+      <path d="M8 21h8M12 17v4" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <rect x="2" y="4" width="20" height="16" rx="2" />
+      <path d="M7 8h10M7 12h6M7 16h4" />
+      <path d="M17 14l1.5 1.5L21 13" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M16 12l-4-4-4 4M12 3v13" />
+    </svg>
+  ),
+  (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-5 h-5">
+      <path d="M3 7.5A2.5 2.5 0 0 1 5.5 5h13A2.5 2.5 0 0 1 21 7.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 16.5v-9Z" />
+      <path d="M8 10l-2 2 2 2M16 10l2 2-2 2M13 9l-2 6" />
+    </svg>
+  ),
 ]
 
 const ac: Record<string, {
@@ -116,6 +47,84 @@ const ac: Record<string, {
   emerald: { bar: 'bg-emerald-500', iconColor: 'text-emerald-600', iconBg: 'bg-emerald-100', tag: 'text-emerald-600', check: 'text-emerald-500', activeBg: 'bg-emerald-50', activeBorder: 'border-emerald-300', btn: 'text-emerald-600 hover:text-emerald-500', cardGradient: 'bg-gradient-to-b from-white to-emerald-50', cardBorder: 'border-emerald-200', cardShadow: 'shadow-emerald-100' },
 }
 
+const services = [
+  {
+    id: 's1',
+    tag: 'Μηχανογράφηση',
+    title: 'Λύσεις Μηχανογράφησης',
+    subtitle: 'SOFTONE · UNISOFT · PBS ONE',
+    bullets: [
+      'Συμβουλευτικές Υπηρεσίες',
+      'Μεταφορά Δεδομένων & Ειδικές διασυνδέσεις',
+      'Εκπαίδευση στελεχών',
+      'Υποστήριξη On-site & απομακρυσμένα',
+    ],
+    href: '/mixanografisi',
+    accent: 'blue',
+    icon: serviceIcons[0],
+  },
+  {
+    id: 's2',
+    tag: 'Υπολογιστές',
+    title: 'Service Υπολογιστών & Δικτύων',
+    subtitle: 'LAPTOP · DESKTOP · SERVER',
+    bullets: [
+      'Επισκευή Laptop & Desktop',
+      'Εγκατάσταση & παραμετροποίηση server',
+      'Δίκτυα & Υποδομές',
+      'Περιφερειακές συσκευές Η/Υ',
+    ],
+    href: '/computers',
+    accent: 'violet',
+    icon: serviceIcons[1],
+  },
+  {
+    id: 's3',
+    tag: 'Ταμειακές',
+    title: 'Ταμειακές & Φορολογικοί Μηχανισμοί',
+    subtitle: 'ΕΓΚΑΤΑΣΤΑΣΗ · ΕΠΙΣΚΕΥΗ · ΠΑΥΣΗ',
+    bullets: [
+      'Εγκατάσταση & Προγραμματισμός',
+      'Επισκευή & Συντήρηση',
+      'Κλείσιμο & Παύση λειτουργίας',
+      'Ανάγνωση Φορολογικής Μνήμης',
+    ],
+    href: '/tameiakes',
+    accent: 'amber',
+    icon: serviceIcons[2],
+  },
+  {
+    id: 's4',
+    tag: 'myDATA',
+    title: 'Ενσωμάτωση & Υποστήριξη myDATA',
+    subtitle: 'ΑΑΔΕ · ΥΠΑΗΕΣ · E-INVOICING',
+    bullets: [
+      'Σύνδεση λογισμικού με myDATA',
+      'Διαβίβαση παραστατικών ΑΑΔΕ',
+      'Ενσωμάτωση παρόχου ΥΠΑΗΕΣ',
+      'Υποστήριξη & παρακολούθηση',
+    ],
+    href: '/mydata',
+    accent: 'indigo',
+    icon: serviceIcons[3],
+  },
+  {
+    id: 's5',
+    tag: 'Web & Mobile',
+    title: 'Web Apps, Mobile Apps & Websites',
+    subtitle: 'WEB · MOBILE · E-COMMERCE',
+    bullets: [
+      'Εταιρικά Websites & Landing Pages',
+      'Web Applications & Dashboards',
+      'Mobile Apps (iOS & Android)',
+      'E-Commerce & Online Stores',
+    ],
+    href: '/webdev',
+    accent: 'emerald',
+    icon: serviceIcons[4],
+  },
+]
+
 export default function ServicesSection() {
   const [hovered, setHovered] = useState<number | null>(null)
 
@@ -124,7 +133,7 @@ export default function ServicesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="mb-12">
+        <FadeUp className="mb-12">
           <span className="text-blue-500 font-bold text-xs uppercase tracking-[0.2em]">
             Τι προσφέρουμε
           </span>
@@ -134,31 +143,32 @@ export default function ServicesSection() {
           <p className="mt-2 text-slate-500 max-w-lg text-sm leading-relaxed">
             Ολοκληρωμένες λύσεις τεχνολογίας για κάθε επιχειρηματική ανάγκη.
           </p>
-        </div>
+        </FadeUp>
 
         {/* ── Mobile: stacked cards ── */}
         <div className="flex flex-col gap-3 lg:hidden">
-          {services.map((service) => {
+          {services.map((service, i) => {
             const a = ac[service.accent]
             return (
-              <Link
-                key={service.id}
-                to={service.href}
-                className={`flex items-center gap-4 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 hover:${a.activeBg} hover:${a.activeBorder} transition-all`}
-              >
-                <div className={`shrink-0 ${a.iconColor}`}>{service.icon}</div>
-                <div className="min-w-0">
-                  <span className={`text-xs font-bold uppercase tracking-widest ${a.tag}`}>{service.tag}</span>
-                  <p className="text-slate-800 font-semibold text-sm leading-snug">{service.title}</p>
-                </div>
-                <ArrowRight size={14} className={`shrink-0 ml-auto ${a.iconColor}`} />
-              </Link>
+              <FadeUp key={service.id} delay={i * 0.08}>
+                <Link
+                  to={service.href}
+                  className={`flex items-center gap-4 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 hover:${a.activeBg} hover:${a.activeBorder} transition-all`}
+                >
+                  <div className={`shrink-0 ${a.iconColor}`}>{service.icon}</div>
+                  <div className="min-w-0">
+                    <span className={`text-xs font-bold uppercase tracking-widest ${a.tag}`}>{service.tag}</span>
+                    <p className="text-slate-800 font-semibold text-sm leading-snug">{service.title}</p>
+                  </div>
+                  <ArrowRight size={14} className={`shrink-0 ml-auto ${a.iconColor}`} />
+                </Link>
+              </FadeUp>
             )
           })}
         </div>
 
         {/* ── Desktop: horizontal accordion ── */}
-        <div className="hidden lg:flex gap-3 h-80">
+        <FadeUp delay={0.1} className="hidden lg:flex gap-3 h-80">
           {services.map((service, i) => {
             const a = ac[service.accent]
             const isActive = hovered === i
@@ -227,7 +237,7 @@ export default function ServicesSection() {
               </div>
             )
           })}
-        </div>
+        </FadeUp>
 
       </div>
     </section>
