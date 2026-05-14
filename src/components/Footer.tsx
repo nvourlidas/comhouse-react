@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { Mail, Phone, MapPin } from 'lucide-react'
-import comhouseLogo from '../assets/Comhouse-logo-transparent.png'
+import comhouseLogo from '../assets/COMPUTERHOUSE-transparent.png'
 
 export default function Footer() {
   return (
@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="flex items-center gap-4">
             <Link to="/">
-              <img src={comhouseLogo} alt="ComHouse" className="h-16 w-auto brightness-0 invert" />
+              <img src={comhouseLogo} alt="Computer House" className="h-16 w-auto scale-[1.4] origin-left brightness-0 invert" />
             </Link>
             <span className="hidden md:block text-slate-600">|</span>
             <p className="hidden md:block text-xs text-slate-400">
@@ -25,10 +25,13 @@ export default function Footer() {
               <Mail size={13} />
               comhouse@otenet.gr
             </a>
-            <a href="tel:+302321098466" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
+            <span className="flex items-center gap-1.5">
               <Phone size={13} />
-              23210 98466
-            </a>
+              23210{' '}
+              <a href="tel:+302321098466" className="hover:text-cyan-400 transition-colors">98466</a>
+              <span className="text-slate-600">/</span>
+              <a href="tel:+302321058466" className="hover:text-cyan-400 transition-colors">58466</a>
+            </span>
             <a href="https://maps.google.com" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 hover:text-cyan-400 transition-colors">
               <MapPin size={13} />
               Εθνικής Αντίστασης 40, Σέρρες
@@ -61,7 +64,7 @@ export default function Footer() {
 
       <div className="border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col sm:flex-row items-center justify-between gap-1 text-xs text-slate-600">
-          <p>© {new Date().getFullYear()} ComHouse Βουρλίδας-Σεμέλογλου. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+          <p>© {new Date().getFullYear()} Computer House Βουρλίδας-Σεμέλογλου. Όλα τα δικαιώματα κατοχυρωμένα.</p>
           <p>Powered by ComHouse.gr</p>
         </div>
       </div>

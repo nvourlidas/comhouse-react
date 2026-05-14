@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react'
-import comhouseLogo from '../assets/Comhouse-logo-transparent.png'
+import comhouseLogo from '../assets/COMPUTERHOUSE-transparent.png'
 
 interface NavGrandchild {
   label: string
@@ -91,7 +91,7 @@ export default function Navbar() {
 
           {/* Logo */}
           <Link to="/" className="shrink-0">
-            <img src={comhouseLogo} alt="ComHouse" className="h-16 lg:h-24 w-auto lg:scale-[1.6] lg:origin-left" />
+            <img src={comhouseLogo} alt="Computer House" className="h-16 lg:h-24 w-auto scale-[1.3] origin-left lg:scale-[2.0] lg:origin-left" />
           </Link>
 
           {/* Desktop nav */}

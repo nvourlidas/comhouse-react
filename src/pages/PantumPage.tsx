@@ -460,7 +460,7 @@ export default function PantumPage() {
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="bg-blue-950 px-4 pt-10 pb-14">
+      <section className="relative bg-blue-950 px-4 pt-10 pb-24">
         <div className="max-w-5xl mx-auto">
 
           {/* Logo */}
@@ -487,6 +487,13 @@ export default function PantumPage() {
             </div>
           </div>
 
+        </div>
+
+        {/* Wave divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-16">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="white" />
+          </svg>
         </div>
       </section>
 

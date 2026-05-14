@@ -56,7 +56,7 @@ export default function RefurbishedPage() {
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
 
       {/* Hero */}
-      <section className="bg-linear-to-br from-slate-900 via-slate-800 to-slate-700 px-4 pt-14 pb-16 relative overflow-hidden">
+      <section className="bg-linear-to-br from-slate-900 via-slate-800 to-slate-700 px-4 pt-14 pb-24 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-10 pointer-events-none"
           style={{
@@ -89,6 +89,13 @@ export default function RefurbishedPage() {
               Κατηγορίες
             </a>
           </div>
+        </div>
+
+        {/* Wave divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-16">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="white" />
+          </svg>
         </div>
       </section>
 

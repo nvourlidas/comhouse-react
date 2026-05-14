@@ -77,7 +77,7 @@ export default function ProsvasisPage() {
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
 
       {/* ── Hero ── */}
-      <section className="bg-[#0d2535]">
+      <section className="relative bg-[#0d2535] pb-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
@@ -93,7 +93,7 @@ export default function ProsvasisPage() {
                 Prosvasis Go<br />Λογισμικό Λιανικής
               </h1>
               <p className="text-[#5bb8d4]/70 text-sm leading-relaxed mb-7 max-w-md">
-                Η ComHouse είναι εξουσιοδοτημένος συνεργάτης για το Prosvasis Go — το ολοκληρωμένο
+                Η Computer House είναι εξουσιοδοτημένος συνεργάτης για το Prosvasis Go — το ολοκληρωμένο
                 λογισμικό λιανικής της Epsilon Net για καταστήματα, αλυσίδες και εστίαση.
               </p>
               <div className="flex flex-wrap gap-2 mb-8">
@@ -136,6 +136,13 @@ export default function ProsvasisPage() {
             </div>
 
           </div>
+        </div>
+
+        {/* Wave divider */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg viewBox="0 0 1440 80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-16">
+            <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="white" />
+          </svg>
         </div>
       </section>
 
@@ -180,7 +187,7 @@ export default function ProsvasisPage() {
             <div>
               <span className="text-[#5bb8d4] font-bold text-xs uppercase tracking-[0.2em]">Τι προσφέρουμε</span>
               <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-slate-900">
-                Υπηρεσίες<br />ComHouse
+                Υπηρεσίες<br />Computer House
               </h2>
               <p className="mt-3 text-slate-500 text-sm leading-relaxed max-w-xs">
                 Αναλαμβάνουμε την πλήρη εγκατάσταση και υποστήριξη του Prosvasis Go για την επιχείρησή σας.

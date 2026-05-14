@@ -64,21 +64,6 @@ const services = [
     icon: serviceIcons[0],
   },
   {
-    id: 's2',
-    tag: 'Υπολογιστές',
-    title: 'Service Υπολογιστών & Δικτύων',
-    subtitle: 'LAPTOP · DESKTOP · SERVER',
-    bullets: [
-      'Επισκευή Laptop & Desktop',
-      'Εγκατάσταση & παραμετροποίηση server',
-      'Δίκτυα & Υποδομές',
-      'Περιφερειακές συσκευές Η/Υ',
-    ],
-    href: '/computers',
-    accent: 'violet',
-    icon: serviceIcons[1],
-  },
-  {
     id: 's3',
     tag: 'Ταμειακές',
     title: 'Ταμειακές & Φορολογικοί Μηχανισμοί',
@@ -122,6 +107,21 @@ const services = [
     href: '/webdev',
     accent: 'emerald',
     icon: serviceIcons[4],
+  },
+  {
+    id: 's2',
+    tag: 'Υπολογιστές',
+    title: 'Service Υπολογιστών & Δικτύων',
+    subtitle: 'LAPTOP · DESKTOP · SERVER',
+    bullets: [
+      'Επισκευή Laptop & Desktop',
+      'Εγκατάσταση & παραμετροποίηση server',
+      'Δίκτυα & Υποδομές',
+      'Περιφερειακές συσκευές Η/Υ',
+    ],
+    href: '/computers',
+    accent: 'violet',
+    icon: serviceIcons[1],
   },
 ]
 

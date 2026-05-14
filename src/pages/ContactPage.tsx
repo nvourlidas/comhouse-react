@@ -93,18 +93,20 @@ export default function ContactPage() {
 
         <div className="flex flex-col md:flex-row md:items-start">
           {/* Phone */}
-          <a
-            href="tel:+302321098466"
-            className="group flex items-start gap-4 flex-1 py-1 hover:opacity-75 transition-opacity"
-          >
+          <div className="flex items-start gap-4 flex-1 py-1">
             <div className="shrink-0 w-11 h-11 rounded-xl bg-linear-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-md shadow-blue-200 mt-0.5">
               <Phone className="w-5 h-5 text-white" />
             </div>
             <div>
               <p className="text-slate-400 text-xs uppercase tracking-widest mb-0.5">Τηλέφωνο</p>
-              <p className="text-slate-900 font-semibold text-lg">23210 98466</p>
+              <p className="text-slate-900 font-semibold text-lg whitespace-nowrap">
+                23210{' '}
+                <a href="tel:+302321098466" className="hover:opacity-75 transition-opacity">98466</a>
+                <span className="text-slate-400 mx-1.5">/</span>
+                <a href="tel:+302321058466" className="hover:opacity-75 transition-opacity">58466</a>
+              </p>
             </div>
-          </a>
+          </div>
 
           <div className="hidden md:block w-px self-stretch bg-slate-100 mx-8" />
           <div className="md:hidden h-px bg-slate-100 my-5" />
@@ -171,7 +173,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="text-slate-400 text-xs uppercase tracking-widest mb-0.5">Facebook</p>
-              <p className="text-slate-900 font-semibold">ComHouse</p>
+              <p className="text-slate-900 font-semibold">Computer House</p>
             </div>
           </a>
         </div>
@@ -192,7 +194,7 @@ export default function ContactPage() {
             onMouseLeave={() => { document.body.style.overflow = '' }}
           >
             <iframe
-              title="ComHouse map"
+              title="Computer House map"
               src="https://maps.google.com/maps?q=Εθνικής+Αντίστασης+40,+Σέρρες,+Greece&output=embed&z=16"
               className="absolute inset-0 w-full h-full"
               style={{ border: 0 }}
