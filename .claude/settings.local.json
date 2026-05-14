@@ -28,7 +28,8 @@
       "PowerShell(Copy-Item \"src\\\\assets\\\\cropped-logo_transparent-1-211x104.png\" \"public\\\\logo.png\" -Force)",
       "Bash(node -e \"require\\('sharp'\\)\")",
       "WebFetch(domain:www.lexmark.com)",
-      "Bash(npm install *)"
+      "Bash(npm install *)",
+      "Bash(Copy-Item \"c:\\\\Users\\\\KOSTAS\\\\Desktop\\\\Projects\\\\comhouse-react\\\\src\\\\assets\\\\Comhouse-logo-transparent.png\" \"c:\\\\Users\\\\KOSTAS\\\\Desktop\\\\Projects\\\\comhouse-react\\\\public\\\\Comhouse-logo-transparent.png\")"
     ]
   }
 }

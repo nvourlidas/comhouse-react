@@ -38,13 +38,13 @@ const serviceIcons = [
 const ac: Record<string, {
   bar: string; iconColor: string; iconBg: string; tag: string; check: string
   activeBg: string; activeBorder: string; btn: string
-  cardGradient: string; cardBorder: string; cardShadow: string
+  cardBg: string; cardBorder: string; cardShadow: string; iconSolidBg: string
 }> = {
-  blue:    { bar: 'bg-blue-500',    iconColor: 'text-blue-600',    iconBg: 'bg-blue-100',    tag: 'text-blue-600',    check: 'text-blue-500',    activeBg: 'bg-blue-50',    activeBorder: 'border-blue-300',    btn: 'text-blue-600 hover:text-blue-500',    cardGradient: 'bg-gradient-to-b from-white to-blue-50',    cardBorder: 'border-blue-200',    cardShadow: 'shadow-blue-100' },
-  violet:  { bar: 'bg-violet-500',  iconColor: 'text-violet-600',  iconBg: 'bg-violet-100',  tag: 'text-violet-600',  check: 'text-violet-500',  activeBg: 'bg-violet-50',  activeBorder: 'border-violet-300',  btn: 'text-violet-600 hover:text-violet-500',  cardGradient: 'bg-gradient-to-b from-white to-violet-50',  cardBorder: 'border-violet-200',  cardShadow: 'shadow-violet-100' },
-  amber:   { bar: 'bg-amber-500',   iconColor: 'text-amber-600',   iconBg: 'bg-amber-100',   tag: 'text-amber-600',   check: 'text-amber-500',   activeBg: 'bg-amber-50',   activeBorder: 'border-amber-300',   btn: 'text-amber-600 hover:text-amber-500',   cardGradient: 'bg-gradient-to-b from-white to-amber-50',   cardBorder: 'border-amber-200',   cardShadow: 'shadow-amber-100' },
-  indigo:  { bar: 'bg-indigo-500',  iconColor: 'text-indigo-600',  iconBg: 'bg-indigo-100',  tag: 'text-indigo-600',  check: 'text-indigo-500',  activeBg: 'bg-indigo-50',  activeBorder: 'border-indigo-300',  btn: 'text-indigo-600 hover:text-indigo-500',  cardGradient: 'bg-gradient-to-b from-white to-indigo-50',  cardBorder: 'border-indigo-200',  cardShadow: 'shadow-indigo-100' },
-  emerald: { bar: 'bg-emerald-500', iconColor: 'text-emerald-600', iconBg: 'bg-emerald-100', tag: 'text-emerald-600', check: 'text-emerald-500', activeBg: 'bg-emerald-50', activeBorder: 'border-emerald-300', btn: 'text-emerald-600 hover:text-emerald-500', cardGradient: 'bg-gradient-to-b from-white to-emerald-50', cardBorder: 'border-emerald-200', cardShadow: 'shadow-emerald-100' },
+  blue:    { bar: 'bg-blue-500',    iconColor: 'text-blue-600',    iconBg: 'bg-blue-100',    tag: 'text-blue-600',    check: 'text-blue-500',    activeBg: 'bg-blue-50',    activeBorder: 'border-blue-400',    btn: 'text-blue-600 hover:text-blue-500',    cardBg: 'bg-blue-50',    cardBorder: 'border-blue-300',    cardShadow: 'shadow-lg shadow-blue-200/60',    iconSolidBg: 'bg-blue-500 text-white' },
+  violet:  { bar: 'bg-violet-500',  iconColor: 'text-violet-600',  iconBg: 'bg-violet-100',  tag: 'text-violet-600',  check: 'text-violet-500',  activeBg: 'bg-violet-50',  activeBorder: 'border-violet-400',  btn: 'text-violet-600 hover:text-violet-500',  cardBg: 'bg-violet-50',  cardBorder: 'border-violet-300',  cardShadow: 'shadow-lg shadow-violet-200/60',  iconSolidBg: 'bg-violet-500 text-white' },
+  amber:   { bar: 'bg-amber-500',   iconColor: 'text-amber-600',   iconBg: 'bg-amber-100',   tag: 'text-amber-600',   check: 'text-amber-500',   activeBg: 'bg-amber-50',   activeBorder: 'border-amber-400',   btn: 'text-amber-600 hover:text-amber-500',   cardBg: 'bg-amber-50',   cardBorder: 'border-amber-300',   cardShadow: 'shadow-lg shadow-amber-200/60',   iconSolidBg: 'bg-amber-500 text-white' },
+  indigo:  { bar: 'bg-indigo-500',  iconColor: 'text-indigo-600',  iconBg: 'bg-indigo-100',  tag: 'text-indigo-600',  check: 'text-indigo-500',  activeBg: 'bg-indigo-50',  activeBorder: 'border-indigo-400',  btn: 'text-indigo-600 hover:text-indigo-500',  cardBg: 'bg-indigo-50',  cardBorder: 'border-indigo-300',  cardShadow: 'shadow-lg shadow-indigo-200/60',  iconSolidBg: 'bg-indigo-500 text-white' },
+  emerald: { bar: 'bg-emerald-500', iconColor: 'text-emerald-600', iconBg: 'bg-emerald-100', tag: 'text-emerald-600', check: 'text-emerald-500', activeBg: 'bg-emerald-50', activeBorder: 'border-emerald-400', btn: 'text-emerald-600 hover:text-emerald-500', cardBg: 'bg-emerald-50', cardBorder: 'border-emerald-300', cardShadow: 'shadow-lg shadow-emerald-200/60', iconSolidBg: 'bg-emerald-500 text-white' },
 }
 
 const services = [
@@ -182,17 +182,18 @@ export default function ServicesSection() {
                     ? `flex-5 ${a.activeBg} ${a.activeBorder} shadow-none`
                     : isInactive
                     ? `flex-[0.9] bg-white border-slate-200 opacity-60 shadow-none`
-                    : `flex-1 ${a.cardGradient} ${a.cardBorder} ${a.cardShadow}`
+                    : `flex-1 ${a.cardBg} ${a.cardBorder} ${a.cardShadow}`
                   }`}
                 onMouseEnter={() => setHovered(i)}
                 onMouseLeave={() => setHovered(null)}
               >
-                {/* Default state: large frameless icon + divider + text */}
+                {/* Default state: solid icon box + text */}
                 <div className={`absolute inset-0 flex flex-col items-center justify-center gap-4 px-4 transition-opacity duration-200
                   ${!isActive && !isInactive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
-                  <div className={`${a.iconColor} scale-[2.2] transform`}>{service.icon}</div>
-                  <div className={`h-px w-8 ${a.bar} rounded-full opacity-60`} />
-                  <div className="text-center">
+                  <div className={`w-14 h-14 rounded-2xl ${a.iconSolidBg} flex items-center justify-center shadow-sm`}>
+                    <div className="scale-[1.5]">{service.icon}</div>
+                  </div>
+                  <div className="text-center px-2">
                     <p className="text-slate-800 font-bold text-sm leading-snug">{service.title}</p>
                   </div>
                 </div>
