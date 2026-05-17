@@ -85,6 +85,7 @@ export default function ContactPage() {
         </div>
       </div>
 
+
       {/* ── Contact Info ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <h2 className="text-xl font-bold text-slate-800 mb-8 tracking-tight">
@@ -112,10 +113,7 @@ export default function ContactPage() {
           <div className="md:hidden h-px bg-slate-100 my-5" />
 
           {/* Email */}
-          <a
-            href="mailto:comhouse@otenet.gr"
-            className="group flex items-start gap-4 flex-1 py-1 hover:opacity-75 transition-opacity"
-          >
+          <a href="mailto:comhouse@otenet.gr" className="group flex items-start gap-4 flex-1 py-1 hover:opacity-75 transition-opacity">
             <div className="shrink-0 w-11 h-11 rounded-xl bg-linear-to-br from-cyan-400 to-cyan-600 flex items-center justify-center shadow-md shadow-cyan-200 mt-0.5">
               <Mail className="w-5 h-5 text-white" />
             </div>
@@ -165,7 +163,7 @@ export default function ContactPage() {
           <div className="md:hidden h-px bg-slate-100 my-5" />
 
           {/* Facebook */}
-          <a href="#" className="group flex items-start gap-4 flex-1 py-1 hover:opacity-75 transition-opacity">
+          <a href="https://www.facebook.com/ComputerHouseSerres" target="_blank" rel="noopener noreferrer" className="group flex items-start gap-4 flex-1 py-1 hover:opacity-75 transition-opacity">
             <div className="shrink-0 w-11 h-11 rounded-xl bg-linear-to-br from-blue-600 to-blue-500 flex items-center justify-center shadow-md shadow-blue-200 mt-0.5">
               <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -182,7 +180,7 @@ export default function ContactPage() {
 
           {/* LinkedIn */}
           <a
-            href="https://linkedin.com/computer-house-vourlidas-semeloglou"
+            href="https://linkedin.com/company/computer-house-vourlidas-semeloglou"
             target="_blank"
             rel="noopener noreferrer"
             className="group flex items-start gap-4 flex-1 py-1 hover:opacity-75 transition-opacity"
@@ -203,7 +201,6 @@ export default function ContactPage() {
       {/* ── Map ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14">
         <div className="rounded-2xl overflow-hidden border border-slate-100 shadow-lg shadow-blue-100/40">
-          {/* Map header bar */}
           <div className="flex items-center gap-3 px-5 py-3 bg-white border-b border-slate-100">
             <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
             <span className="text-slate-600 text-sm font-medium">Βρείτε μας στον χάρτη</span>
@@ -226,7 +223,7 @@ export default function ContactPage() {
         </div>
       </div>
 
-      {/* ── Contact Form ── */}
+      {/* ── Contact Form (dark card) ── */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-24">
         <div className="mb-8">
           <h2 className="text-xl font-bold text-slate-800 tracking-tight">Φόρμα Επικοινωνίας</h2>
@@ -235,16 +232,26 @@ export default function ContactPage() {
           </p>
         </div>
 
-        {/* Gradient-border card */}
-        <div className="p-px rounded-2xl bg-linear-to-r from-blue-400 via-cyan-400 to-blue-400 shadow-lg shadow-blue-100/50">
-          <div className="bg-white rounded-2xl p-8">
+        <div className="relative overflow-hidden rounded-2xl shadow-xl shadow-blue-900/30 bg-linear-to-br from-slate-900 via-blue-950 to-slate-900">
+          {/* Grid pattern */}
+          <div
+            className="absolute inset-0 opacity-[0.07]"
+            style={{
+              backgroundImage:
+                'linear-gradient(rgba(99,179,237,1) 1px, transparent 1px), linear-gradient(90deg, rgba(99,179,237,1) 1px, transparent 1px)',
+              backgroundSize: '50px 50px',
+            }}
+          />
+          {/* Glow blobs */}
+          <div className="absolute -top-20 right-1/4 w-96 h-96 bg-blue-600/20 rounded-full blur-[120px] pointer-events-none" />
+          <div className="absolute bottom-0 left-1/4 w-80 h-80 bg-cyan-500/15 rounded-full blur-[100px] pointer-events-none" />
+
+          <div className="relative p-8 md:p-12">
             {!submitted ? (
               <form onSubmit={handleSubmit} className="flex flex-col gap-5">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-slate-500 text-xs font-semibold uppercase tracking-widest">
-                      Όνομα
-                    </label>
+                    <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Όνομα</label>
                     <input
                       type="text"
                       name="name"
@@ -252,13 +259,11 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       placeholder="π.χ. Γιώργης"
-                      className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/15 transition-all duration-200"
+                      className="bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/25 transition-all duration-200"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-slate-500 text-xs font-semibold uppercase tracking-widest">
-                      Επώνυμο
-                    </label>
+                    <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Επώνυμο</label>
                     <input
                       type="text"
                       name="surname"
@@ -266,16 +271,14 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       placeholder="π.χ. Παπαδόπουλος"
-                      className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/15 transition-all duration-200"
+                      className="bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/25 transition-all duration-200"
                     />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-slate-500 text-xs font-semibold uppercase tracking-widest">
-                      Email
-                    </label>
+                    <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Email</label>
                     <input
                       type="email"
                       name="email"
@@ -283,28 +286,24 @@ export default function ContactPage() {
                       onChange={handleChange}
                       required
                       placeholder="example@email.com"
-                      className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/15 transition-all duration-200"
+                      className="bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-400/25 transition-all duration-200"
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label className="text-slate-500 text-xs font-semibold uppercase tracking-widest">
-                      Τηλέφωνο
-                    </label>
+                    <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Τηλέφωνο</label>
                     <input
                       type="tel"
                       name="phone"
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="π.χ. 6912345678"
-                      className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/15 transition-all duration-200"
+                      className="bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/25 transition-all duration-200"
                     />
                   </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5">
-                  <label className="text-slate-500 text-xs font-semibold uppercase tracking-widest">
-                    Μήνυμα
-                  </label>
+                  <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Μήνυμα</label>
                   <textarea
                     name="message"
                     value={formData.message}
@@ -312,17 +311,16 @@ export default function ContactPage() {
                     required
                     rows={5}
                     placeholder="Γράψτε το μήνυμά σας..."
-                    className="bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-slate-900 text-sm placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/15 transition-all duration-200 resize-none"
+                    className="bg-slate-800 border border-slate-600 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-400 focus:outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/25 transition-all duration-200 resize-none"
                   />
                 </div>
 
-                {error && (
-                  <p className="text-red-500 text-sm font-medium">{error}</p>
-                )}
+                {error && <p className="text-red-400 text-sm font-medium">{error}</p>}
+
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group relative self-end flex items-center gap-0 bg-blue-600 text-white font-semibold rounded-full overflow-hidden shadow-lg shadow-blue-400/40 hover:shadow-blue-400/60 transition-shadow duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="group relative self-end flex items-center gap-0 bg-blue-500 hover:bg-blue-400 text-white font-semibold rounded-full overflow-hidden shadow-lg shadow-blue-500/30 hover:shadow-blue-400/50 transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   <span className="pl-6 pr-4 py-3 text-sm">
                     {loading ? 'Αποστολή...' : 'Αποστολή'}
@@ -333,14 +331,14 @@ export default function ContactPage() {
                 </button>
               </form>
             ) : (
-              <div className="flex flex-col items-center justify-center h-full py-16 text-center">
-                <div className="w-14 h-14 bg-green-50 border border-green-200 rounded-2xl flex items-center justify-center mb-4">
-                  <svg className="w-7 h-7 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <div className="flex flex-col items-center justify-center py-16 text-center">
+                <div className="w-14 h-14 bg-green-500/10 border border-green-500/30 rounded-2xl flex items-center justify-center mb-4">
+                  <svg className="w-7 h-7 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </div>
-                <h3 className="text-slate-900 text-lg font-bold mb-1">Μήνυμα Εστάλη!</h3>
-                <p className="text-slate-500 text-sm max-w-xs">
+                <h3 className="text-white text-lg font-bold mb-1">Μήνυμα Εστάλη!</h3>
+                <p className="text-slate-400 text-sm max-w-xs">
                   Ευχαριστούμε για το μήνυμά σας. Θα επικοινωνήσουμε μαζί σας σύντομα.
                 </p>
                 <button
@@ -349,7 +347,7 @@ export default function ContactPage() {
                     setError(null)
                     setFormData({ name: '', surname: '', email: '', phone: '', message: '' })
                   }}
-                  className="mt-5 text-blue-600 text-sm font-medium hover:text-blue-700 transition-colors"
+                  className="mt-5 text-blue-400 text-sm font-medium hover:text-blue-300 transition-colors"
                 >
                   Αποστολή νέου μηνύματος →
                 </button>

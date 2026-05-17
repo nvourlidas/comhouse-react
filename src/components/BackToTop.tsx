@@ -1,24 +1,25 @@
-import { useEffect, useState } from 'react'
-import { ArrowUp } from 'lucide-react'
+import { ArrowUp, ArrowDown } from 'lucide-react'
 
-export default function BackToTop() {
-  const [visible, setVisible] = useState(false)
+const STEP = 400
 
-  useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
+export default function ScrollControls() {
   return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-      aria-label="Πάνω"
-      className={`fixed bottom-6 left-6 z-50 w-13 h-13 rounded-full bg-slate-800 hover:bg-blue-600 text-white shadow-lg flex items-center justify-center transition-all duration-300 ${
-        visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-      }`}
-    >
-      <ArrowUp size={18} />
-    </button>
+    <div className="fixed right-4 top-1/2 -translate-y-1/2 z-50 flex flex-col rounded-full bg-slate-900/50 backdrop-blur-sm border border-white/10 shadow-md overflow-hidden">
+      <button
+        onClick={() => window.scrollBy({ top: -STEP, behavior: 'smooth' })}
+        aria-label="Πάνω"
+        className="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200"
+      >
+        <ArrowUp size={14} />
+      </button>
+      <div className="h-px bg-white/10" />
+      <button
+        onClick={() => window.scrollBy({ top: STEP, behavior: 'smooth' })}
+        aria-label="Κάτω"
+        className="w-8 h-8 flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all duration-200"
+      >
+        <ArrowDown size={14} />
+      </button>
+    </div>
   )
 }
