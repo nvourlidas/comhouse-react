@@ -147,7 +147,7 @@ export default function ContactPage() {
                 <div>
                   <p className="text-[11px] text-slate-500 uppercase tracking-widest mb-0.5">Διεύθυνση</p>
                   <p className="text-white font-semibold group-hover:text-violet-400 transition-colors">
-                    Εθνικής Αντίστασης 40<span className="font-normal text-slate-500">, Σέρρες</span>
+                    Εθνικής Αντίστασης 40<span className="font-normal">, Σέρρες</span>
                   </p>
                 </div>
               </a>
