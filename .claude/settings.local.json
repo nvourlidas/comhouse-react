@@ -31,7 +31,13 @@
       "Bash(npm install *)",
       "Bash(Copy-Item \"c:\\\\Users\\\\KOSTAS\\\\Desktop\\\\Projects\\\\comhouse-react\\\\src\\\\assets\\\\Comhouse-logo-transparent.png\" \"c:\\\\Users\\\\KOSTAS\\\\Desktop\\\\Projects\\\\comhouse-react\\\\public\\\\Comhouse-logo-transparent.png\")",
       "Bash(python -c ' *)",
-      "Bash(python -c \"from PIL import Image; print\\('pillow ok'\\)\")"
+      "Bash(python -c \"from PIL import Image; print\\('pillow ok'\\)\")",
+      "Bash(Get-ChildItem -Path \"c:\\\\Users\\\\KOSTAS\\\\Desktop\\\\Projects\\\\comhouse-react\" -Force)",
+      "Bash(Select-Object Name, PSIsContainer)",
+      "Bash(awk 'NR>=532' \"c:/Users/KOSTAS/Desktop/Projects/comhouse-react/src/pages/RbsPage.tsx\")",
+      "Bash(awk 'NR>=593' \"c:/Users/KOSTAS/Desktop/Projects/comhouse-react/src/pages/DatatecPage.tsx\")",
+      "Bash(awk 'NR>=421' \"c:/Users/KOSTAS/Desktop/Projects/comhouse-react/src/pages/LexmarkPage.tsx\")",
+      "Bash(awk 'NR>=402' \"c:/Users/KOSTAS/Desktop/Projects/comhouse-react/src/pages/PantumPage.tsx\")"
     ]
   }
 }

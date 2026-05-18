@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, CheckCircle2, X } from 'lucide-react'
 import { FadeUp } from '../components/ScrollReveal'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 import pantumLogo from '../assets/Pantum-Logo.png'
 import p2509w1 from '../assets/pantum-p2509w.jpg'
@@ -458,10 +460,20 @@ export default function PantumPage() {
 
   return (
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
+      <SEO
+        title="Pantum Εκτυπωτές | ComHouse"
+        description="Εξουσιοδοτημένος αντιπρόσωπος Pantum. Οικονομικοί laser εκτυπωτές για γραφείο και επαγγελματική χρήση."
+      />
 
       {/* ── Hero ── */}
       <section className="relative bg-blue-950 px-4 pt-10 pb-24">
         <div className="max-w-5xl mx-auto">
+
+          <Breadcrumb items={[
+            { label: 'Αρχική', href: '/' },
+            { label: 'Εκτυπωτές', href: '/printers/lexmark' },
+            { label: 'Pantum' },
+          ]} />
 
           {/* Logo */}
           <div className="mb-10 inline-block bg-white px-5 py-3 rounded-lg shadow-md">

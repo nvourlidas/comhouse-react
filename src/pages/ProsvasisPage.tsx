@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import prosvasisLogo from '../assets/prosvasis-go-logo.webp'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 const features = [
   {
@@ -75,10 +77,21 @@ const services = [
 export default function ProsvasisPage() {
   return (
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
+      <SEO
+        title="Prosvasis GO | ComHouse"
+        description="Εγκατάσταση και υποστήριξη Prosvasis GO. Ολοκληρωμένο σύστημα διαχείρισης λιανικής για επιχειρήσεις κάθε μεγέθους."
+      />
 
       {/* ── Hero ── */}
       <section className="relative bg-[#0d2535] pb-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6">
+          <div className="pt-8">
+            <Breadcrumb items={[
+              { label: 'Αρχική', href: '/' },
+              { label: 'Μηχανογράφηση', href: '/mixanografisi/softone' },
+              { label: 'Prosvasis GO' },
+            ]} />
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
             {/* Left — text */}

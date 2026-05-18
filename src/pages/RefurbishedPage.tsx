@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle2, Laptop, Monitor, Leaf, ShieldCheck, BadgePercent, Wrench } from 'lucide-react'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 const benefits = [
   {
@@ -54,6 +56,10 @@ export default function RefurbishedPage() {
   const [hoveredCard, setHoveredCard] = useState<string | null>(null)
   return (
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
+      <SEO
+        title="Refurbished Υπολογιστές | ComHouse"
+        description="Ανακατασκευασμένοι υπολογιστές υψηλής ποιότητας με εγγύηση. Laptop και desktop σε προσιτές τιμές."
+      />
 
       {/* Hero */}
       <section className="bg-linear-to-br from-slate-900 via-slate-800 to-slate-700 px-4 pt-14 pb-24 relative overflow-hidden">
@@ -65,6 +71,11 @@ export default function RefurbishedPage() {
           }}
         />
         <div className="relative max-w-4xl mx-auto">
+          <Breadcrumb items={[
+            { label: 'Αρχική', href: '/' },
+            { label: 'Υπολογιστές', href: '/computers/refurbished' },
+            { label: 'Refurbished' },
+          ]} />
           <span className="inline-block text-xs font-black uppercase tracking-[0.2em] text-slate-400 mb-3">
             Ανακατασκευασμένος Εξοπλισμός
           </span>

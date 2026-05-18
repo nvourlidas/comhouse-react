@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, CheckCircle2, X } from 'lucide-react'
 import { FadeUp } from '../components/ScrollReveal'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 import datatecLogo from '../assets/logo-removebg-preview.png'
 import dtec100 from '../assets/dtec100md1-removebg-preview.png'
@@ -652,10 +654,19 @@ export default function DatatecPage() {
 
   return (
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
+      <SEO
+        title="DataTec Φορολογικοί Μηχανισμοί | ComHouse"
+        description="Εξουσιοδοτημένο service DataTec. Εγκατάσταση, επισκευή και υποστήριξη φορολογικών μηχανισμών και ταμειακών μηχανών."
+      />
 
       {/* ── Hero + Text — unified cyan section ── */}
       <section className="relative bg-cyan-950 px-4 pt-10 pb-24">
         <div className="max-w-5xl mx-auto">
+          <Breadcrumb items={[
+            { label: 'Αρχική', href: '/' },
+            { label: 'Ταμειακές', href: '/tameiakes/rbs' },
+            { label: 'DataTec' },
+          ]} />
 
           {/* Logo */}
           <div className="mb-10 inline-block bg-white rounded-2xl px-6 py-3 shadow-lg">

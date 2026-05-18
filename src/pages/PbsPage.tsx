@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import pbsoneLogo from '../assets/pbsone-logo.png'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 const features = [
   {
@@ -75,10 +77,21 @@ const services = [
 export default function PbsPage() {
   return (
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
+      <SEO
+        title="PBS ONE | ComHouse"
+        description="Εγκατάσταση και υποστήριξη PBS ONE. Επαγγελματικό σύστημα διαχείρισης για λιανικό και χονδρικό εμπόριο."
+      />
 
       {/* ── Hero ── */}
       <section className="relative bg-slate-900">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 pb-16">
+          <div className="pt-8">
+            <Breadcrumb items={[
+              { label: 'Αρχική', href: '/' },
+              { label: 'Μηχανογράφηση', href: '/mixanografisi/softone' },
+              { label: 'PBS ONE' },
+            ]} />
+          </div>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
 
             {/* Left — text */}

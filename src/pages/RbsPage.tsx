@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, CheckCircle2, X } from 'lucide-react'
 import { FadeUp } from '../components/ScrollReveal'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 import rbsLogo from '../assets/LOGO-RBS-TRANSP-scaled-2048x742.png'
 import pepper from '../assets/Pepper-all-in-one-full-body-kit.png'
@@ -593,10 +595,19 @@ export default function RbsPage() {
 
   return (
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
+      <SEO
+        title="RBS Ταμειακές Μηχανές | ComHouse"
+        description="Εξουσιοδοτημένο service RBS ταμειακών μηχανών. Εγκατάσταση, επισκευή, κλείσιμο, παύση και ανάγνωση φορολογικής μνήμης."
+      />
 
       {/* ── Hero + Text — unified blue section ── */}
       <section className="relative bg-blue-950 px-4 pt-10 pb-24">
         <div className="max-w-5xl mx-auto">
+          <Breadcrumb items={[
+            { label: 'Αρχική', href: '/' },
+            { label: 'Ταμειακές', href: '/tameiakes/rbs' },
+            { label: 'RBS' },
+          ]} />
 
           {/* Logo */}
           <div className="mb-10">

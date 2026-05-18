@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { Phone, Mail, MapPin, Send } from 'lucide-react'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -49,6 +51,10 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-blue-50">
+      <SEO
+        title="Επικοινωνία | ComHouse"
+        description="Επικοινωνήστε με την ComHouse. Τηλέφωνο, email και φόρμα επικοινωνίας για οποιαδήποτε ερώτηση ή αίτημα."
+      />
 
       {/* ── Hero ── */}
       <div className="relative overflow-hidden bg-linear-to-br from-slate-900 via-blue-950 to-slate-900 pt-32 pb-28">
@@ -66,6 +72,12 @@ export default function ContactPage() {
         <div className="absolute bottom-0 right-1/4 w-100 h-100 bg-cyan-500/20 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="text-left mb-6">
+            <Breadcrumb items={[
+              { label: 'Αρχική', href: '/' },
+              { label: 'Επικοινωνία' },
+            ]} />
+          </div>
           <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-4 leading-tight">
             Ας μιλήσουμε{' '}
             <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-400 to-cyan-400">

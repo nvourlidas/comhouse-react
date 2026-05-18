@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import cloudtecLogo from '../assets/cloudtec-trans.png'
 import { ArrowRight, CheckCircle2, ShoppingCart, Globe, LayoutDashboard, Smartphone, Zap, Search, ShieldCheck, HeartHandshake } from 'lucide-react'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 const services = [
   {
@@ -65,6 +67,10 @@ export default function WebDevPage() {
 
   return (
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
+      <SEO
+        title="Web & Mobile Apps | ComHouse"
+        description="Ανάπτυξη websites, web applications, mobile apps και e-commerce. Σύγχρονες ψηφιακές λύσεις για την επιχείρησή σας."
+      />
 
       {/* Hero */}
       <section className="bg-linear-to-br from-emerald-950 via-emerald-900 to-teal-800 px-4 pt-14 pb-24 relative overflow-hidden">
@@ -78,6 +84,10 @@ export default function WebDevPage() {
         {/* Glow */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-teal-400/20 rounded-full blur-3xl pointer-events-none" />
         <div className="relative max-w-4xl mx-auto">
+          <Breadcrumb items={[
+            { label: 'Αρχική', href: '/' },
+            { label: 'Web & Mobile Apps' },
+          ]} />
           <span className="inline-block text-xs font-black uppercase tracking-[0.2em] text-emerald-400 mb-3">
             Ψηφιακή Ανάπτυξη
           </span>

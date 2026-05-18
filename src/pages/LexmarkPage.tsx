@@ -2,6 +2,8 @@ import { useState, useRef, useEffect, type CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, CheckCircle2, Star, X } from 'lucide-react'
 import { FadeUp } from '../components/ScrollReveal'
+import SEO from '../components/SEO'
+import Breadcrumb from '../components/Breadcrumb'
 
 import lexmarkLogo from '../assets/lexmark-logo.png'
 import ms331dn1    from '../assets/Lexmark-MS331dn.jpg'
@@ -477,10 +479,20 @@ export default function LexmarkPage() {
 
   return (
     <div className="pt-20 lg:pt-28 bg-white min-h-screen">
+      <SEO
+        title="Lexmark Εκτυπωτές | ComHouse"
+        description="Εξουσιοδοτημένος αντιπρόσωπος Lexmark. Laser εκτυπωτές, toner και service για επαγγελματική χρήση."
+      />
 
       {/* ── Hero ── */}
       <section className="relative bg-emerald-950 px-4 pt-10 pb-24">
         <div className="max-w-5xl mx-auto">
+
+          <Breadcrumb items={[
+            { label: 'Αρχική', href: '/' },
+            { label: 'Εκτυπωτές', href: '/printers/lexmark' },
+            { label: 'Lexmark' },
+          ]} />
 
           {/* Logo */}
           <div className="mb-10 inline-block bg-white px-5 py-3 rounded-lg shadow-md">
