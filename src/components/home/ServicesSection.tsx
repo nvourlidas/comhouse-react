@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { ArrowRight, CheckCircle2 } from 'lucide-react'
 import { FadeUp } from '../ScrollReveal'
 
@@ -127,6 +126,7 @@ const services = [
 
 export default function ServicesSection() {
   const [hovered, setHovered] = useState<number | null>(null)
+  const [expanded, setExpanded] = useState<number | null>(null)
 
   return (
     <section className="py-20 bg-white">
@@ -145,23 +145,44 @@ export default function ServicesSection() {
           </p>
         </FadeUp>
 
-        {/* ── Mobile: stacked cards ── */}
+        {/* ── Mobile: stacked accordion cards ── */}
         <div className="flex flex-col gap-3 lg:hidden">
           {services.map((service, i) => {
             const a = ac[service.accent]
+            const isOpen = expanded === i
             return (
               <FadeUp key={service.id} delay={i * 0.08}>
-                <Link
-                  to={service.href}
-                  className={`flex items-center gap-4 bg-slate-50 border border-slate-200 rounded-2xl px-5 py-4 hover:${a.activeBg} hover:${a.activeBorder} transition-all`}
+                <div
+                  className={`rounded-2xl border-2 overflow-hidden transition-all duration-300 ${isOpen ? `${a.cardBg} ${a.cardBorder} ${a.cardShadow}` : 'bg-slate-50 border-slate-200'}`}
                 >
-                  <div className={`shrink-0 ${a.iconColor}`}>{service.icon}</div>
-                  <div className="min-w-0">
-                    <span className={`text-xs font-bold uppercase tracking-widest ${a.tag}`}>{service.tag}</span>
-                    <p className="text-slate-800 font-semibold text-sm leading-snug">{service.title}</p>
-                  </div>
-                  <ArrowRight size={14} className={`shrink-0 ml-auto ${a.iconColor}`} />
-                </Link>
+                  <button
+                    onClick={() => setExpanded(isOpen ? null : i)}
+                    className="w-full flex items-center gap-4 px-5 py-4"
+                  >
+                    <div className={`shrink-0 ${isOpen ? 'text-white' : a.iconColor}`}>{service.icon}</div>
+                    <div className="min-w-0 text-left">
+                      <span className={`text-xs font-bold uppercase tracking-widest ${isOpen ? 'text-white/70' : a.tag}`}>{service.tag}</span>
+                      <p className={`font-semibold text-sm leading-snug ${isOpen ? 'text-white' : 'text-slate-800'}`}>{service.title}</p>
+                    </div>
+                    <ArrowRight
+                      size={14}
+                      className={`shrink-0 ml-auto transition-transform duration-300 ${isOpen ? 'text-white rotate-90' : a.iconColor}`}
+                    />
+                  </button>
+                  {isOpen && (
+                    <div className="px-5 pb-5">
+                      <p className="text-white/50 text-[10px] font-semibold uppercase tracking-widest mb-3">{service.subtitle}</p>
+                      <ul className="space-y-2">
+                        {service.bullets.map((b) => (
+                          <li key={b} className="flex items-start gap-2 text-white/80 text-sm">
+                            <CheckCircle2 size={12} className="text-white/60 shrink-0 mt-0.5" />
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </div>
               </FadeUp>
             )
           })}
