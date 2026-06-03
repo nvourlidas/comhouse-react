@@ -1,6 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
+import { AuthProvider } from './context/AuthContext'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import PageTransition from './components/PageTransition'
@@ -11,6 +12,8 @@ import SoftonePage from './pages/SoftonePage'
 import ProsvasisPage from './pages/ProsvasisPage'
 import PbsPage from './pages/PbsPage'
 import ContactPage from './pages/ContactPage'
+import NewsPage from './pages/NewsPage'
+import NewsArticlePage from './pages/NewsArticlePage'
 import LexmarkPage from './pages/LexmarkPage'
 import PantumPage from './pages/PantumPage'
 import RefurbishedPage from './pages/RefurbishedPage'
@@ -18,6 +21,11 @@ import WebDevPage from './pages/WebDevPage'
 import BackToTop from './components/BackToTop'
 import CookieConsent from './components/CookieConsent'
 import ScrollProgress from './components/ScrollProgress'
+import AdminLoginPage from './pages/admin/AdminLoginPage'
+import AdminDashboard from './pages/admin/AdminDashboard'
+import ArticlesPage from './pages/admin/ArticlesPage'
+import ArticleEditorPage from './pages/admin/ArticleEditorPage'
+import ProtectedRoute from './components/admin/ProtectedRoute'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -27,7 +35,7 @@ function ScrollToTop() {
   return null
 }
 
-function AnimatedRoutes() {
+function PublicRoutes() {
   const location = useLocation()
   return (
     <AnimatePresence mode="wait">
@@ -43,23 +51,46 @@ function AnimatedRoutes() {
         <Route path="/webdev" element={<PageTransition><WebDevPage /></PageTransition>} />
         <Route path="/computers/refurbished" element={<PageTransition><RefurbishedPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><ContactPage /></PageTransition>} />
+        <Route path="/news" element={<PageTransition><NewsPage /></PageTransition>} />
+        <Route path="/news/:slug" element={<PageTransition><NewsArticlePage /></PageTransition>} />
       </Routes>
     </AnimatePresence>
   )
 }
 
-export default function App() {
+function AdminRoutes() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <Routes>
+      <Route path="/admin/login" element={<AdminLoginPage />} />
+      <Route path="/admin" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
+      <Route path="/admin/articles" element={<ProtectedRoute><ArticlesPage /></ProtectedRoute>} />
+      <Route path="/admin/articles/new" element={<ProtectedRoute><ArticleEditorPage /></ProtectedRoute>} />
+      <Route path="/admin/articles/:id/edit" element={<ProtectedRoute><ArticleEditorPage /></ProtectedRoute>} />
+    </Routes>
+  )
+}
+
+export default function App() {
+  const { pathname } = useLocation()
+  const isAdmin = pathname.startsWith('/admin')
+
+  return (
+    <AuthProvider>
       <ScrollToTop />
-      <Navbar />
-      <main className="flex-1">
-        <AnimatedRoutes />
-      </main>
-      <Footer />
-      <ScrollProgress />
-      <BackToTop />
-      <CookieConsent />
-    </div>
+      {isAdmin ? (
+        <AdminRoutes />
+      ) : (
+        <div className="min-h-screen flex flex-col">
+          <Navbar />
+          <main className="flex-1">
+            <PublicRoutes />
+          </main>
+          <Footer />
+          <ScrollProgress />
+          <BackToTop />
+          <CookieConsent />
+        </div>
+      )}
+    </AuthProvider>
   )
 }

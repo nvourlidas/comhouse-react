@@ -54,6 +54,7 @@ const navItems: NavItem[] = [
   },
   { label: 'Web & Apps', href: '/webdev' },
   { label: 'Refurbished', href: '/computers/refurbished' },
+  { label: 'Νέα', href: '/news' },
   { label: 'Επικοινωνία', href: '/contact' },
 ]
 
