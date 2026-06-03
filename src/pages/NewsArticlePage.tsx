@@ -79,20 +79,20 @@ export default function NewsArticlePage() {
       />
 
       {/* Hero */}
-      <div className="relative overflow-hidden bg-linear-to-br from-orange-950 via-orange-700 to-amber-950 pt-32 pb-20">
+      <div className="relative overflow-hidden pt-32 pb-20" style={{ background: 'linear-gradient(135deg, #3b0764 0%, #7c3aed 50%, #4c1d95 100%)' }}>
 
         {/* Line grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.07]"
           style={{
-            backgroundImage: 'linear-gradient(rgba(251,146,60,1) 1px, transparent 1px), linear-gradient(90deg, rgba(251,146,60,1) 1px, transparent 1px)',
+            backgroundImage: 'linear-gradient(rgba(216,180,254,1) 1px, transparent 1px), linear-gradient(90deg, rgba(216,180,254,1) 1px, transparent 1px)',
             backgroundSize: '60px 60px',
           }}
         />
 
         {/* Glow blobs */}
-        <div className="absolute -top-20 left-1/3 w-125 h-125 bg-orange-600/25 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-100 h-100 bg-amber-500/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute -top-20 left-1/3 w-125 h-125 bg-purple-600/25 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-100 h-100 bg-pink-500/20 rounded-full blur-[100px] pointer-events-none" />
 
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6">

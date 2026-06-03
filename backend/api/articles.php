@@ -50,18 +50,36 @@ if ($method === 'GET') {
         exit();
     }
 
-    // List — admins see all, public sees published only
+    // List — admins see all (plain array), public sees paginated published
     $isAdmin = isTokenValid($_SERVER['HTTP_AUTHORIZATION'] ?? '', $conn);
 
     if ($isAdmin) {
         $stmt = $conn->query('SELECT * FROM articles ORDER BY created_at DESC');
-    } else {
-        $stmt = $conn->query(
-            'SELECT * FROM articles WHERE status = "published" ORDER BY published_at DESC'
-        );
+        echo json_encode($stmt->fetchAll());
+        exit();
     }
 
-    echo json_encode($stmt->fetchAll());
+    // Public paginated list
+    $limit  = max(1, min(50, (int)($_GET['limit'] ?? 10)));
+    $page   = max(1, (int)($_GET['page']  ?? 1));
+    $offset = ($page - 1) * $limit;
+
+    $total = (int)$conn->query('SELECT COUNT(*) FROM articles WHERE status = "published"')->fetchColumn();
+    $pages = $total > 0 ? (int)ceil($total / $limit) : 1;
+
+    $stmt = $conn->prepare(
+        'SELECT * FROM articles WHERE status = "published" ORDER BY published_at DESC LIMIT :limit OFFSET :offset'
+    );
+    $stmt->bindValue(':limit',  $limit,  PDO::PARAM_INT);
+    $stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $stmt->execute();
+
+    echo json_encode([
+        'articles' => $stmt->fetchAll(),
+        'total'    => $total,
+        'page'     => $page,
+        'pages'    => $pages,
+    ]);
     exit();
 }
 

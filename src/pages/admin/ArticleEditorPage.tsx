@@ -119,142 +119,177 @@ export default function ArticleEditorPage() {
 
   return (
     <AdminLayout>
+
       {/* Header */}
-      <div className="flex items-center gap-4 mb-8">
+      <div className="flex items-center gap-3 mb-8">
         <button
           onClick={() => navigate('/admin/articles')}
-          className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+          className="p-2 text-slate-500 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
         >
           <ArrowLeft className="w-4 h-4" />
         </button>
         <div>
-          <h1 className="text-white text-2xl font-bold">
+          <h1 className="text-white text-xl font-bold">
             {isEdit ? 'Επεξεργασία Άρθρου' : 'Νέο Άρθρο'}
           </h1>
+          <p className="text-slate-500 text-xs mt-0.5">
+            {isEdit ? 'Τροποποιήστε τα πεδία και αποθηκεύστε' : 'Συμπληρώστε τα πεδία για να δημιουργήσετε το άρθρο'}
+          </p>
         </div>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-6 max-w-3xl">
+      <form onSubmit={handleSubmit} className="grid grid-cols-1 xl:grid-cols-[1fr_300px] gap-6 items-start">
 
-        {/* Title */}
-        <div className="flex flex-col gap-1.5">
-          <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Τίτλος *</label>
-          <input
-            type="text"
-            value={form.title}
-            onChange={set('title')}
-            required
-            placeholder="Τίτλος άρθρου…"
-            className="bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
-          />
+        {/* ── Left: main content ─────────────────────────────── */}
+        <div className="flex flex-col gap-5">
+
+          {/* Title */}
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+            <label className="block text-slate-400 text-xs font-semibold uppercase tracking-widest mb-3">
+              Τίτλος <span className="text-red-400">*</span>
+            </label>
+            <input
+              type="text"
+              value={form.title}
+              onChange={set('title')}
+              required
+              placeholder="Τίτλος άρθρου…"
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all"
+            />
+          </div>
+
+          {/* Excerpt */}
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+            <label className="block text-slate-400 text-xs font-semibold uppercase tracking-widest mb-1">
+              Περίληψη
+            </label>
+            <p className="text-slate-600 text-xs mb-3">Σύντομη περιγραφή που εμφανίζεται στη λίστα άρθρων</p>
+            <textarea
+              value={form.excerpt}
+              onChange={set('excerpt')}
+              rows={2}
+              placeholder="Μία ή δύο προτάσεις…"
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-none"
+            />
+          </div>
+
+          {/* Content */}
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+            <label className="block text-slate-400 text-xs font-semibold uppercase tracking-widest mb-1">
+              Περιεχόμενο <span className="text-red-400">*</span>
+            </label>
+            <p className="text-slate-600 text-xs mb-3">Υποστηρίζεται HTML ή απλό κείμενο</p>
+            <textarea
+              value={form.content}
+              onChange={set('content')}
+              required
+              rows={20}
+              placeholder="Πλήρες περιεχόμενο άρθρου…"
+              className="w-full bg-slate-950 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-y font-mono leading-relaxed"
+            />
+          </div>
+
         </div>
 
-        {/* Excerpt */}
-        <div className="flex flex-col gap-1.5">
-          <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">
-            Περίληψη <span className="normal-case text-slate-600">(σύντομη προεπισκόπηση)</span>
-          </label>
-          <textarea
-            value={form.excerpt}
-            onChange={set('excerpt')}
-            rows={2}
-            placeholder="Μία ή δύο προτάσεις που εμφανίζονται στη λίστα των άρθρων…"
-            className="bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-none"
-          />
-        </div>
+        {/* ── Right: sidebar ─────────────────────────────────── */}
+        <div className="flex flex-col gap-5">
 
-        {/* Content */}
-        <div className="flex flex-col gap-1.5">
-          <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Περιεχόμενο *</label>
-          <textarea
-            value={form.content}
-            onChange={set('content')}
-            required
-            rows={16}
-            placeholder="Πλήρες περιεχόμενο άρθρου…"
-            className="bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all resize-y font-mono"
-          />
-        </div>
+          {/* Image */}
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+            <label className="block text-slate-400 text-xs font-semibold uppercase tracking-widest mb-4">
+              Εικόνα Εξωφύλλου
+            </label>
 
-        {/* Image */}
-        <div className="flex flex-col gap-1.5">
-          <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Εικόνα Εξωφύλλου</label>
-
-          {imagePreview ? (
-            <div className="relative w-full max-w-sm">
-              <img
-                src={imagePreview}
-                alt="Cover"
-                className="w-full h-48 object-cover rounded-xl border border-slate-700"
-              />
+            {imagePreview ? (
+              <div className="relative">
+                <img
+                  src={imagePreview}
+                  alt="Cover"
+                  className="w-full h-44 object-cover rounded-xl border border-slate-700"
+                />
+                <button
+                  type="button"
+                  onClick={removeImage}
+                  className="absolute top-2 right-2 p-1.5 bg-slate-900/80 hover:bg-red-500 text-white rounded-lg transition-colors"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              </div>
+            ) : (
               <button
                 type="button"
-                onClick={removeImage}
-                className="absolute top-2 right-2 p-1.5 bg-slate-900/80 hover:bg-red-500 text-white rounded-lg transition-colors"
+                onClick={() => fileRef.current?.click()}
+                disabled={uploading}
+                className="flex flex-col items-center justify-center gap-2 w-full h-36 border-2 border-dashed border-slate-700 hover:border-blue-500 rounded-xl text-slate-500 hover:text-blue-400 transition-colors disabled:opacity-50"
               >
-                <X className="w-3.5 h-3.5" />
+                {uploading
+                  ? <Loader2 className="w-5 h-5 animate-spin" />
+                  : <Upload className="w-5 h-5" />}
+                <span className="text-xs font-medium">{uploading ? 'Μεταφόρτωση…' : 'Κλικ για μεταφόρτωση'}</span>
+                <span className="text-xs text-slate-600">JPEG, PNG, WebP — μέγ. 5 MB</span>
               </button>
+            )}
+
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/jpeg,image/png,image/webp,image/gif"
+              onChange={handleImagePick}
+              className="hidden"
+            />
+          </div>
+
+          {/* Status */}
+          <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+            <label className="block text-slate-400 text-xs font-semibold uppercase tracking-widest mb-4">
+              Κατάσταση
+            </label>
+            <div className="flex rounded-xl overflow-hidden border border-slate-700">
+              {(['draft', 'published'] as const).map(s => (
+                <button
+                  key={s}
+                  type="button"
+                  onClick={() => setForm(prev => ({ ...prev, status: s }))}
+                  className={`flex-1 py-2.5 text-xs font-semibold transition-colors ${
+                    form.status === s
+                      ? s === 'published'
+                        ? 'bg-green-600 text-white'
+                        : 'bg-slate-700 text-white'
+                      : 'text-slate-500 hover:text-slate-300'
+                  }`}
+                >
+                  {s === 'draft' ? 'Πρόχειρο' : 'Δημοσιευμένο'}
+                </button>
+              ))}
             </div>
-          ) : (
-            <button
-              type="button"
-              onClick={() => fileRef.current?.click()}
-              disabled={uploading}
-              className="flex flex-col items-center justify-center gap-2 w-full max-w-sm h-36 border-2 border-dashed border-slate-700 hover:border-blue-500 rounded-xl text-slate-500 hover:text-blue-400 transition-colors disabled:opacity-50"
-            >
-              {uploading
-                ? <Loader2 className="w-5 h-5 animate-spin" />
-                : <Upload className="w-5 h-5" />}
-              <span className="text-xs">{uploading ? 'Μεταφόρτωση…' : 'Κλικ για μεταφόρτωση εικόνας'}</span>
-              <span className="text-xs text-slate-600">JPEG, PNG, WebP — μέγ. 5 MB</span>
-            </button>
+          </div>
+
+          {/* Error */}
+          {error && (
+            <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
+              {error}
+            </p>
           )}
 
-          <input
-            ref={fileRef}
-            type="file"
-            accept="image/jpeg,image/png,image/webp,image/gif"
-            onChange={handleImagePick}
-            className="hidden"
-          />
-        </div>
+          {/* Actions */}
+          <div className="flex flex-col gap-2">
+            <button
+              type="submit"
+              disabled={saving}
+              className="flex items-center justify-center gap-2 w-full bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors"
+            >
+              {saving && <Loader2 className="w-4 h-4 animate-spin" />}
+              {saving ? 'Αποθήκευση…' : isEdit ? 'Αποθήκευση Αλλαγών' : 'Δημιουργία Άρθρου'}
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate('/admin/articles')}
+              className="w-full text-slate-500 hover:text-white text-sm font-medium py-2 transition-colors"
+            >
+              Ακύρωση
+            </button>
+          </div>
 
-        {/* Status */}
-        <div className="flex flex-col gap-1.5">
-          <label className="text-slate-400 text-xs font-semibold uppercase tracking-widest">Κατάσταση</label>
-          <select
-            value={form.status}
-            onChange={set('status')}
-            className="bg-slate-900 border border-slate-700 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all w-48"
-          >
-            <option value="draft">Πρόχειρο</option>
-            <option value="published">Δημοσιευμένο</option>
-          </select>
-        </div>
-
-        {error && (
-          <p className="text-red-400 text-sm bg-red-500/10 border border-red-500/20 rounded-xl px-4 py-3">
-            {error}
-          </p>
-        )}
-
-        {/* Actions */}
-        <div className="flex items-center gap-3 pt-2">
-          <button
-            type="submit"
-            disabled={saving}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-semibold text-sm px-6 py-3 rounded-xl transition-colors"
-          >
-            {saving && <Loader2 className="w-4 h-4 animate-spin" />}
-            {saving ? 'Αποθήκευση…' : isEdit ? 'Αποθήκευση Αλλαγών' : 'Δημιουργία Άρθρου'}
-          </button>
-          <button
-            type="button"
-            onClick={() => navigate('/admin/articles')}
-            className="text-slate-400 hover:text-white text-sm font-medium transition-colors"
-          >
-            Ακύρωση
-          </button>
         </div>
 
       </form>
