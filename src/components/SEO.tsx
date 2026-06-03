@@ -1,6 +1,6 @@
 interface SEOProps {
   title: string
-  description: string
+  description?: string
 }
 
 export default function SEO({ title, description }: SEOProps) {

@@ -1,4 +1,4 @@
-export const API_BASE = 'http://localhost:8000'
+export const API_BASE = 'https://comhouse.gr/backend'
 
 export async function apiFetch<T = unknown>(
   path: string,

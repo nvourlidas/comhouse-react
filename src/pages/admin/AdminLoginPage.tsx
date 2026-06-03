@@ -2,8 +2,7 @@ import { useState, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { Lock, User } from 'lucide-react'
-
-const API = 'http://localhost:8000'
+import { API_BASE } from '../../lib/api'
 
 export default function AdminLoginPage() {
   const { login } = useAuth()
@@ -20,7 +19,7 @@ export default function AdminLoginPage() {
     setError(null)
 
     try {
-      const res = await fetch(`${API}/api/auth/login.php`, {
+      const res = await fetch(`${API_BASE}/api/auth/login.php`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password }),

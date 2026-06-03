@@ -1,9 +1,9 @@
 <?php
 class Database {
-    private $host     = 'localhost';
-    private $db_name  = 'comhouse';
-    private $username = 'root';
-    private $password = '';
+    private $host     = 'srv1379.hstgr.io';
+    private $db_name  = 'u413767359_comhouse';
+    private $username = 'u413767359_comhouse';
+    private $password = '!Nikos12345#';
     private $conn;
 
     public function getConnection(): PDO {
