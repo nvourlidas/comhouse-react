@@ -482,6 +482,16 @@ export default function LexmarkPage() {
       <SEO
         title="Lexmark Εκτυπωτές | ComHouse"
         description="Εξουσιοδοτημένος αντιπρόσωπος Lexmark. Laser εκτυπωτές, toner και service για επαγγελματική χρήση."
+        canonical="https://www.comhouse.gr/printers/lexmark"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Lexmark Εκτυπωτές",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Εξουσιοδοτημένος αντιπρόσωπος Lexmark. Laser εκτυπωτές, toner και service για επαγγελματική χρήση.",
+          "areaServed": "GR",
+          "serviceType": "Εκτυπωτές"
+        }}
       />
 
       {/* ── Hero ── */}

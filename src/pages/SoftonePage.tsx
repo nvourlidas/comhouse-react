@@ -78,6 +78,16 @@ export default function SoftonePage() {
       <SEO
         title="Entersoft One ERP | ComHouse"
         description="Πιστοποιημένος συνεργάτης Entersoft One. Εγκατάσταση, παραμετροποίηση και υποστήριξη ERP για μικρομεσαίες επιχειρήσεις."
+        canonical="https://www.comhouse.gr/mixanografisi/softone"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Entersoft One ERP",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Πιστοποιημένος συνεργάτης Entersoft One. Εγκατάσταση, παραμετροποίηση και υποστήριξη ERP για μικρομεσαίες επιχειρήσεις.",
+          "areaServed": "GR",
+          "serviceType": "Λογιστικό Σύστημα ERP"
+        }}
       />
 
       {/* ── Hero ── */}

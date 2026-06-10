@@ -155,6 +155,7 @@ export default function NewsPage() {
       <SEO
         title="Νέα | ComHouse"
         description="Ενημερωθείτε για τα τελευταία νέα, προσφορές και ανακοινώσεις της ComHouse."
+        canonical="https://www.comhouse.gr/news"
       />
 
       {/* Hero */}

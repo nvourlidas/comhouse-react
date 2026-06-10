@@ -598,6 +598,16 @@ export default function RbsPage() {
       <SEO
         title="RBS Ταμειακές Μηχανές | ComHouse"
         description="Εξουσιοδοτημένο service RBS ταμειακών μηχανών. Εγκατάσταση, επισκευή, κλείσιμο, παύση και ανάγνωση φορολογικής μνήμης."
+        canonical="https://www.comhouse.gr/tameiakes/rbs"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "RBS Ταμειακές Μηχανές",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Εξουσιοδοτημένο service RBS ταμειακών μηχανών. Εγκατάσταση, επισκευή, κλείσιμο, παύση και ανάγνωση φορολογικής μνήμης.",
+          "areaServed": "GR",
+          "serviceType": "Ταμειακές Μηχανές"
+        }}
       />
 
       {/* ── Hero + Text — unified blue section ── */}

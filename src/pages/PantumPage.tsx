@@ -463,6 +463,16 @@ export default function PantumPage() {
       <SEO
         title="Pantum Εκτυπωτές | ComHouse"
         description="Εξουσιοδοτημένος αντιπρόσωπος Pantum. Οικονομικοί laser εκτυπωτές για γραφείο και επαγγελματική χρήση."
+        canonical="https://www.comhouse.gr/printers/pantum"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Pantum Εκτυπωτές",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Εξουσιοδοτημένος αντιπρόσωπος Pantum. Οικονομικοί laser εκτυπωτές για γραφείο και επαγγελματική χρήση.",
+          "areaServed": "GR",
+          "serviceType": "Εκτυπωτές"
+        }}
       />
 
       {/* ── Hero ── */}

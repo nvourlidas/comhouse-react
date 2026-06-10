@@ -80,6 +80,16 @@ export default function ProsvasisPage() {
       <SEO
         title="Prosvasis GO | ComHouse"
         description="Εγκατάσταση και υποστήριξη Prosvasis GO. Ολοκληρωμένο σύστημα διαχείρισης λιανικής για επιχειρήσεις κάθε μεγέθους."
+        canonical="https://www.comhouse.gr/mixanografisi/prosvasis"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Prosvasis GO",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Εγκατάσταση και υποστήριξη Prosvasis GO. Ολοκληρωμένο σύστημα διαχείρισης λιανικής για επιχειρήσεις κάθε μεγέθους.",
+          "areaServed": "GR",
+          "serviceType": "Σύστημα Διαχείρισης Λιανικής"
+        }}
       />
 
       {/* ── Hero ── */}

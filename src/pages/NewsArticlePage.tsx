@@ -76,6 +76,22 @@ export default function NewsArticlePage() {
       <SEO
         title={`${article.title} | ComHouse`}
         description={article.excerpt ?? undefined}
+        canonical={`https://www.comhouse.gr/news/${article.slug}`}
+        ogImage={article.image ?? undefined}
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "NewsArticle",
+          "headline": article.title,
+          "description": article.excerpt ?? undefined,
+          "datePublished": article.published_at,
+          "image": article.image ?? "https://www.comhouse.gr/CH-logo-transparent.png",
+          "publisher": {
+            "@type": "Organization",
+            "name": "ComHouse",
+            "url": "https://www.comhouse.gr"
+          },
+          "url": `https://www.comhouse.gr/news/${article.slug}`
+        }}
       />
 
       {/* Hero */}

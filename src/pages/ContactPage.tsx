@@ -54,6 +54,27 @@ export default function ContactPage() {
       <SEO
         title="Επικοινωνία | ComHouse"
         description="Επικοινωνήστε με την ComHouse. Τηλέφωνο, email και φόρμα επικοινωνίας για οποιαδήποτε ερώτηση ή αίτημα."
+        canonical="https://www.comhouse.gr/contact"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "ComHouse - Βουρλίδας Σεμέλογλου",
+          "url": "https://www.comhouse.gr",
+          "telephone": "+302321098466",
+          "email": "comhouse@otenet.gr",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Εθνικής Αντίστασης 40",
+            "addressLocality": "Σέρρες",
+            "addressCountry": "GR"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+302321098466",
+            "contactType": "customer service",
+            "availableLanguage": "Greek"
+          }
+        }}
       />
 
       {/* ── Hero ── */}

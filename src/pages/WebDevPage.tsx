@@ -70,6 +70,16 @@ export default function WebDevPage() {
       <SEO
         title="Web & Mobile Apps | ComHouse"
         description="Ανάπτυξη websites, web applications, mobile apps και e-commerce. Σύγχρονες ψηφιακές λύσεις για την επιχείρησή σας."
+        canonical="https://www.comhouse.gr/webdev"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Web & Mobile Apps",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Ανάπτυξη websites, web applications, mobile apps και e-commerce. Σύγχρονες ψηφιακές λύσεις για την επιχείρησή σας.",
+          "areaServed": "GR",
+          "serviceType": "Web Development"
+        }}
       />
 
       {/* Hero */}

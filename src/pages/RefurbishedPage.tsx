@@ -59,6 +59,16 @@ export default function RefurbishedPage() {
       <SEO
         title="Refurbished Υπολογιστές | ComHouse"
         description="Ανακατασκευασμένοι υπολογιστές υψηλής ποιότητας με εγγύηση. Laptop και desktop σε προσιτές τιμές."
+        canonical="https://www.comhouse.gr/computers/refurbished"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "Refurbished Υπολογιστές",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Ανακατασκευασμένοι υπολογιστές υψηλής ποιότητας με εγγύηση. Laptop και desktop σε προσιτές τιμές.",
+          "areaServed": "GR",
+          "serviceType": "Refurbished Υπολογιστές"
+        }}
       />
 
       {/* Hero */}

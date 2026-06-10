@@ -55,7 +55,10 @@
       "Bash(symbolo)",
       "Bash(ouzo\")",
       "Bash(Get-ChildItem -Path . -Recurse -Directory)",
-      "Bash(Select-Object -ExpandProperty FullName)"
+      "Bash(Select-Object -ExpandProperty FullName)",
+      "Bash(findstr /i \"sitemap\\\\|robots\\\\|sitemap\")",
+      "Bash(Get-ChildItem \"c:\\\\Users\\\\KOSTAS\\\\Desktop\\\\Projects\\\\comhouse-react\" -Recurse -Filter \"robots.txt\" -o \"sitemap.xml\")",
+      "Bash(Select-Object FullName)"
     ]
   }
 }

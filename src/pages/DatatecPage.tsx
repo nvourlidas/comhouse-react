@@ -657,6 +657,16 @@ export default function DatatecPage() {
       <SEO
         title="DataTec Φορολογικοί Μηχανισμοί | ComHouse"
         description="Εξουσιοδοτημένο service DataTec. Εγκατάσταση, επισκευή και υποστήριξη φορολογικών μηχανισμών και ταμειακών μηχανών."
+        canonical="https://www.comhouse.gr/tameiakes/datatec"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "DataTec Φορολογικοί Μηχανισμοί",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Εξουσιοδοτημένο service DataTec. Εγκατάσταση, επισκευή και υποστήριξη φορολογικών μηχανισμών και ταμειακών μηχανών.",
+          "areaServed": "GR",
+          "serviceType": "Φορολογικοί Μηχανισμοί"
+        }}
       />
 
       {/* ── Hero + Text — unified cyan section ── */}

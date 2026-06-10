@@ -13,6 +13,23 @@ export default function HomePage() {
       <SEO
         title="ComHouse | Λύσεις Τεχνολογίας από το 1990"
         description="Ολοκληρωμένες λύσεις τεχνολογίας — μηχανογράφηση, ταμειακές, service υπολογιστών, myDATA και web development. Εξουσιοδοτημένο service από το 1990."
+        canonical="https://www.comhouse.gr/"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "LocalBusiness",
+          "name": "ComHouse - Βουρλίδας Σεμέλογλου",
+          "url": "https://www.comhouse.gr",
+          "telephone": "+302321098466",
+          "email": "comhouse@otenet.gr",
+          "foundingDate": "1990",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Εθνικής Αντίστασης 40",
+            "addressLocality": "Σέρρες",
+            "addressCountry": "GR"
+          },
+          "description": "Ολοκληρωμένες λύσεις τεχνολογίας — μηχανογράφηση, ταμειακές, service υπολογιστών, myDATA και web development. Εξουσιοδοτημένο service από το 1990."
+        }}
       />
       <Hero />
       <AboutSection />

@@ -80,6 +80,16 @@ export default function PbsPage() {
       <SEO
         title="PBS ONE | ComHouse"
         description="Εγκατάσταση και υποστήριξη PBS ONE. Επαγγελματικό σύστημα διαχείρισης για λιανικό και χονδρικό εμπόριο."
+        canonical="https://www.comhouse.gr/mixanografisi/pbs"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Service",
+          "name": "PBS ONE",
+          "provider": { "@type": "LocalBusiness", "name": "ComHouse", "url": "https://www.comhouse.gr" },
+          "description": "Εγκατάσταση και υποστήριξη PBS ONE. Επαγγελματικό σύστημα διαχείρισης για λιανικό και χονδρικό εμπόριο.",
+          "areaServed": "GR",
+          "serviceType": "Σύστημα Διαχείρισης Εμπορίου"
+        }}
       />
 
       {/* ── Hero ── */}
