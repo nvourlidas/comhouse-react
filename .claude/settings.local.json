@@ -49,7 +49,11 @@
       "Bash(curl -s \"http://localhost:8000/api/articles.php?page=1&limit=10\")",
       "Bash(npm run *)",
       "Bash(curl -s \"http://localhost:8000/api/articles.php?page=1&limit=3\")",
-      "Bash(curl -s -v \"http://localhost:8000/api/articles.php?page=1&limit=10\")"
+      "Bash(curl -s -v \"http://localhost:8000/api/articles.php?page=1&limit=10\")",
+      "Bash(alevras)",
+      "Bash(biomed)",
+      "Bash(symbolo)",
+      "Bash(ouzo\")"
     ]
   }
 }

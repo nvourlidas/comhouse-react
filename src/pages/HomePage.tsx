@@ -2,6 +2,7 @@ import SEO from '../components/SEO'
 import Hero from '../components/home/Hero'
 import AboutSection from '../components/home/AboutSection'
 import ServicesSection from '../components/home/ServicesSection'
+import CustomersSection from '../components/home/CustomersSection'
 import LatestNewsSection from '../components/home/LatestNewsSection'
 import PartnersSection from '../components/home/PartnersSection'
 import CtaSection from '../components/home/CtaSection'
@@ -16,6 +17,7 @@ export default function HomePage() {
       <Hero />
       <AboutSection />
       <ServicesSection />
+      <CustomersSection />
       <LatestNewsSection />
       <PartnersSection />
       <CtaSection />
