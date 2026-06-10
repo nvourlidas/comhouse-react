@@ -19,12 +19,14 @@ import PantumPage from './pages/PantumPage'
 import RefurbishedPage from './pages/RefurbishedPage'
 import WebDevPage from './pages/WebDevPage'
 import BackToTop from './components/BackToTop'
+import PromotionsPanel from './components/PromotionsPanel'
 import CookieConsent from './components/CookieConsent'
 import ScrollProgress from './components/ScrollProgress'
 import AdminLoginPage from './pages/admin/AdminLoginPage'
 import AdminDashboard from './pages/admin/AdminDashboard'
 import ArticlesPage from './pages/admin/ArticlesPage'
 import ArticleEditorPage from './pages/admin/ArticleEditorPage'
+import PromotionsPage from './pages/admin/PromotionsPage'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 
 function ScrollToTop() {
@@ -66,6 +68,7 @@ function AdminRoutes() {
       <Route path="/admin/articles" element={<ProtectedRoute><ArticlesPage /></ProtectedRoute>} />
       <Route path="/admin/articles/new" element={<ProtectedRoute><ArticleEditorPage /></ProtectedRoute>} />
       <Route path="/admin/articles/:id/edit" element={<ProtectedRoute><ArticleEditorPage /></ProtectedRoute>} />
+      <Route path="/admin/promotions" element={<ProtectedRoute><PromotionsPage /></ProtectedRoute>} />
     </Routes>
   )
 }
@@ -89,6 +92,7 @@ export default function App() {
           <ScrollProgress />
           <BackToTop />
           <CookieConsent />
+          <PromotionsPanel />
         </div>
       )}
     </AuthProvider>

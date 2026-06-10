@@ -33,3 +33,11 @@ CREATE TABLE IF NOT EXISTS articles (
     KEY idx_slug   (slug),
     KEY idx_status (status)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+CREATE TABLE promotions (
+    id         INT UNSIGNED  AUTO_INCREMENT PRIMARY KEY,
+    filename   VARCHAR(255)  NOT NULL,
+    sort_order INT UNSIGNED  NOT NULL DEFAULT 0,
+    created_at TIMESTAMP     NOT NULL DEFAULT CURRENT_TIMESTAMP
+);

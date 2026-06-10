@@ -1,12 +1,13 @@
 import { ReactNode } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
-import { LayoutDashboard, Newspaper, LogOut } from 'lucide-react'
+import { LayoutDashboard, Newspaper, Tag, LogOut } from 'lucide-react'
 import { useAuth } from '../../context/AuthContext'
 import { apiFetch } from '../../lib/api'
 
 const navItems = [
   { to: '/admin',          label: 'Αρχική',   icon: LayoutDashboard, exact: true },
-  { to: '/admin/articles', label: 'Άρθρα',    icon: Newspaper,       exact: false },
+  { to: '/admin/articles',   label: 'Άρθρα',     icon: Newspaper, exact: false },
+  { to: '/admin/promotions', label: 'Προσφορές', icon: Tag,       exact: false },
 ]
 
 export default function AdminLayout({ children }: { children: ReactNode }) {

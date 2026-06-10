@@ -53,7 +53,9 @@
       "Bash(alevras)",
       "Bash(biomed)",
       "Bash(symbolo)",
-      "Bash(ouzo\")"
+      "Bash(ouzo\")",
+      "Bash(Get-ChildItem -Path . -Recurse -Directory)",
+      "Bash(Select-Object -ExpandProperty FullName)"
     ]
   }
 }
