@@ -18,6 +18,7 @@ export default function PromotionsPanel() {
   const [promotions, setPromotions] = useState<Promotion[]>([])
   const [phase, setPhase]           = useState<Phase>('idle')
   const [hasLoaded, setHasLoaded]   = useState(false)
+  const [lightbox, setLightbox]     = useState<string | null>(null)
   const dragging   = useRef(false)
   const scrollRef   = useRef<HTMLDivElement>(null)
   const [atBottom, setAtBottom] = useState(false)
@@ -56,11 +57,16 @@ export default function PromotionsPanel() {
   }, [phase])
 
   useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false) }
+    if (!open && !lightbox) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        if (lightbox) setLightbox(null)
+        else setOpen(false)
+      }
+    }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
-  }, [open])
+  }, [open, lightbox])
 
   if (promotions.length === 0) return null
 
@@ -130,6 +136,39 @@ export default function PromotionsPanel() {
         </motion.button>
       )}
 
+      {/* Lightbox */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            key="lightbox"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-9999 bg-black/90 flex items-center justify-center"
+            onClick={() => setLightbox(null)}
+          >
+            <button
+              className="absolute top-4 right-4 text-white/70 hover:text-white p-2"
+              onClick={() => setLightbox(null)}
+              aria-label="Κλείσιμο"
+            >
+              <X className="w-8 h-8" />
+            </button>
+            <motion.img
+              src={lightbox}
+              alt="Προσφορά"
+              initial={{ scale: 0.85 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.85 }}
+              transition={{ duration: 0.2 }}
+              className="max-w-[90vw] max-h-[90vh] object-contain rounded-xl shadow-2xl"
+              onClick={e => e.stopPropagation()}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Backdrop + slide-in panel */}
       <AnimatePresence>
         {open && (
@@ -149,7 +188,7 @@ export default function PromotionsPanel() {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-              className="fixed top-0 right-0 h-full w-96 bg-white shadow-2xl z-50 flex flex-col"
+              className="fixed top-0 right-0 h-full w-[35vw] max-w-[95vw] bg-white shadow-2xl z-50 flex flex-col"
             >
               <div className="flex items-center justify-between px-5 py-4 bg-linear-to-r from-orange-500 to-red-600 shrink-0">
                 <div className="flex items-center gap-2">
@@ -175,8 +214,9 @@ export default function PromotionsPanel() {
                       key={p.id}
                       src={`${API_BASE}/uploads/promotions/${p.filename}`}
                       alt="Προσφορά"
-                      className="w-full object-contain rounded-lg"
+                      className="w-full object-contain rounded-lg cursor-zoom-in"
                       loading="lazy"
+                      onClick={() => setLightbox(`${API_BASE}/uploads/promotions/${p.filename}`)}
                     />
                   ))}
                 </div>
