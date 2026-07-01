@@ -17,6 +17,7 @@ interface NavChild {
 interface NavItem {
   label: string
   href: string
+  hasPage?: boolean
   children?: NavChild[]
 }
 
@@ -24,7 +25,8 @@ const navItems: NavItem[] = [
   { label: 'Αρχική', href: '/' },
   {
     label: 'Ταμειακές',
-    href: '/tameiakes',
+    href: '/tameiakes-mixanes-serres',
+    hasPage: true,
     children: [
       { label: 'RBS',     href: '/tameiakes/rbs' },
       { label: 'DataTec', href: '/tameiakes/datatec' },
@@ -33,6 +35,7 @@ const navItems: NavItem[] = [
   {
     label: 'Λύσεις Μηχανογράφησης',
     href: '/mixanografisi',
+    hasPage: true,
     children: [
       { label: 'EntersoftOne', href: '/mixanografisi/softone' },
       {
@@ -105,13 +108,24 @@ export default function Navbar() {
                   onMouseEnter={() => setOpenDropdown(item.label)}
                   onMouseLeave={() => { setOpenDropdown(null); setOpenSubDropdown(null) }}
                 >
-                  <button className="flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors">
-                    {item.label}
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
-                    />
-                  </button>
+                  <div className="flex items-center rounded-lg text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 transition-colors">
+                    {item.hasPage ? (
+                      <Link
+                        to={item.href}
+                        className={`px-3 py-2 ${location.pathname === item.href ? 'text-blue-600' : ''}`}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <span className="px-3 py-2 cursor-default">{item.label}</span>
+                    )}
+                    <span className="pr-2 py-2">
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
+                      />
+                    </span>
+                  </div>
 
                   {openDropdown === item.label && (
                     <div className="absolute top-full left-0 pt-1 w-52 z-50">
@@ -194,18 +208,29 @@ export default function Navbar() {
             {navItems.map((item) => (
               <div key={item.label}>
                 {item.children ? (
-                  <button
-                    className="w-full flex items-center justify-between px-3 py-2.5 text-sm font-medium text-slate-700 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition-colors"
-                    onClick={() =>
-                      setOpenDropdown(openDropdown === item.label ? null : item.label)
-                    }
-                  >
-                    {item.label}
-                    <ChevronDown
-                      size={14}
-                      className={`transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
-                    />
-                  </button>
+                  <div className="flex items-center justify-between rounded-lg text-sm font-medium text-slate-700 hover:bg-blue-50 transition-colors">
+                    {item.hasPage ? (
+                      <Link
+                        to={item.href}
+                        className={`flex-1 px-3 py-2.5 hover:text-blue-600 transition-colors ${location.pathname === item.href ? 'text-blue-600' : ''}`}
+                      >
+                        {item.label}
+                      </Link>
+                    ) : (
+                      <span className="flex-1 px-3 py-2.5">{item.label}</span>
+                    )}
+                    <button
+                      className="px-3 py-2.5 hover:text-blue-600 transition-colors"
+                      onClick={() =>
+                        setOpenDropdown(openDropdown === item.label ? null : item.label)
+                      }
+                    >
+                      <ChevronDown
+                        size={14}
+                        className={`transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
+                      />
+                    </button>
+                  </div>
                 ) : (
                   <Link
                     to={item.href}

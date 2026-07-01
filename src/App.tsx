@@ -18,6 +18,8 @@ import LexmarkPage from './pages/LexmarkPage'
 import PantumPage from './pages/PantumPage'
 import RefurbishedPage from './pages/RefurbishedPage'
 import WebDevPage from './pages/WebDevPage'
+import TameiakesMixanesPage from './pages/TameiakesMixanesPage'
+import MixanografisiPage from './pages/MixanografisiPage'
 import BackToTop from './components/BackToTop'
 import PromotionsPanel from './components/PromotionsPanel'
 import CookieConsent from './components/CookieConsent'
@@ -43,8 +45,10 @@ function PublicRoutes() {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><HomePage /></PageTransition>} />
+        <Route path="/tameiakes-mixanes-serres" element={<PageTransition><TameiakesMixanesPage /></PageTransition>} />
         <Route path="/tameiakes/rbs" element={<PageTransition><RbsPage /></PageTransition>} />
         <Route path="/tameiakes/datatec" element={<PageTransition><DatatecPage /></PageTransition>} />
+        <Route path="/mixanografisi" element={<PageTransition><MixanografisiPage /></PageTransition>} />
         <Route path="/mixanografisi/softone" element={<PageTransition><SoftonePage /></PageTransition>} />
         <Route path="/mixanografisi/prosvasis" element={<PageTransition><ProsvasisPage /></PageTransition>} />
         <Route path="/mixanografisi/pbs" element={<PageTransition><PbsPage /></PageTransition>} />
