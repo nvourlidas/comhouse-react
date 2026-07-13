@@ -18,6 +18,7 @@ import LexmarkPage from './pages/LexmarkPage'
 import PantumPage from './pages/PantumPage'
 import RefurbishedPage from './pages/RefurbishedPage'
 import WebDevPage from './pages/WebDevPage'
+import EcrConnectPage from './pages/EcrConnectPage'
 import TameiakesMixanesPage from './pages/TameiakesMixanesPage'
 import MixanografisiPage from './pages/MixanografisiPage'
 import BackToTop from './components/BackToTop'
@@ -32,10 +33,17 @@ import PromotionsPage from './pages/admin/PromotionsPage'
 import ProtectedRoute from './components/admin/ProtectedRoute'
 
 function ScrollToTop() {
-  const { pathname } = useLocation()
+  const { pathname, hash } = useLocation()
   useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [pathname])
+    if (hash) {
+      setTimeout(() => {
+        const el = document.querySelector(hash)
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      }, 400)
+    } else {
+      window.scrollTo(0, 0)
+    }
+  }, [pathname, hash])
   return null
 }
 
@@ -48,6 +56,7 @@ function PublicRoutes() {
         <Route path="/tameiakes-mixanes-serres" element={<PageTransition><TameiakesMixanesPage /></PageTransition>} />
         <Route path="/tameiakes/rbs" element={<PageTransition><RbsPage /></PageTransition>} />
         <Route path="/tameiakes/datatec" element={<PageTransition><DatatecPage /></PageTransition>} />
+        <Route path="/tameiakes/rbs/ecr-connect-pepper-invoicing" element={<PageTransition><EcrConnectPage /></PageTransition>} />
         <Route path="/mixanografisi" element={<PageTransition><MixanografisiPage /></PageTransition>} />
         <Route path="/mixanografisi/softone" element={<PageTransition><SoftonePage /></PageTransition>} />
         <Route path="/mixanografisi/prosvasis" element={<PageTransition><ProsvasisPage /></PageTransition>} />

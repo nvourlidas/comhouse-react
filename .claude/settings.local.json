@@ -58,7 +58,18 @@
       "Bash(Select-Object -ExpandProperty FullName)",
       "Bash(findstr /i \"sitemap\\\\|robots\\\\|sitemap\")",
       "Bash(Get-ChildItem \"c:\\\\Users\\\\KOSTAS\\\\Desktop\\\\Projects\\\\comhouse-react\" -Recurse -Filter \"robots.txt\" -o \"sitemap.xml\")",
-      "Bash(Select-Object FullName)"
+      "Bash(Select-Object FullName)",
+      "WebFetch(domain:pleper.com)",
+      "WebFetch(domain:daltonluka.com)",
+      "WebFetch(domain:www.sterlingsky.ca)",
+      "WebFetch(domain:datacenter.gr)",
+      "WebFetch(domain:www.yoys.gr)",
+      "WebFetch(domain:www.omnicoreagency.com)",
+      "WebFetch(domain:support.google.com)",
+      "WebFetch(domain:localdominator.co)",
+      "WebFetch(domain:www.debugbar.com)",
+      "Bash(git checkout *)",
+      "WebFetch(domain:rbs.gr)"
     ]
   }
 }

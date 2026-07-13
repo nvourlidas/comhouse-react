@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect, type CSSProperties } from 'react'
+import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import { ArrowRight, ChevronLeft, ChevronRight, ChevronDown, CheckCircle2, X } from 'lucide-react'
 import { FadeUp } from '../components/ScrollReveal'
@@ -6,6 +7,7 @@ import SEO from '../components/SEO'
 import Breadcrumb from '../components/Breadcrumb'
 
 import rbsLogo from '../assets/LOGO-RBS-TRANSP-scaled-2048x742.png'
+import ecrConnectLogo from '../assets/ECR-CON-2-1-1024x111.png'
 import pepper from '../assets/Pepper-all-in-one-full-body-kit.png'
 import edo1 from '../assets/EDO1-100x100.png'
 import edo2 from '../assets/EDO2-1-100x100.png'
@@ -13,6 +15,7 @@ import epia1 from '../assets/EPIA-MCR1-100x100.png'
 import epia2 from '../assets/EPIA-MCR2-100x100.png'
 import elio1 from '../assets/ELIO1-100x100.png'
 import elio2 from '../assets/ELIO2-1-100x100.png'
+import elioTouch from '../assets/ELIO-TOUCH-BK.png'
 
 /* ─── Types ──────────────────────────────────────────────────────── */
 interface Spec { label: string; value: string }
@@ -37,6 +40,53 @@ interface Product {
 
 /* ─── RBS Products ───────────────────────────────────────────────── */
 const rbsProducts: Product[] = [
+  {
+    id: 'elio-touch-cr',
+    name: 'ELIO TOUCH CR',
+    tagline: 'Η πιο σύγχρονη ταμειακή με Smart Touch Screen',
+    description:
+      'Νέα γενιά αυτόνομου ταμειακού συστήματος με εργονομική 7" οθόνη αφής και έγχρωμη οθόνη πελάτη 4". Μοναδικό design, σύγχρονο περιβάλλον χρήστη.',
+    images: [elioTouch],
+    specs: [
+      { label: 'Οθόνη Αφής',      value: '7" Smart Touch Screen' },
+      { label: 'Οθόνη Πελάτη',    value: '4" έγχρωμη, υψηλής ευκρίνειας' },
+      { label: 'Είδη',             value: 'Έως 30.000 με barcode' },
+      { label: 'Χειριστές',        value: 'Έως 10 με κωδικό' },
+      { label: 'Έγκριση',          value: '15DRM 710/20-04-2026' },
+      { label: 'Πιστοποίηση',      value: 'ΑΑΔΕ' },
+    ],
+    longDescription: {
+      paragraphs: [
+        'Η πιο σύγχρονη ταμειακή μηχανή με Smart Touch Screen — Νέα λειτουργία: Ψηφιακό Πελατολόγιο Οχημάτων',
+        'Η ELIO TOUCH CR αντιπροσωπεύει τη νέα γενιά αυτόνομων ταμειακών συστημάτων. Συνδυάζει εργονομικό σχεδιασμό με έξυπνη οθόνη αφής 7" και φιλικό περιβάλλον χρήστη, προσφέροντας μια σύγχρονη εμπειρία χρήσης.',
+        'Διαθέτει εργονομική οθόνη αφής 7" (Smart Touch Screen) για τον χειριστή και έγχρωμη οθόνη πελάτη 4" υψηλής ευκρίνειας, κατάλληλη και για την προβολή ψηφιακών δελτίων αποστολής.',
+        'Υποστηρίζει έως 100 τμήματα (10 σε 1ο επίπεδο, 90 σε 2ο), έως 300 πελάτες, έως 10 χειριστές με κωδικό και διαχείριση έως 30.000 ειδών με barcode.',
+        'Η λειτουργικότητα του Ψηφιακού Πελατολογίου Οχημάτων παρέχεται δωρεάν σε όλες τις εγκαταστάσεις ταμειακών που συνοδεύονται από ECR Connect ή ECR Invoicing.',
+        'Αρ. Έγκρισης 15DRM 710/20-04-2026 — Πλήρης συμμόρφωση με τις τεχνικές προδιαγραφές της ΑΑΔΕ Α.1173 και της ΠΟΛ 1220.',
+        'Όλες οι αναφορές (Z, X, myData, Report) είναι προσβάσιμες μέσω ενός μόνο πλήκτρου, ενώ η λειτουργία αναπαραγωγής τελευταίας απόδειξης διευκολύνει σημαντικά την καθημερινή χρήση.',
+        'Η ELIO TOUCH CR διαθέτει απλή & γρήγορη εγκατάσταση και αξιόπιστη διασύνδεση με τις γνωστότερες εφαρμογές λογισμικού της αγοράς.',
+      ],
+    },
+    characteristics: [
+      'Νέα γενιά αυτόνομου ταμειακού συστήματος',
+      'Εργονομικό πληκτρολόγιο Smart Touch 7"',
+      'Έγχρωμη οθόνη πελάτη 4" υψηλής ευκρίνειας',
+      'Έως 100 τμήματα (10 σε 1ο επίπεδο, 90 σε 2ο)',
+      'Διαχείριση έως 300 πελάτες & 10 χειριστές με κωδικό',
+      'Διαχείριση έως 30.000 ειδών με barcode',
+      'Δυνατότητα σύνδεσης πολλαπλών περιφερειακών',
+      'Σύνδεση με EFT POS ή SOFT POS',
+      'Μέσω συνδρομής ECR Invoicing',
+      '✔ Ηλεκτρονική τιμολόγηση πάνω από την ταμειακή',
+      '✔ Αυτόματη ενημέρωση myData',
+      'Μέσω συνδρομής ECR Connect',
+      '✔ Απομακρυσμένη υποστήριξη',
+      '✔ Δωρεάν αναβαθμίσεις λογισμικού ταμειακής',
+      '✔ Δωρεάν χρήση mobile app ECR Connect',
+      'Δωρεάν Λειτουργία "Ψηφιακό Πελατολόγιο Οχημάτων"',
+      '✔ Μέσω συνδρομής ECR Connect ή ECR Invoicing',
+    ],
+  },
   {
     id: 'pepper-aio',
     name: 'PEPPER All In One',
@@ -544,13 +594,12 @@ export default function RbsPage() {
   const productsRef = useRef<HTMLDivElement>(null)
   const [widgetVisible, setWidgetVisible] = useState(true)
 
-  // Hide widget when the products section enters the viewport, show when it leaves
   useEffect(() => {
     const el = productsRef.current
     if (!el) return
     const observer = new IntersectionObserver(
       ([entry]) => setWidgetVisible(!entry.isIntersecting),
-      { threshold: 0 }
+      { threshold: 0, rootMargin: '-80px 0px 0px 0px' }
     )
     observer.observe(el)
     return () => observer.disconnect()
@@ -611,16 +660,20 @@ export default function RbsPage() {
       />
 
       {/* ── Hero + Text — unified blue section ── */}
-      <section className="relative bg-blue-950 px-4 pt-10 pb-24">
-        <div className="max-w-5xl mx-auto">
+      <section className="relative bg-blue-950 px-4 pt-6 pb-16">
+        <div className="max-w-6xl mx-auto">
           <Breadcrumb items={[
             { label: 'Αρχική', href: '/' },
             { label: 'Ταμειακές', href: '/tameiakes/rbs' },
             { label: 'RBS' },
           ]} />
 
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch mt-2">
+          {/* Left: logo + text */}
+          <div>
+
           {/* Logo */}
-          <div className="mb-10">
+          <div className="mb-5">
             <img src={rbsLogo} alt="RBS" className="h-12 sm:h-14 object-contain" />
           </div>
 
@@ -640,7 +693,7 @@ export default function RbsPage() {
             {/* Collapsible body */}
             <div
               className="relative overflow-hidden transition-[max-height] duration-500 ease-in-out"
-              style={{ maxHeight: textOpen ? '2000px' : '700px' }}
+              style={{ maxHeight: textOpen ? '2000px' : '300px' }}
             >
               <div className="space-y-4 text-sm text-blue-100/70 leading-relaxed">
                 <p>
@@ -731,7 +784,23 @@ export default function RbsPage() {
               />
             </button>
           </div>
+          </div>{/* end left column */}
 
+          {/* Right: product images */}
+          <div className="hidden lg:flex flex-col gap-4 pt-2">
+            <img
+              src={elioTouch}
+              alt="ELIO Touch CR"
+              className="w-full object-contain drop-shadow-2xl"
+              style={{ maxHeight: '400px' }}
+            />
+            <div className="grid grid-cols-2 gap-4 w-full">
+              <img src={elio1}  alt="ELIO"     className="h-56 w-full object-contain drop-shadow-xl" />
+              <img src={epia1} alt="EPIA MCR" className="h-56 w-full object-contain drop-shadow-xl" />
+            </div>
+          </div>
+
+          </div>{/* end grid */}
         </div>
 
         {/* Wave divider */}
@@ -742,57 +811,45 @@ export default function RbsPage() {
         </div>
       </section>
 
-      {/* ── Bottom-right product carousel widget ── */}
-      <div className={`fixed bottom-6 right-6 z-40 w-56 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 ${
-        widgetVisible ? 'translate-x-0 opacity-100' : 'translate-x-[120%] opacity-0 pointer-events-none'
-      }`}>
-
-        {/* Gradient header */}
-        <div className="bg-linear-to-r from-blue-700 to-blue-500 px-4 py-3">
-          <p className="text-[9px] font-black uppercase tracking-widest text-blue-100">Προϊόντα RBS</p>
-        </div>
-
-        {/* Sliding product card */}
-        <div className="overflow-hidden">
-          <button
-            onClick={() => goToProduct(product.id)}
-            style={cardStyle}
-            className="w-full flex flex-col items-center px-4 pt-4 pb-4 hover:bg-blue-50 group text-left transition-colors"
-          >
-            {/* Image */}
-            <div className="w-full flex items-center justify-center bg-slate-50 rounded-xl py-4 mb-3">
-              <img
-                src={product.images?.[0]}
-                alt={product.name}
-                className="h-24 w-24 object-contain"
-              />
-            </div>
-            {/* Name */}
-            <p className="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-snug w-full">
-              {product.name}
-            </p>
-            {/* CTA */}
-            <div className="mt-2 w-full flex items-center justify-center gap-1.5 bg-blue-600 group-hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors">
-              Δείτε το <ArrowRight size={12} />
-            </div>
-          </button>
-        </div>
-
-        {/* Dots */}
-        <div className="flex items-center justify-center gap-1.5 pb-3">
-          {rbsProducts.map((_, i) => (
+      {/* ── Bottom-right product carousel widget (portal escapes PageTransition transform) ── */}
+      {createPortal(
+        <div className={`fixed bottom-6 right-6 z-40 w-56 bg-white rounded-2xl shadow-2xl overflow-hidden transition-all duration-300 ${
+          widgetVisible ? 'translate-x-0 opacity-100' : 'translate-x-[120%] opacity-0 pointer-events-none'
+        }`}>
+          <div className="bg-linear-to-r from-blue-700 to-blue-500 px-4 py-3">
+            <p className="text-[9px] font-black uppercase tracking-widest text-blue-100">Προϊόντα RBS</p>
+          </div>
+          <div className="overflow-hidden">
             <button
-              key={i}
-              onClick={() => slideTo(i)}
-              className={`rounded-full transition-all duration-300 ${
-                i === displayIdx
-                  ? 'w-4 h-1.5 bg-blue-500'
-                  : 'w-1.5 h-1.5 bg-slate-200 hover:bg-slate-300'
-              }`}
-            />
-          ))}
-        </div>
-      </div>
+              onClick={() => goToProduct(product.id)}
+              style={cardStyle}
+              className="w-full flex flex-col items-center px-4 pt-4 pb-4 hover:bg-blue-50 group text-left transition-colors"
+            >
+              <div className="w-full flex items-center justify-center bg-slate-50 rounded-xl py-4 mb-3">
+                <img src={product.images?.[0]} alt={product.name} className="h-24 w-24 object-contain" />
+              </div>
+              <p className="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors leading-snug w-full">
+                {product.name}
+              </p>
+              <div className="mt-2 w-full flex items-center justify-center gap-1.5 bg-blue-600 group-hover:bg-blue-700 text-white text-xs font-semibold px-3 py-1.5 rounded-lg transition-colors">
+                Δείτε το <ArrowRight size={12} />
+              </div>
+            </button>
+          </div>
+          <div className="flex items-center justify-center gap-1.5 pb-3">
+            {rbsProducts.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => slideTo(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === displayIdx ? 'w-4 h-1.5 bg-blue-500' : 'w-1.5 h-1.5 bg-slate-200 hover:bg-slate-300'
+                }`}
+              />
+            ))}
+          </div>
+        </div>,
+        document.body
+      )}
 
       {/* Products */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 pt-10 pb-4">
@@ -810,6 +867,32 @@ export default function RbsPage() {
           </FadeUp>
         ))}
       </div>
+
+      {/* ECR Connect teaser */}
+      <section className="py-14 px-4 bg-slate-50">
+        <FadeUp>
+          <div className="max-w-5xl mx-auto">
+            <div className="rounded-2xl bg-linear-to-r from-blue-700 to-blue-500 px-7 py-8 flex flex-col sm:flex-row items-center gap-6 shadow-lg">
+              <div className="flex-1 min-w-0">
+                <img src={ecrConnectLogo} alt="ECR Connect" className="h-6 object-contain mb-3 brightness-200" />
+                <h2 className="text-lg sm:text-xl font-extrabold text-white mb-2 leading-snug">
+                  ECR Connect &amp; Pepper Invoicing
+                </h2>
+                <p className="text-blue-100 text-sm leading-relaxed">
+                  Συνδρομή υποστήριξης, δωρεάν ενημερώσεις και ηλεκτρονική τιμολόγηση χονδρικής —
+                  όλα για τις ταμειακές RBS.
+                </p>
+              </div>
+              <Link
+                to="/tameiakes/rbs/ecr-connect-pepper-invoicing"
+                className="shrink-0 inline-flex items-center gap-2 bg-white hover:bg-blue-50 text-blue-700 font-semibold px-6 py-3 rounded-xl text-sm transition-colors shadow"
+              >
+                Δείτε τις λεπτομέρειες <ArrowRight size={13} />
+              </Link>
+            </div>
+          </div>
+        </FadeUp>
+      </section>
 
       {/* CTA */}
       <section className="py-16 px-4 bg-linear-to-br from-blue-700 to-blue-900">

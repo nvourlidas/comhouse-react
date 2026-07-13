@@ -45,6 +45,7 @@ const navItems: NavItem[] = [
           { label: 'PBS ONE',      href: '/mixanografisi/pbs' },
         ],
       },
+      { label: 'ECR Connect & Invoicing', href: '/tameiakes/rbs/ecr-connect-pepper-invoicing' },
     ],
   },
   {

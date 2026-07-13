@@ -6,6 +6,7 @@ import CustomersSection from '../components/home/CustomersSection'
 import LatestNewsSection from '../components/home/LatestNewsSection'
 import PartnersSection from '../components/home/PartnersSection'
 import CtaSection from '../components/home/CtaSection'
+import WhatsNewSection from '../components/home/WhatsNewSection'
 
 export default function HomePage() {
   return (
@@ -32,6 +33,7 @@ export default function HomePage() {
         }}
       />
       <Hero />
+      <WhatsNewSection />
       <AboutSection />
       <ServicesSection />
       <CustomersSection />
